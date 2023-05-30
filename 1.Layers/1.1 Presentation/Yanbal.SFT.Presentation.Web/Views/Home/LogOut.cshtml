@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "LogOut";
+    Layout = null;
+}
+@Scripts.Render("~/bundles/JQuery")
+@Scripts.Render("~/bundles/JQueryval")
+@Scripts.Render("~/bundles/JQueryui")
+<h2>LogOut</h2>
+<input id="btnCallBack" style="visibility:hidden" type="button"
+       value="Login"
+       onclick="location.href='@Url.Action("Index", "Account")'" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        document.getElementById("btnCallBack").click();
+        window.open('', '_parent', '');
+        window.opener = top;
+        window.close();
+    });
+</script>

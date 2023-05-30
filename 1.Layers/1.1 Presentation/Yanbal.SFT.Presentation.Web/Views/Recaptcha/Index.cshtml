@@ -1,0 +1,61 @@
+﻿@model Yanbal.SFT.Presentation.Web.Source.Util.Captcha
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    var viewModel = @(Html.Raw(Json.Encode(Model)));
+    ns('Yanbal.SFT.Web.Security.Recaptcha.Index.RecaptchaModel');
+    Yanbal.SFT.Web.Security.Recaptcha.Index.RecaptchaModel.Index = viewModel;
+</script>
+
+<div class="acenter">
+    <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" />
+</div>
+
+<div id="rHidden" class="row hidden">
+    <div class="col-md-3 col-md-offset-4">
+        <div class="text-center">
+            <span id="message-recaptcha" class="text-warning">Resuelva el reCAPTCHA para continuar</span>
+        </div>
+        <div class="row" style="text-align:center;">
+            <div id="reCaptchaContainer" style="display:inline-block;"></div><br />
+        </div>
+        <div class="text-center">
+            <button id="btn-reCaptcha" value="Aceptar" name="Aceptar" class="button btn btn-primary">Aceptar</button>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <!--reCAPTCHA v3-->
+    <script src=@Url.Content(string.Format("https://www.google.com/recaptcha/api.js?render={0}", Model.clavePublica))></script>
+
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@Model.clavePublica', { action: 'Home' }).then(function (token) {
+                document.getElementById('g-recaptcha-response').value = token;
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Web.Source.Security.Recaptcha.Actions')
+        Yanbal.SFT.Web.Source.Security.Recaptcha.Actions.ValidarRecaptcha = '@Url.Action("ValidarRecaptchav3", "Recaptcha")';
+        Yanbal.SFT.Web.Source.Security.Recaptcha.Actions.ValidarRecaptchav2 = '@Url.Action("ValidarRecaptchav2", "Recaptcha")';
+
+        ns('Yanbal.SFT.Web.Source.Security.Recaptcha.Keys')
+        Yanbal.SFT.Web.Source.Security.Recaptcha.Keys.ClavePublica = '@Model.clavePublica';
+        Yanbal.SFT.Web.Source.Security.Recaptcha.Keys.Version = '@Model.version';
+        Yanbal.SFT.Web.Source.Security.Recaptcha.Keys.ControllerName = '@Model.controllerName';
+    </script>
+
+    <!--reCAPTCHA v2-->
+    <script src="https://www.google.com/recaptcha/api.js?onload=renderRecaptcha&render=explicit" async defer></script>
+
+    <script src="~/Scripts/Views/Recaptcha/Index/Index.js"></script>
+    <script src="~/Scripts/Views/Recaptcha/Index/Controller.js"></script>
+}

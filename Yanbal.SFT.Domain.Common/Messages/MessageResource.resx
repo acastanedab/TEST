@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CodigoDirectoraInexistente" xml:space="preserve">
+    <value>Código de Directora no existe</value>
+  </data>
+  <data name="ConfirmacionAnulacion" xml:space="preserve">
+    <value>¿Está seguro de anular el pago?</value>
+  </data>
+  <data name="ConfirmacionEliminacion" xml:space="preserve">
+    <value>¿Está seguro de eliminar el registro?</value>
+  </data>
+  <data name="SaveConfirmation" xml:space="preserve">
+    <value>¿Está seguro de grabar los cambios solicitados?</value>
+  </data>
+  <data name="ConfirmacionIdentificar" xml:space="preserve">
+    <value>¿Está seguro de identificar los registros?</value>
+  </data>
+  <data name="ConfirmacionProcesarSaldo" xml:space="preserve">
+    <value>¿Está seguro de realizar el proceso de devolución?</value>
+  </data>
+  <data name="ConvenioPorDeudaAnuladoSatisfactorio" xml:space="preserve">
+    <value>Registro Anulado Correctamente</value>
+  </data>
+  <data name="ConvenioPorDeudaExisteConvenio" xml:space="preserve">
+    <value>La Directora ya tiene Convenio(s)</value>
+  </data>
+  <data name="ConvenioPorDeudaValidarAnulacion" xml:space="preserve">
+    <value>Convenio no puede ser Anulado, solo se pueden anular los convenios activos</value>
+  </data>
+  <data name="ConvenioPorDeudaValidarAsociarDeuda" xml:space="preserve">
+    <value>Debe asociar deudas al Convenio</value>
+  </data>
+  <data name="ConvenioPorDeudaValidarCalcularCuota" xml:space="preserve">
+    <value>Debe Calcular el Cronograma</value>
+  </data>
+  <data name="ConvenioPorDeudaValidarCuotaDistinta" xml:space="preserve">
+    <value>Número de Cuotas distinta al cronograma</value>
+  </data>
+  <data name="ConvenioPorDeudaValidarCuotasMontoConvenio" xml:space="preserve">
+    <value>No existe monto de convenio</value>
+  </data>
+  <data name="ConvenioPorDeudaValidarCuotasNumeroCuotas" xml:space="preserve">
+    <value>Ingrese número de cuotas</value>
+  </data>
+  <data name="ConvenioPorDeudaValidarEstadoConvenio" xml:space="preserve">
+    <value>Convenio Pagado ó Anulado</value>
+  </data>
+  <data name="ConvenioPorDeudaValidarMontoConvenioMayor" xml:space="preserve">
+    <value>Deuda a Convenir es mayor al Totalizado de Cuotas</value>
+  </data>
+  <data name="ConvenioPorDeudaValidarMontoConvenioMenor" xml:space="preserve">
+    <value>Deuda a Convenir es menor al Totalizado de Cuotas</value>
+  </data>
+  <data name="ConvenioPorDeudaValidarRegistro" xml:space="preserve">
+    <value>Deuda(s) asociada(s) a un Convenio:</value>
+  </data>
+  <data name="ConvenioPorDeudConfirmarAnularConvenio" xml:space="preserve">
+    <value>¿ Desea anular el convenio ?</value>
+  </data>
+  <data name="DebeIngresarComentario" xml:space="preserve">
+    <value>Debe ingresar comentario</value>
+  </data>
+  <data name="DebeIngresarNumeroOperacion" xml:space="preserve">
+    <value>Debe ingresar número de operación</value>
+  </data>
+  <data name="DebeSeleccionarDeudaMismaConsultora" xml:space="preserve">
+    <value>Debe seleccionar deudas que pertenezcan a la misma Consultora</value>
+  </data>
+  <data name="DebeSeleccionarDirectora" xml:space="preserve">
+    <value>Debe seleccionar una Directora</value>
+  </data>
+  <data name="DebeSeleccionarEntidadRecaudadora" xml:space="preserve">
+    <value>Debe seleccionar entidad recaudadora</value>
+  </data>
+  <data name="DebeSeleccionarEntidadRecaudadoraCta" xml:space="preserve">
+    <value>Debe seleccionar una cuenta</value>
+  </data>
+  <data name="DebeSeleccionarFecha" xml:space="preserve">
+    <value>Debe seleccionar una fecha</value>
+  </data>
+  <data name="DebeSeleccionarMotivoCambio" xml:space="preserve">
+    <value>Debe seleccionar motivo de cambio</value>
+  </data>
+  <data name="DebeSeleccionarRegistro" xml:space="preserve">
+    <value>Debe seleccionar al menos un registro</value>
+  </data>
+  <data name="DebeSeleccionarRegistroMismoProducto" xml:space="preserve">
+    <value>Debe seleccionar registros del mismo Producto Crédito para esta opción</value>
+  </data>
+  <data name="DebeSeleccionarUnRegistro" xml:space="preserve">
+    <value>Debe seleccionar solo 1 registro</value>
+  </data>
+  <data name="EntidadRecaudadoraDistinta" xml:space="preserve">
+    <value>Entidad Recaudadora distinto</value>
+  </data>
+  <data name="FailedSaved" xml:space="preserve">
+    <value>Se produjo un error al grabar el registro</value>
+  </data>
+  <data name="LoadErrorViewModel" xml:space="preserve">
+    <value>View model no definido</value>
+  </data>
+  <data name="ErrorConsultoraAsume" xml:space="preserve">
+    <value>La consultora beneficiaria no puede ser la misma que la que asume.</value>
+  </data>
+  <data name="ErrorConsultoraBeneficiaria" xml:space="preserve">
+    <value>La consultora que asume no puede ser la misma que la beneficiaria.</value>
+  </data>
+  <data name="ErrorConsultoraNoExiste" xml:space="preserve">
+    <value>Código de Consultora no existe</value>
+  </data>
+  <data name="ErrorConsultoraNoGrupoPersonal" xml:space="preserve">
+    <value>La consultora seleccionada no pertenece al grupo personal de la consultora que asume.</value>
+  </data>
+  <data name="ErrorConsultoraRepetida" xml:space="preserve">
+    <value>Ya se ha ingresado la consultora.</value>
+  </data>
+  <data name="ErrorIngreseDeudas" xml:space="preserve">
+    <value>Deudas para el proceso</value>
+  </data>
+  <data name="ErrorSeleccionDeudas" xml:space="preserve">
+    <value>Seleccione deudas para el proceso.</value>
+  </data>
+  <data name="ErrorSeleccioneConsultoraAsume" xml:space="preserve">
+    <value>Una consultora para asumir la deuda.</value>
+  </data>
+  <data name="ErrorSeleccionPagos" xml:space="preserve">
+    <value>Seleccione pagos para el proceso.</value>
+  </data>
+  <data name="ExcelCampoNoDecimal" xml:space="preserve">
+    <value>{0} : No es un valor decimal.</value>
+  </data>
+  <data name="ExcelCampoNoEncontrado" xml:space="preserve">
+    <value>{0} : No se encontro referencia del campo en el archivo.</value>
+  </data>
+  <data name="ExcelCampoNoFecha" xml:space="preserve">
+    <value>{0} : No es un valor de fecha correcto. Formato </value>
+  </data>
+  <data name="ExcelCampoNoNumerico" xml:space="preserve">
+    <value>{0} : No es un valor numérico.</value>
+  </data>
+  <data name="ExcelCodigoCobradorNoExiste" xml:space="preserve">
+    <value>El código de cobrador asociado no existe en la base de datos.</value>
+  </data>
+  <data name="ExcelDeudaNoAsignadaCobrador" xml:space="preserve">
+    <value>El número de deuda no está asignado al cobrador.</value>
+  </data>
+  <data name="ExcelNoExisteAccionJudicialConfirmar" xml:space="preserve">
+    <value>No existe la acción judicial para realizar la confirmación.</value>
+  </data>
+  <data name="ExcelNumeroDemandaNoExiste" xml:space="preserve">
+    <value>El número de demanda asociado no existe en la base de datos.</value>
+  </data>
+  <data name="ExcelNumeroDeudaNoExiste" xml:space="preserve">
+    <value>El número de deuda asociado no existe en la base de datos.</value>
+  </data>
+  <data name="ExcelRegistroDuplicado" xml:space="preserve">
+    <value>El registro se encuentra duplicado.</value>
+  </data>
+  <data name="ExcelRegistroDuplicadoBaseDatos" xml:space="preserve">
+    <value>El registro ya se encuentra en la base de datos</value>
+  </data>
+  <data name="ExcelTipoCampoNoConsiderado" xml:space="preserve">
+    <value>{0} : No tiene un tipo de dato configurado en politicas.</value>
+  </data>
+  <data name="ExisteDocumentoRegistrado" xml:space="preserve">
+    <value>Ya existe un documento registrado</value>
+  </data>
+  <data name="FechaRegistroDistinta" xml:space="preserve">
+    <value>Fecha de depósito distinto</value>
+  </data>
+  <data name="ImportePagoDistinta" xml:space="preserve">
+    <value>Importe de pago distinto</value>
+  </data>
+  <data name="InformacionFiltroConsultora" xml:space="preserve">
+    <value>No puede seleccionar una consultora</value>
+  </data>
+  <data name="InformacionIngresarFiltro" xml:space="preserve">
+    <value>Debe ingresar al menos un filtro de búsqueda</value>
+  </data>
+  <data name="InformacionPreFiltro" xml:space="preserve">
+    <value>La información mostrada corresponde a la</value>
+  </data>
+  <data name="MessageErrorLogOn" xml:space="preserve">
+    <value>Usuario no tiene Acceso.</value>
+  </data>
+  <data name="MontoPagoNoCoincide" xml:space="preserve">
+    <value>El importe reportado no coincide con el importe reportado por la entidad recaudadora</value>
+  </data>
+  <data name="NoRegistrarPagoDuplicado" xml:space="preserve">
+    <value>No se puede Registrar Pago Duplicado</value>
+  </data>
+  <data name="NumeroCuentaDistinta" xml:space="preserve">
+    <value>Número de cuenta distinto</value>
+  </data>
+  <data name="NumeroOperacionDistinta" xml:space="preserve">
+    <value>Número de operacion distinto</value>
+  </data>
+  <data name="NumeroReferenciaDistinta" xml:space="preserve">
+    <value>Número de referencia distinto</value>
+  </data>
+  <data name="PagoIdentificadoCorrectamente" xml:space="preserve">
+    <value>Pago identificado correctamente</value>
+  </data>
+  <data name="PagoIdentificadoCorrecto" xml:space="preserve">
+    <value>Pago identificado correctamente</value>
+  </data>
+  <data name="RegistrosNoCoinciden" xml:space="preserve">
+    <value>Los registros seleccionados no coinciden:</value>
+  </data>
+  <data name="RestriccionEstadoCredito" xml:space="preserve">
+    <value>Esta opción solo está habilitada si el estado del crédito es Aprobado.</value>
+  </data>
+  <data name="SeAnuloRegistro" xml:space="preserve">
+    <value>Se anuló registro con éxito</value>
+  </data>
+  <data name="InformationSaved" xml:space="preserve">
+    <value>Se guardó la información con éxito</value>
+  </data>
+  <data name="SeleccioneConsultora" xml:space="preserve">
+    <value>Para esta opción debe seleccionar una directora.</value>
+  </data>
+  <data name="SeleccioneFiltro" xml:space="preserve">
+    <value>Al menos un parámetro de filtro correcto.</value>
+  </data>
+  <data name="ValidaMaximoCuotas" xml:space="preserve">
+    <value>El número de cuotas supera al número de campañas restantes.</value>
+  </data>
+  <data name="SatisfactorySaved" xml:space="preserve">
+    <value>Se guardó la información con éxito.</value>
+  </data>
+  <data name="LabelValidationObservation" xml:space="preserve">
+    <value>Motivo de Modificación Valido</value>
+  </data>
+  <data name="MessageErrorPassOn" xml:space="preserve">
+    <value>Usuario y/o Contraseña Incorrecto</value>
+  </data>
+</root>

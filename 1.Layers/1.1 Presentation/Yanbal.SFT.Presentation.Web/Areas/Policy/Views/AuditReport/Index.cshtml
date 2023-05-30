@@ -1,0 +1,122 @@
+﻿@*@model FinancialCommercial.Presentation.Models.Politica.ReporteAuditoriaModel*@
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.AuditReport
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy;
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+@model AuditReportModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>@Html.Raw(IndexResource.LabelTitleAuditReport)</strong>
+    </div>
+    <div class="panel-body">
+        <div id="divInformationalMessage">
+            <span class="fa fa-info-circle"></span>
+            <span id="lblInformationalMessage">@Html.Raw(GeneralResource.LabelSomeInformationRequiredFields)</span>
+            <hr />
+        </div>
+        <form id="frmAuditReportIndex" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">@IndexResource.LabelTable:</label>
+                            <div class="col-sm-7">
+                                <select id="slcTable" name="TableCode" class="form-control" data-bind="options: ListTable, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@GeneralResource.LabelSelectAll'">
+                                </select>
+                                <input id="hdnTable" name="TableDescription" type="hidden" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">@IndexResource.LabelTransactionDate:</label>
+                            <div class="col-sm-7">
+                                <div style="">
+                                    <div class="col-sm-12" style="padding: 0px; margin-bottom: 15px;">
+                                        <div class="col-sm-3 control-label" style="padding: 0px; padding-top: 7px; width: 31%; min-width: 35px">
+                                            @GeneralResource.LabelFrom
+                                        </div>
+                                        <div class="col-sm-9" style="padding: 0px; width: 69%">
+                                            <input id="calDateFrom" type="text" name="DateFrom" class="form-control-custom text-search input-sm datepicker1" data-bind="value: DateFrom" style="padding: 1px; text-align: center; margin: 0px; width: 80%" validable="DateTime true CorrectDateFrom" maxlength="10" />
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-sm-12" style="padding: 0px">
+                                        <div class="col-sm-3 control-label" style="padding: 0px; padding-top: 7px; width: 31%; min-width: 35px">
+                                            @GeneralResource.LabelTo
+                                        </div>
+                                        <div class="col-sm-9" style="padding: 0px; width: 69%">
+                                            <input id="calDateTo" type="text" name="DateTo" class="form-control-custom text-search input-sm datepicker1" data-bind="value: DateTo" style="padding: 1px; text-align: center; margin: 0px; width: 80%" validable="DateTime true CorrectDateTo" maxlength="10" />
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">@IndexResource.LabelAttribute:</label>
+                            <div class="col-sm-7">
+                                <select id="slcAttribute" name="AttributeCode" class="form-control" >
+                                </select>
+                                <input id="hdnAttribute" name="AttributeDescription" type="hidden" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">@GeneralResource.LabelUser:</label>
+                            <div class="col-sm-7">
+                                <input id="txtUserTransaction" name="UserTransaction" class="form-control" type="text" maxlength="100" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">
+                            </label>
+                            <div class="col-sm-7" style="text-align: right">
+                                <input id="btnClean" class="btn btn-default btn-filter" type="button" value="@GeneralResource.LabelClean" data-bind="visible: Clean.Visible, enable: Clean.Enabled" />
+                                <input id="btnVisualize" type="button" class="btn btn-primary" value="@GeneralResource.LabelShow" data-bind="visible: Visualize.Visible, enable: Visualize.Enabled" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/Util.js"></script>
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.Formula.Actions')
+        Yanbal.SFT.Presentation.Web.Policy.Formula.Actions.ChangeAuditTable = '@Url.Action("ChangeAuditTable", "AuditReport")';
+
+        ns('Yanbal.SFT.Presentation.Web.General.ReportViewer.Actions')
+        Yanbal.SFT.Presentation.Web.General.ReportViewer.Actions.AuditPolicy = '@Url.Action("AuditPolicy", "Report", new { Area = "General" })';
+
+        ns('Yanbal.SFT.Presentation.Web.Policy.AuditReport.Resources')
+        Yanbal.SFT.Presentation.Web.Policy.AuditReport.Resources.LabelSelectAll          = '@Html.Raw(GeneralResource.LabelSelectAll)';
+
+        ns('Yanbal.SFT.Presentation.Web.AuditReportValidation.Message.Resources')
+        Yanbal.SFT.Presentation.Web.AuditReportValidation.Message.Resources.CorrectDateFrom     = '@GeneralResource.EtiquetaCorrectoDesde';
+        Yanbal.SFT.Presentation.Web.AuditReportValidation.Message.Resources.CorrectDateTo       = '@GeneralResource.EtiquetaCorrectoHasta';
+        Yanbal.SFT.Presentation.Web.AuditReportValidation.Message.Resources.CorrectDateRange    = '@GeneralResource.EtiquetaRangoFechas';
+        Yanbal.SFT.Presentation.Web.AuditReportValidation.Message.Resources.SelectFilter        = '@GeneralResource.LabelSelectFilter';
+        Yanbal.SFT.Presentation.Web.AuditReportValidation.Message.Resources.IncorrectDateRange  = '@IndexResource.LabelTransactionDate @GeneralResource.LabelFrom';
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/Views/Policy/AuditReport/Index/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/AuditReport/Index/Index.js"></script>
+
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.AuditReport.Models');
+        Yanbal.SFT.Presentation.Web.Policy.AuditReport.Models.Index = @(Html.Raw(Json.Encode(Model)));
+    </script>
+}

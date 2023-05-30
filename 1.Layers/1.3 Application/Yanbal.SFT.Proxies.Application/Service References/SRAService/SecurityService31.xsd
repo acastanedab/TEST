@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn:gmd:contract:task:security" elementFormDefault="qualified" targetNamespace="urn:gmd:contract:task:security" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://localhost/srvMSFSecurity/SecurityService.svc?xsd=xsd1" namespace="urn:gmd:schema:base" />
+  <xs:import schemaLocation="https://localhost/srvMSFSecurity/SecurityService.svc?xsd=xsd2" namespace="urn:gmd:schema:security" />
+  <xs:element name="getRolesRequest" type="tns:GetRolesRequestType" />
+  <xs:complexType name="GetRolesRequestType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="urn:gmd:schema:base" base="q1:GenericTypeRequest">
+        <xs:sequence>
+          <xs:element xmlns:q2="urn:gmd:schema:security" minOccurs="0" maxOccurs="1" name="GetRolesRequest" type="q2:RolesRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SearchCountryUserRequestType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="urn:gmd:schema:base" base="q3:GenericTypeRequest">
+        <xs:sequence>
+          <xs:element xmlns:q4="urn:gmd:schema:security" minOccurs="0" maxOccurs="1" name="SearchCountryUserRequest" type="q4:CountryUserRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LoginRequestType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="urn:gmd:schema:base" base="q5:GenericTypeRequest">
+        <xs:sequence>
+          <xs:element xmlns:q6="urn:gmd:schema:security" minOccurs="0" maxOccurs="1" name="LoginRequest" type="q6:LoginTypeRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PermissionAccessRequestType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="urn:gmd:schema:base" base="q7:GenericTypeRequest">
+        <xs:sequence>
+          <xs:element xmlns:q8="urn:gmd:schema:security" minOccurs="0" maxOccurs="1" name="PermissionAccessRequest" type="q8:PermissionRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="getRolesResponse" type="tns:GetRolesResponseType" />
+  <xs:complexType name="GetRolesResponseType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="urn:gmd:schema:base" base="q9:GenericTypeResponse">
+        <xs:sequence>
+          <xs:element xmlns:q10="urn:gmd:schema:security" minOccurs="0" maxOccurs="1" name="GetRolesResponse" type="q10:ArrayOfRoleType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SearchCountryUserResponseType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="urn:gmd:schema:base" base="q11:GenericTypeResponse">
+        <xs:sequence>
+          <xs:element xmlns:q12="urn:gmd:schema:security" minOccurs="0" maxOccurs="1" name="SearchCountryUserResponse" type="q12:CountryUserResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LoginResponseType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="urn:gmd:schema:base" base="q13:GenericTypeResponse">
+        <xs:sequence>
+          <xs:element xmlns:q14="urn:gmd:schema:security" minOccurs="0" maxOccurs="1" name="LoginResponse" type="q14:LoginTypeResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PermissionAccessResponseType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="urn:gmd:schema:base" base="q15:GenericTypeResponse">
+        <xs:sequence>
+          <xs:element xmlns:q16="urn:gmd:schema:security" minOccurs="0" maxOccurs="1" name="PermissionAccessResponse" type="q16:PermissionResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="searchCountryUserRequest" type="tns:SearchCountryUserRequestType" />
+  <xs:element name="searchCountryUserResponse" type="tns:SearchCountryUserResponseType" />
+  <xs:element name="loginAdministratorRequest" type="tns:LoginRequestType" />
+  <xs:element name="loginAdministratorResponse" type="tns:LoginResponseType" />
+  <xs:element name="loginRequest" type="tns:LoginRequestType" />
+  <xs:element name="loginResponse" type="tns:LoginResponseType" />
+  <xs:element name="permissionAccessRequest" type="tns:PermissionAccessRequestType" />
+  <xs:element name="permissionAccessResponse" type="tns:PermissionAccessResponseType" />
+</xs:schema>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="urn:pyf:contract:task:security" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:pyf:contract:task:security" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:pyf:contract:task:security/Imports">
+      <xsd:import schemaLocation="https://localhost/srvMSFTokenSecurity/TokenSecurity.svc?xsd=xsd0" namespace="urn:pyf:contract:task:security" />
+      <xsd:import schemaLocation="https://localhost/srvMSFTokenSecurity/TokenSecurity.svc?xsd=xsd1" namespace="urn:pyf:schema:base" />
+      <xsd:import schemaLocation="https://localhost/srvMSFTokenSecurity/TokenSecurity.svc?xsd=xsd2" namespace="urn:pyf:schema:token" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="generateTokenSecurityRequest">
+    <wsdl:part name="TokenSecurityRequest" element="tns:TokenSecurityRequest" />
+  </wsdl:message>
+  <wsdl:message name="generateTokenSecurityResponse">
+    <wsdl:part name="TokenSecurityResponse" element="tns:TokenSecurityResponse" />
+  </wsdl:message>
+  <wsdl:message name="getTokenSecurityByTokenIdRequest">
+    <wsdl:part name="TokenSecurityInformationRequest" element="tns:TokenSecurityInformationRequest" />
+  </wsdl:message>
+  <wsdl:message name="getTokenSecurityByTokenIdResponse">
+    <wsdl:part name="TokenSecurityInformationResponse" element="tns:TokenSecurityInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="setExpireTokenSecurityByIdRequest">
+    <wsdl:part name="TokenSecurityInformationRequest" element="tns:TokenSecurityInformationRequest" />
+  </wsdl:message>
+  <wsdl:message name="setExpireTokenSecurityByIdResponse">
+    <wsdl:part name="TokenSecurityInformationResponse" element="tns:TokenSecurityInformationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ITokenSecurityService">
+    <wsdl:operation name="generateTokenSecurity">
+      <wsdl:input wsaw:Action="urn:pyf:contract:task:security:generateTokenSecurity" name="generateTokenSecurityRequest" message="tns:generateTokenSecurityRequest" />
+      <wsdl:output wsaw:Action="" name="generateTokenSecurityResponse" message="tns:generateTokenSecurityResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getTokenSecurityByTokenId">
+      <wsdl:input wsaw:Action="urn:pyf:contract:task:security:getTokenSecurityByTokenId" name="getTokenSecurityByTokenIdRequest" message="tns:getTokenSecurityByTokenIdRequest" />
+      <wsdl:output wsaw:Action="" name="getTokenSecurityByTokenIdResponse" message="tns:getTokenSecurityByTokenIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="setExpireTokenSecurityById">
+      <wsdl:input wsaw:Action="urn:pyf:contract:task:security:setExpireTokenSecurityById" name="setExpireTokenSecurityByIdRequest" message="tns:setExpireTokenSecurityByIdRequest" />
+      <wsdl:output wsaw:Action="" name="setExpireTokenSecurityByIdResponse" message="tns:setExpireTokenSecurityByIdResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

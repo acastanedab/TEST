@@ -1,0 +1,160 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Freight.Combination
+@using Yanbal.SFT.Presentation.Web.Source.Models.Freight
+@using Yanbal.SFT.FreightManagement.Common.Messages
+@using Yanbal.SFT.FreightManagement.Common
+@model CombinationModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>@Html.Raw(IndexResource.LabelTitleCombination)</strong>
+    </div>
+    <div class="panel-body">
+        <div id="divCombination">
+            <form id="frmCombinationIndex" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelParameter):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcSearchParameter" name="ParameterCode" class="form-control" data-bind="options: ListParameter, optionsText: 'ParameterName', optionsValue: 'ParameterCode', optionsCaption: '@Html.Raw(GeneralResource.LabelSelectAll)'">
+                                    </select>
+                                    <input id="hdnParameterCode" name="DescriptionParameterCode" type="hidden" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelParameterValue):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcSearchParameterValue" name="ParameterValue" class="form-control">
+                                    </select>                                    
+                                    <input id="hdnParameterValue" name="DescriptionParameterValue" type="hidden" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcSearchRegistrationStatus" name="RegistrationStatus" class="form-control" data-bind="options: ListRegistrationStatus, optionsText: 'Name', optionsValue: 'Id'">
+                                    </select>
+                                    <input id="hdnRegistrationStatus" name="DescriptionRegistrationStatus" type="hidden" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-12" align="right">
+                                    <input id="btnVisualize" type="button" class="btn btn-default btn-filter" value="@GeneralResource.LabelVisualize" data-bind="visible: Visualize.Visible, enable: Visualize.Enabled" />
+                                    <input id="btnSearch" type="button" class="pull-right btn btn-primary" value='@Html.Raw(GeneralResource.LabelShow)' data-bind="visible: Search.Visible, enable: Search.Enabled" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divSearchResult" style="display: none" onscroll="true">
+                    <div class="table-responsive u-table-search">
+                        <div id="grdResult" name="gridResult" class="table table-bordered table-striped table-hover table-responsive">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div>
+                    <input id="btnCreate" type="button" class="pull-left btn btn-default btn-filter" value='@Html.Raw(GeneralResource.LabelAdd)' data-bind="visible: Create.Visible, enable: Create.Enabled"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/Util.js"></script>
+    <script type="text/javascript">
+
+        ns('Yanbal.SFT.Presentation.Web.General.ReportViewer.Actions')
+        Yanbal.SFT.Presentation.Web.General.ReportViewer.Actions.Combination            = '@Url.Action("Combination", "Report", new { Area = "General" })';
+
+        ns('Yanbal.SFT.Presentation.Web.Freight.Combination.Actions')
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Actions.Index                       = '@Url.Action("Index", "Combination")';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Actions.Search                      = '@Url.Action("Search", "Combination")';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Actions.Create                      = '@Url.Action("Create", "Combination")';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Actions.Edit                        = '@Url.Action("Edit", "Combination")';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Actions.RegisterCombination         = '@Url.Action("RegisterCombination", "Combination")';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Actions.ModifyCombination           = '@Url.Action("ModifyCombination", "Combination")';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Actions.CreateParameterCombination  = '@Url.Action("CreateParameterCombination", "Combination")';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Actions.EditParameterCombination    = '@Url.Action("EditParameterCombination", "Combination")';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Actions.ModifyParameterCombination  = '@Url.Action("ModifyParameterCombination", "Combination")';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Actions.ChangeParameterValue        = '@Url.Action("ChangeParameterValue", "Combination")';
+
+        ns('Yanbal.SFT.Presentation.Web.Freight.Combination.Resources')
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelGridEdit                 = '@Html.Raw(GeneralResource.LabelGridEdit)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelGridCode                 = '@Html.Raw(IndexResource.LabelGridCode)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelGridCombination          = '@Html.Raw(IndexResource.LabelGridCombination)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelGridAmount               = '@Html.Raw(IndexResource.LabelAmount)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelGridRegistrationStatus   = '@Html.Raw(GeneralResource.LabelRegistrationStatus)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelGridParameter            = '@Html.Raw(IndexResource.LabelGridParameter)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelGridParameters           = '@Html.Raw(IndexResource.LabelGridParameters)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelGridValue                = '@Html.Raw(IndexResource.LabelGridValue)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelGridDescription          = '@Html.Raw(IndexResource.LabelGridDescription)';
+
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelConfirmationHeader = '@Html.Raw(GeneralResource.LabelConfirmationHeader)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelSaveConfirmation   = '@Html.Raw(MessageResource.SaveConfirmation)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.SatisfactorySaved       = '@Html.Raw(MessageResource.SatisfactorySaved)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.FailedSaved             = '@Html.Raw(MessageResource.FailedSaved)';
+
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelModificationReason = '@Html.Raw(GeneralResource.LabelModificationReason)';
+
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelTitleNew   = '@Html.Raw(IndexResource.LabelTitleNew)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelTitleEdit  = '@Html.Raw(IndexResource.LabelTitleEdit)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelSelect     = '@Html.Raw(GeneralResource.LabelSelect)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelSelectAll  = '@Html.Raw(GeneralResource.LabelSelectAll)';
+
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelExistingParameter = '@Html.Raw(IndexResource.LabelExistingParameter)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelInvalidParameter = '@Html.Raw(IndexResource.LabelInvalidParameter)';
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelParameterInvalidRange = '@Html.Raw(IndexResource.LabelParameterInvalidRange)';
+
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelGridNull          = '@Html.Raw(IndexResource.LabelGridNull)';
+
+        ns('Yanbal.SFT.Presentation.Web.CombinationValidation.Message.Resources')
+        Yanbal.SFT.Presentation.Web.CombinationValidation.Message.Resources.FreightAmountReq       = '@Html.Raw(IndexResource.LabelAmount)';
+        Yanbal.SFT.Presentation.Web.CombinationValidation.Message.Resources.ModificationReasonReq  = '@Html.Raw(GeneralResource.LabelModificationReason)';
+        Yanbal.SFT.Presentation.Web.CombinationValidation.Message.Resources.FreightAmountMin       = '@Html.Raw(IndexResource.LabelFreightAmountMin)';
+
+        ns('Yanbal.SIP.Enumerados.RegistrationStatus')
+        Yanbal.SIP.Enumerados.RegistrationStatus.Active       = '@Html.Raw(Enumerated.RegistrationStatus.Active)';
+        Yanbal.SIP.Enumerados.RegistrationStatus.Cancelled    = '@Html.Raw(Enumerated.RegistrationStatus.Cancelled)';
+
+        ns('Yanbal.SFT.Presentation.Web.Global.Grid.Action');
+        Yanbal.SFT.Presentation.Web.Global.Grid.Action.ModifyParameterCombination = {
+            id: 'parameter',
+            icon: 'fa fa-arrow-right',
+            title: Yanbal.SFT.Presentation.Web.Freight.Combination.Resources.LabelGridParameter
+        };
+
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/Views/Freight/Combination/Index/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Freight/Combination/Index/Index.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Freight/Combination/Create/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Freight/Combination/Edit/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Freight/Combination/EditParameterCombination/Controller.js"></script>
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Freight.Combination.Models');
+        Yanbal.SFT.Presentation.Web.Freight.Combination.Models.Index = @(Html.Raw(Json.Encode(Model)));
+    </script>
+}

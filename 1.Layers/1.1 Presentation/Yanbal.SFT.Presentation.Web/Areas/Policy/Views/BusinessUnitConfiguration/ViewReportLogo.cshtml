@@ -1,0 +1,28 @@
+﻿@using System.Web.Script.Serialization
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.BusinessUnitConfiguration
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy;
+
+@model BusinessUnitConfigurationModel
+
+<div class="w-formulario-popup">
+    <div class="w-title-2">
+        @IndexResource.LabelReportLogo
+    </div>
+    <hr />
+    <form >
+        <div id="divVistaLogoReporte">
+            <div class="w-item">
+                @{
+                    if (Model.ReportLogoImage != null)
+                        {
+                            <img src="@Url.Action("ViewReportLogoImage", "BusinessUnitConfiguration", new { businessUnitConfigurationCode = Model.BusinessUnitConfigurationCode })" />
+                        }
+                        else
+                        {
+                            <label class="control-label">@Html.Raw(IndexResource.LabelReportLogoWithoutConfiguration)</label>                        
+                        }
+                    }
+            </div>            
+        </div>
+    </form>
+</div>

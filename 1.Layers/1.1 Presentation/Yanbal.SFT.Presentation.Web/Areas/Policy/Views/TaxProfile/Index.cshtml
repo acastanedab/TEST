@@ -1,0 +1,147 @@
+﻿@using Yanbal.SFT.Domain.Common.Messages
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.TaxProfile
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy
+@model TaxProfileModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>@IndexResource.labelTittleTaxProfile</strong>
+    </div>
+    <div class="panel-body">
+        <form id="frmSearchTaxProfile" method="post">
+            <div id="divTaxProfile">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelCodeDirector):</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtSearchCodeDirector" name="CodeDirector" class="form-control valid" maxlength="255" placeholder="@Html.Raw(IndexResource.LabelCodeDirector)"/>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelName):</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtSearchName" name="Name" class="form-control valid" maxlength="255" placeholder="@Html.Raw(IndexResource.LabelName)"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.labelTaxRegimen):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcSearchTaxRegimen" class="form-control">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcSearchRegisterStatus" class="form-control" data-bind = "options: ListRegistrationStatus, optionsText: 'Name', optionsValue: 'Id' ">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">                         
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input id="btnSearchTaxProfile" type="button" class="pull-right btn btn-primary" value='@Html.Raw(GeneralResource.LabelShow)' data-bind="visible: Search.Visible, enable: Search.Enabled" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divSearchTaxProfile" style="display:none" onscroll="true">
+                    <div class="table-responsive u-table-search">
+                        <div id="grdResultTaxProfile" class="table table-bordered table-striped table-hover table-responsive">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div>
+                    <input id="btnCreateTaxProfile" type="button" class="pull-left btn btn-default btn-filter" value='@Html.Raw(GeneralResource.LabelAdd)' data-bind="visible: Create.Visible, enable: Create.Enabled"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/Util.js"></script>
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Actions')
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Actions.Search                         = '@Url.Action("Search","TaxProfile")';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Actions.Create                         = '@Url.Action("Create","TaxProfile")';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Actions.Index                          = '@Url.Action("Index","TaxProfile")';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Actions.Edit                           = '@Url.Action("Edit","TaxProfile")';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Actions.ModifyTaxProfile               = '@Url.Action("ModifyTaxProfile","TaxProfile")';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Actions.RegisterTaxProfile             = '@Url.Action("SearchTaxProfile","TaxProfile")';
+
+        ns('Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources')
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelGridEdit                = '@Html.Raw(GeneralResource.LabelGridEdit)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelCodeDirector = '@Html.Raw(IndexResource.LabelCodeDirector)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelGridNameDirector = '@Html.Raw(IndexResource.labelNameDirector)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelGridTaxRegimen = '@Html.Raw(IndexResource.LabelGridTaxRegimen)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelGridPersonType = '@Html.Raw(IndexResource.LabelPersonType)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelGridRegisterTax = '@Html.Raw(IndexResource.LabelRegisterTax)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelGridDeclarationLast = '@Html.Raw(IndexResource.labelDeclarationLast)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelGridAutonomus = '@Html.Raw(IndexResource.labelAutonomus)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelGridDeclarationLast = '@Html.Raw(IndexResource.labelDeclarationLast)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelGridAutonomus = '@Html.Raw(IndexResource.labelAutonomus)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelGridExeptions = '@Html.Raw(IndexResource.labelExeptions)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelGridStatusRegister = '@Html.Raw(IndexResource.LabelStatusRegister)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelGridRegistrationStatus = '@Html.Raw(GeneralResource.LabelRegistrationStatus)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.TagConfirmationHeader = '@Html.Raw(GeneralResource.LabelConfirmationHeader)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.TagSaveConfirmation = '@Html.Raw(MessageResource.SaveConfirmation)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.SatisfactorySaved = '@Html.Raw(MessageResource.SatisfactorySaved)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.FailedSaved = '@Html.Raw(MessageResource.FailedSaved)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.TagModificationReason = '@Html.Raw(GeneralResource.LabelModificationReason)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelTitleNew = '@Html.Raw(IndexResource.labelAddTaxProfileDirector)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Resources.LabelTitleEdit = '@Html.Raw(IndexResource.labelAddTaxProfileDirector)';
+
+        
+
+        ns('Yanbal.SFT.Presentation.Web.TaxProfileValidation.Message.Resources')
+        Yanbal.SFT.Presentation.Web.TaxProfileValidation.Message.Resources.ValidarValor = '@Html.Raw(IndexResource.labelValueValidate)';
+        Yanbal.SFT.Presentation.Web.TaxProfileValidation.Message.Resources.ValidarNombreParametro = '@Html.Raw(IndexResource.LabelParameterNameValid)';
+        Yanbal.SFT.Presentation.Web.TaxProfileValidation.Message.Resources.Observacion = '@Html.Raw(GeneralResource.LabelModificationReason)';        
+        Yanbal.SFT.Presentation.Web.TaxProfileValidation.Message.Resources.EtiquetaColDescripcion = '@Html.Raw(GeneralResource.LabelSelectRecord)';
+
+     @*   Yanbal.SFT.Presentation.Web.TaxProfileValidation.Message.Resources.ValidarCodigoParametro = '@Html.Raw(IndexResource.LabelCodeParameterValid)';
+        Yanbal.SFT.Presentation.Web.TaxProfileValidation.Message.Resources.Parametro = '@Html.Raw(IndexResource.LabelValidateParameter)';
+        Yanbal.SFT.Presentation.Web.TaxProfileValidation.Message.Resources.SeleccioneParametroCombo = '@Html.Raw(IndexResource.LabelParameter)';*@
+        
+    </script>
+    <script src="~/Scripts/Views/Policy/TaxProfile/Index/Controller.js"></script>
+    <script src="~/Scripts/Views/Policy/TaxProfile/Index/Index.js"></script>
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Model');
+        Yanbal.SFT.Presentation.Web.Policy.TaxProfile.Model.Index = @(Html.Raw(Json.Encode(Model)));
+    </script>
+
+
+
+    }

@@ -1,0 +1,118 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Freight.FormulaOrder
+@using Yanbal.SFT.Presentation.Web.Source.Models.Freight;
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+@model FormulaOrderModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>@Html.Raw(IndexResource.LabelTitleFormulaOrder)</strong>
+    </div>
+    <div class="panel-body">
+        <div id="divRequiredField">
+            <span class="fa fa-info-circle"></span>
+            <span>@GeneralResource.LabelRequiredField1<span class="danger">*</span>@GeneralResource.LabelRequiredField2</span>
+            <hr />
+        </div>
+        <div id="divFormulaOrder">
+            <form id="frmFormulaOrderIndex" method="post">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Html.Raw(IndexResource.LabelFormula)<span class="danger">*</span>:</label>
+                                <div class="col-sm-10">
+                                    <select id="slcFormula" class="form-control" validable="required FormulaReq" data-bind="options: ListFormula, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelect)    '">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input id="btnSave" type="button" class="pull-right btn btn-primary" value='@Html.Raw(GeneralResource.LabelAdd)' data-bind="visible: Save.Visible, enable: Save.Enabled" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="display:none">
+                        <div class="form-horizontal">
+                            <div class="form-group" style="margin-left: 2px; margin-right: 2px;">
+                                <div class="col-sm-12" style="background: #AFAFAF; color: #ffffff;">
+                                    <label class="control-label-bold">[</label>
+                                    <label id="lblFormulaBegin" class="control-label-bold"></label>
+                                    <label id="lblFormula" class="control-label-bold"></label>
+                                    <label class="control-label-bold">]</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divSearchResult" style="display: none" onscroll="true">
+                    <div class="table-responsive u-table-search">
+                        <div id="grdResult" name="gridResult" class="table table-bordered table-striped table-hover table-responsive">
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/Util.js"></script>
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Actions')
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Actions.Index                     = '@Url.Action("Index", "FormulaOrder")';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Actions.Search                    = '@Url.Action("Search", "FormulaOrder")';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Actions.Create                    = '@Url.Action("Create", "FormulaOrder")';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Actions.Edit                      = '@Url.Action("Edit", "FormulaOrder")';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Actions.RegisterFormulaOrder  = '@Url.Action("RegisterFormulaOrder", "FormulaOrder")';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Actions.ModifyFormulaOrder    = '@Url.Action("ModifyFormulaOrder", "FormulaOrder")';
+
+        ns('Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources')
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelGridFormula          = '@Html.Raw(IndexResource.LabelGridFormula)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelGridOrder              = '@Html.Raw(IndexResource.LabelGridOrder)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelGridParameter             = '@Html.Raw(IndexResource.LabelGridParameter)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelGridParameterValue        = '@Html.Raw(IndexResource.LabelGridParameterValue)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelGridOperation             = '@Html.Raw(IndexResource.LabelGridOperation)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelGridFactor                = '@Html.Raw(IndexResource.LabelGridFactor)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelGridFactorType            = '@Html.Raw(IndexResource.LabelGridFactorType)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelGridFactorTypeAmount      = '@Html.Raw(IndexResource.LabelGridFactorTypeAmount)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelGridFactorTypePercentage  = '@Html.Raw(IndexResource.LabelGridFactorTypePercentage)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelGridFactorTypeFixedValue  = '@Html.Raw(IndexResource.LabelGridFactorTypeFixedValue)';
+        
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelConfirmationHeader   = '@Html.Raw(GeneralResource.LabelConfirmationHeader)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelSaveConfirmation     = '@Html.Raw(MessageResource.SaveConfirmation)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.SatisfactorySaved         = '@Html.Raw(MessageResource.SatisfactorySaved)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.FailedSaved               = '@Html.Raw(MessageResource.FailedSaved)';
+
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelModificationReason               = '@Html.Raw(GeneralResource.LabelModificationReason)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelExistingFormula                = '@Html.Raw(IndexResource.LabelExistingFormula)';
+
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelFormula  = '@Html.Raw(IndexResource.LabelFormula)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelFreight  = '@Html.Raw(IndexResource.LabelFreight)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelSelect  = '@Html.Raw(GeneralResource.LabelSelect)';
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Resources.LabelSelectAll  = '@Html.Raw(GeneralResource.LabelSelectAll)';
+
+        ns('Yanbal.SFT.Presentation.Web.FormulaOrderValidation.Message.Resources')
+        Yanbal.SFT.Presentation.Web.FormulaOrderValidation.Message.Resources.FormulaReq = '@Html.Raw(IndexResource.LabelFormula)';
+        Yanbal.SFT.Presentation.Web.FormulaOrderValidation.Message.Resources.ModificationReasonReq = '@Html.Raw(GeneralResource.LabelModificationReason)';
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/Views/Freight/FormulaOrder/Index/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Freight/FormulaOrder/Index/Index.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Freight/FormulaOrder/Edit/Controller.js"></script>
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Models');
+        Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Models.Index = @(Html.Raw(Json.Encode(Model)));
+    </script>
+}

@@ -1,0 +1,113 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared;
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Security.Account;
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+
+@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>@GeneralResource.LabelTitle</title>
+
+    @Styles.Render("~/Bootstrap/css")
+    @Styles.Render("~/JQuery/css")
+    @Styles.Render("~/TimePicker/css")
+    @Styles.Render("~/ColorPicker/css")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Font-awesome/css")
+    @Styles.Render("~/Components/css")
+
+    @Scripts.Render("~/bundles/JQuery")
+    @Scripts.Render("~/bundles/JQueryui")
+    @Scripts.Render("~/bundles/TimePicker")
+    @Scripts.Render("~/bundles/JQueryval")
+    @Scripts.Render("~/bundles/Bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/Knockout")
+    @Scripts.Render("~/bundles/Components")
+    @Scripts.Render("~/JQuery/Resources")
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Web.LogOn.Models');
+        Yanbal.SFT.Web.LogOn.Models.Index = @(Html.Raw(Json.Encode(Model)));
+        Yanbal.SFT.Web.LogOn.Models.ClavePublica = '@Html.Raw(ViewData["clavePublica"])';
+    </script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("btnLogOn").disabled = false;
+        }
+
+        function onExpired() {
+            document.getElementById("btnLogOn").disabled = true;
+        }
+
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="div_login">
+            <div class="inicio_view">
+                <p class="pull-left">
+                    <a href="#">
+                        <img src="@Url.Content("~/Content/Images/logo.png")" class="logo" />
+                    </a>
+                </p>
+            </div>
+
+            <form id="frmLogOn" class="form" autocomplete="off">
+                <label class="letra">@Html.Raw(IndexResource.LabelUserName):</label>
+                <input size="50" id="txtUser" type="text" class="texto" placeholder="@Html.Raw(IndexResource.LabelTypeUser)" validable="required EmptyUser">
+
+                <label class="letra">@Html.Raw(IndexResource.LabelPassword):</label>
+                <input size="50" id="txtPassword" type="password" class="texto" placeholder="@Html.Raw(IndexResource.LabelTypePassword)" validable="required EmptyPassword">
+                @if (ViewData["clavePublica"] != null)
+                {
+                    <div class="row text-center">
+                        <div class="g-recaptcha" data-sitekey="@ViewData["clavePublica"]" style="display:inline-block;" data-callback='onSubmit' data-expired-callback='onExpired'></div>
+                    </div>
+                }
+
+                <div class="row text-center">
+                    <input id="btnLogOn" type="button" class="btn btn-primary" value='@Html.Raw(IndexResource.LabelLogOn)' @Html.Raw(ViewData["clavePublica"] == null ? string.Empty : "disabled") />
+                </div>
+            </form>
+
+            <div class="final_view">
+                <p class="pull-left">Yanbal International - Todos los Derechos Reservados</p>
+                <p class="pull-right">
+                    Powered by
+                    <a href="#">
+                        <img src="@Url.Content("~/Content/Images/gm.png")" alt="CANVIA" />
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Web.LogOn.Actions')
+        Yanbal.SFT.Web.LogOn.Actions.LogOn = '@Url.Action("LogOn", "Account")';
+        Yanbal.SFT.Web.LogOn.Actions.Route = '@Url.Action("Index", "Home", new { Area = string.Empty, Id = '/' })';
+
+        ns('Yanbal.SFT.Web.LogOn.Mensaje.Resources')
+        Yanbal.SFT.Web.LogOn.Mensaje.Resources.EmptyUser = '@Html.Raw(IndexResource.LabelTypeUser)';
+        Yanbal.SFT.Web.LogOn.Mensaje.Resources.EmptyPassword = '@Html.Raw(IndexResource.LabelTypePassword)';
+        Yanbal.SFT.Web.LogOn.Mensaje.Resources.VerificacionCaptcha = '@Html.Raw(IndexResource.EtiquetaVerificacionCaptcha)';
+
+        ns('Yanbal.SFT.FreightManagement.Common.Messages.MessageResource')
+        Yanbal.SFT.FreightManagement.Common.Messages.MessageResource.ErrorLog = '@Html.Raw(MessageResource.MessageErrorLogOn)';
+        Yanbal.SFT.FreightManagement.Common.Messages.MessageResource.ErrorPass = '@Html.Raw(MessageResource.MessageErrorPassOn)';
+
+        ns('Yanbal.SFT.Presentation.Web.Shared.Resources');
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelLoading = '@Html.Raw(GeneralResource.LabelLoading)';
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/Views/Security/Account/Index/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Security/Account/Index/Index.js"></script>
+</body>
+</html>

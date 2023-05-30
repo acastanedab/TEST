@@ -1,0 +1,88 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.UbigeoZoneType
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy;
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+@model UbigeoZoneTypeModel
+
+<div class="w-formulario-popup">
+    <div class="w-title-2">
+        @Html.Raw(IndexResource.LabelTitleNew)
+    </div>
+    <div id="divRequiredField">
+        <span class="fa fa-info-circle"></span>
+        <span>@GeneralResource.LabelRequiredField1<span class="danger">*</span>@GeneralResource.LabelRequiredField2</span>
+    </div>
+    <hr />
+    <div class="w-form">
+        <div id="divContainerNew" class="w-item">
+            <form id="frmCreateUbigeoZoneType">
+                <div id="divCreateUbigeoZoneType">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelCountry):</label>
+                                    <div class="col-sm-8">
+                                        <label class="col-sm-5 control-label-bold">@Html.Raw(Model.NameCountry)</label>
+                                        <input id="hdnCodeCountryCreate" type="hidden" value="@Model.CodeCountry" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(Model.LabelGeoLevel1):</label>
+                                    <div class="col-sm-8">
+                                        <select id="slcLevel1Create" class="form-control" data-bind="options: ListZoneLevel1, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelect)'">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(Model.LabelGeoLevel2):</label>
+                                    <div class="col-sm-8">
+                                        <select id="slcLevel2Create" class="form-control">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(Model.LabelGeoLevel3):</label>
+                                    <div class="col-sm-8">
+                                        <select id="slcLevel3Create" class="form-control">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelZoneType)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <select id="slcZoneTypeCreate" class="form-control" validable="required ZoneTypeReq" data-bind="options: ListTypeZone, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelect)'">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelCodeUbigeo):</label>
+                                    <div class="col-sm-8">
+                                        <label id="lblCodeUbigeoCreate" class="col-sm-5 control-label-bold">@Model.CodeCountry</label>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus):</label>
+                                    <div class="col-sm-8">
+                                        <label class="col-sm-5 control-label-bold">@Html.Raw(Model.LabelRegistrationStatus)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div class="cnt-button">
+        <input id="btnSaveCreate" class="btn btn-primary" type="button" data-bind="visible: Save.Visible, enable: Save.Enabled" value="@GeneralResource.LabelSave"/>
+        <input id="btnCancelCreate" class="btn btn-default" type="button" data-bind="visible: Cancel.Visible, enable: Cancel.Enabled" value="@GeneralResource.LabelGetOut" />
+    </div>
+</div>
+
+<script type="text/javascript">
+    ns('Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Models');
+    Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Models.Create = @(Html.Raw(Json.Encode(Model)));
+</script>

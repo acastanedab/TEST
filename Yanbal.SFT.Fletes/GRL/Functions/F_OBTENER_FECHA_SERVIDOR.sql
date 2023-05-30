@@ -1,0 +1,34 @@
+﻿/****************************************************************
+Nombre Función: GRL.F_OBTENER_FECHA_SERVIDOR
+Propósito: Función que retorna la Fecha de la Unidad de Negocio
+Input:	@CODIGO_UNIDAD_NEGOCIO - Código de Unidad de Negocio
+Output: @FECHA_UNIDAD_NEGOCIO - Fecha de la Unidad de Negocio
+Creado por: Franks Johann Samame Rodriguez 
+Fecha Creación:			2014/10/11
+Fecha Actualización:	2014/10/11
+'****************************************************************/
+
+CREATE FUNCTION [GRL].[F_OBTENER_FECHA_SERVIDOR](@CODIGO_UNIDAD_NEGOCIO INT)
+RETURNS DATETIME
+AS BEGIN
+
+    DECLARE @HORAUTC INT
+    DECLARE @MINUTOUTC INT
+
+	SELECT @HORAUTC=ZH.HORA_UTC, @MINUTOUTC=ZH.MINUTO_UTC FROM MNT.UNIDAD_NEGOCIO UN
+	INNER JOIN MNT.UNIDAD_NEGOCIO_CONFIGURACION CUN ON UN.CODIGO_UNIDAD_NEGOCIO=CUN.CODIGO_UNIDAD_NEGOCIO
+	INNER JOIN MNT.ZONA_HORARIA ZH ON CUN.CODIGO_ZONA_HORARIA=ZH.CODIGO_ZONA_HORARIA
+	WHERE UN.CODIGO_UNIDAD_NEGOCIO = @CODIGO_UNIDAD_NEGOCIO
+
+    DECLARE @FECHAUNIVERSAL DATETIME = GETUTCDATE()
+	DECLARE @FECHACONVERTIDA DATETIME = DATEADD(Hour,@HORAUTC,@FECHAUNIVERSAL)
+	DECLARE @FECHA_UNIDAD_NEGOCIO DATETIME = DATEADD(Minute,@MINUTOUTC,@FECHACONVERTIDA)
+    RETURN  @FECHA_UNIDAD_NEGOCIO
+END
+
+
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Función que retorna la fecha de la unidad de negocio.', @level0type = N'SCHEMA', @level0name = N'GRL', @level1type = N'FUNCTION', @level1name = N'F_OBTENER_FECHA_SERVIDOR';
+

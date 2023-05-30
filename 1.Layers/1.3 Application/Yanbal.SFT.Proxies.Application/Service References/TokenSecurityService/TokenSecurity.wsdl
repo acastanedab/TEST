@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="urn:pyf:contract:task:security" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TokenSecurityService" targetNamespace="urn:pyf:contract:task:security" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="urn:pyf:contract:task:security" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="urn:pyf:schema:base" />
+      <xs:import namespace="urn:pyf:schema:token" />
+      <xs:element name="TokenSecurityRequest" type="tns:TokenSecurityGeneratedRequestType" />
+      <xs:complexType name="TokenSecurityGeneratedRequestType">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q1="urn:pyf:schema:base" base="q1:GenericTypeRequest">
+            <xs:sequence>
+              <xs:element xmlns:q2="urn:pyf:schema:token" minOccurs="0" maxOccurs="1" ref="q2:TokenSecurityGeneratedRequest" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TokenSecurityInformationRequestType">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q3="urn:pyf:schema:base" base="q3:GenericTypeRequest">
+            <xs:sequence>
+              <xs:element xmlns:q4="urn:pyf:schema:token" minOccurs="0" maxOccurs="1" ref="q4:TokenSecurityInformationRequest" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="TokenSecurityResponse" type="tns:TokenSecurityGeneratedResponseType" />
+      <xs:complexType name="TokenSecurityGeneratedResponseType">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q5="urn:pyf:schema:base" base="q5:GenericTypeResponse">
+            <xs:sequence>
+              <xs:element xmlns:q6="urn:pyf:schema:token" minOccurs="0" maxOccurs="1" ref="q6:TokenSecurityGeneratedResponse" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TokenSecurityInformationResponseType">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q7="urn:pyf:schema:base" base="q7:GenericTypeResponse">
+            <xs:sequence>
+              <xs:element xmlns:q8="urn:pyf:schema:token" minOccurs="0" maxOccurs="1" ref="q8:TokenSecurityInformationResponse" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="TokenSecurityInformationRequest" type="tns:TokenSecurityInformationRequestType" />
+      <xs:element name="TokenSecurityInformationResponse" type="tns:TokenSecurityInformationResponseType" />
+    </xs:schema>
+    <xs:schema xmlns:tns="urn:pyf:schema:base" elementFormDefault="qualified" targetNamespace="urn:pyf:schema:base" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="GenericTypeRequest" abstract="true">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="RequestRunTime" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Header" nillable="true" type="tns:Cabecera" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Cabecera">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="codigoInterfaz" nillable="true" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="usuarioAplicacion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="codigoAplicacion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="codigoPais" nillable="true" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="codigosPaisOD" nillable="true" type="tns:ArrayOfCodigoPaisOD" />
+          <xs:element minOccurs="1" maxOccurs="1" name="idTransaccion" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfCodigoPaisOD">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CodigoPaisOD" nillable="true" type="tns:CodigoPaisOD" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CodigoPaisOD">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="valor" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GenericTypeResponse" abstract="true">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="responseDate" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Error" type="tns:ErrorType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Header" nillable="true" type="tns:Cabecera" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ErrorType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="errorCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="errorDescription" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="severity" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DateRequest" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="urn:pyf:schema:token" elementFormDefault="qualified" targetNamespace="urn:pyf:schema:token" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="TokenSecurityInformationRequest" type="tns:TokenSecurityInformationType" />
+      <xs:complexType name="TokenSecurityInformationType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="tokenSecurityId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="TokenSecurityGeneratedRequest" type="tns:TokenSecurityGeneratedType" />
+      <xs:complexType name="TokenSecurityGeneratedType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="userName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="userFirstName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="roleCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="languageCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="businessUnitCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="systemCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="roleName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="cultureCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="currentConsultantCode" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="TokenSecurityInformationResponse" type="tns:TokenSecurity" />
+      <xs:complexType name="TokenSecurity">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="tokenSecurityId" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="expirationTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="userName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="userFirstName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="roleCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="languageCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="businessUnitCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="systemCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="roleName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="cultureCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="currentConsultantCode" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="TokenSecurityGeneratedResponse" type="tns:TokenSecurity" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="generateTokenSecurityRequest">
+    <wsdl:part name="TokenSecurityRequest" element="tns:TokenSecurityRequest" />
+  </wsdl:message>
+  <wsdl:message name="generateTokenSecurityResponse">
+    <wsdl:part name="TokenSecurityResponse" element="tns:TokenSecurityResponse" />
+  </wsdl:message>
+  <wsdl:message name="getTokenSecurityByTokenIdRequest">
+    <wsdl:part name="TokenSecurityInformationRequest" element="tns:TokenSecurityInformationRequest" />
+  </wsdl:message>
+  <wsdl:message name="getTokenSecurityByTokenIdResponse">
+    <wsdl:part name="TokenSecurityInformationResponse" element="tns:TokenSecurityInformationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ITokenSecurityService">
+    <wsdl:operation name="generateTokenSecurity">
+      <wsdl:input wsaw:Action="urn:pyf:contract:task:security:generateTokenSecurity" name="generateTokenSecurityRequest" message="tns:generateTokenSecurityRequest" />
+      <wsdl:output wsaw:Action="" name="generateTokenSecurityResponse" message="tns:generateTokenSecurityResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getTokenSecurityByTokenId">
+      <wsdl:input wsaw:Action="urn:pyf:contract:task:security:getTokenSecurityByTokenId" name="getTokenSecurityByTokenIdRequest" message="tns:getTokenSecurityByTokenIdRequest" />
+      <wsdl:output wsaw:Action="" name="getTokenSecurityByTokenIdResponse" message="tns:getTokenSecurityByTokenIdResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="basic" type="tns:ITokenSecurityService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="generateTokenSecurity">
+      <soap:operation soapAction="urn:pyf:contract:task:security:generateTokenSecurity" style="document" />
+      <wsdl:input name="generateTokenSecurityRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="generateTokenSecurityResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTokenSecurityByTokenId">
+      <soap:operation soapAction="urn:pyf:contract:task:security:getTokenSecurityByTokenId" style="document" />
+      <wsdl:input name="getTokenSecurityByTokenIdRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getTokenSecurityByTokenIdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TokenSecurityService">
+    <wsdl:port name="basic" binding="tns:basic">
+      <soap:address location="http://yanbal.pyfservicessit.com/TokenSecurity/TokenSecurity.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

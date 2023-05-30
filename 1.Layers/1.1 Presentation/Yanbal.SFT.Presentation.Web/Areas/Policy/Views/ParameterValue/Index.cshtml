@@ -1,0 +1,119 @@
+﻿@using Yanbal.SFT.FreightManagement.Common.Messages
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.ParameterValue
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy
+@using Yanbal.SFT.FreightManagement.Common
+@model ParameterValueModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>@IndexResource.LabelTittleParameterValue</strong>
+    </div>
+    <div class="panel-body">
+        <form id="frmSearchParameterValue" method="post">
+            <div id="divParameterValue">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@IndexResource.LabelParameter:</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control" name="Parameter" id="slcParameter" data-bind="options: ListParameter, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelect)'" validable="required SelectParameterReq" ></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@GeneralResource.LabelRegistrationStatus:</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control" name="RegistrationStatus" id="slcSearchParameterStatus" data-bind="options: ListRegistrationStatus, optionsText: 'Name', optionsValue: 'Id'"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="divSearchResultParameterValue">
+            <div class="table-responsive u-table-search">
+                <div id="grdResultParameterValue" name="gridResult" class="table table-bordered table-striped table-hover table-responsive">
+                </div>
+            </div>
+            <br />
+            <div>
+                <input id="btnCreateParameterValue" class="pull-left btn btn-default btn-filter" type="button" value="@Html.Raw(GeneralResource.LabelAdd)" data-bind="visible: Create.Visible, enable: Create.Enabled" />
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/Util.js"></script>
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Actions')
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Actions.Search        = '@Url.Action("Search", "ParameterValue")';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Actions.Create        = '@Url.Action("Create", "ParameterValue")';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Actions.Edit          = '@Url.Action("Edit", "ParameterValue")';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Actions.RegisterParameterValue    = '@Url.Action("RegisterParameterValue", "ParameterValue")'; 
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Actions.ModififyParameterValue  = '@Url.Action("ModifyParameterValue", "ParameterValue")';
+        
+        ns('Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources')
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.EtiquetaCodParametro         = '@Html.Raw(IndexResource.LabelCodeParameter)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.EtiquetaParametro            = '@Html.Raw(IndexResource.LabelParameter)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.EtiqueraCodSeccion           = '@Html.Raw(IndexResource.LabelCodeSection)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.EtiquetaSeccion              = '@Html.Raw(IndexResource.LabelSection)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.EtiquetaCodValor             = '@Html.Raw(IndexResource.LabelCodeValue)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.EtiquetaValor                = '@Html.Raw(IndexResource.LabelValue)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.ColumnaEditar                = '@Html.Raw(GeneralResource.EtiquetaEditarTooltip)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.ColumnaBuscar                = '@Html.Raw(GeneralResource.LabelSeacrh)';        
+        
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.LabelConfirmationHeader      = '@Html.Raw(GeneralResource.LabelConfirmationHeader)'
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.LabelSaveConfirmation        = '@Html.Raw(MessageResource.SaveConfirmation)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.IngreseObservacion           = '@Html.Raw(GeneralResource.LabelModificationReason)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.ConfirmacionAccion           = '@Html.Raw(MessageResource.SaveConfirmation)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.FailedSaved                  = '@Html.Raw(MessageResource.FailedSaved)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.SatisfactorySaved            = '@Html.Raw(MessageResource.SatisfactorySaved)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.DuplicateParameter           = '@Html.Raw(IndexResource.LabelDuplicateParameter)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.LabelGridRegistrationStatus  = '@Html.Raw(GeneralResource.LabelRegistrationStatus)';
+        
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.LabelParameterValueExistingInTableParameterCombinationFormula   = '@Html.Raw(IndexResource.LabelParameterValueExistingInTableParameterCombinationFormula)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.LabelParameterValueExistingInTableParameterCombination          = '@Html.Raw(IndexResource.LabelParameterValueExistingInTableParameterCombination)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Resources.LabelParameterValueExistingInTableFormula                       = '@Html.Raw(IndexResource.LabelParameterValueExistingInTableFormula)';
+
+        ns('Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Enumerated')
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Enumerated.ParameterTypeRange                     = '@Html.Raw(Enumerated.ParameterType.RangeValues)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Enumerated.RangeTypeBegin                         = '@Html.Raw(Enumerated.RangeType.Begin)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Enumerated.RangeTypeEnd                           = '@Html.Raw(Enumerated.RangeType.End)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Enumerated.SectionTypeDate                        = '@Html.Raw(Enumerated.SectionType.Date)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Enumerated.SectionTypeInteger                     = '@Html.Raw(Enumerated.SectionType.Integer)';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Enumerated.SectionTypeDecimal                     = '@Html.Raw(Enumerated.SectionType.Decimal)';
+
+        ns('Yanbal.SFT.Presentation.Web.ParameterValueValidation.Message.Resources')
+        Yanbal.SFT.Presentation.Web.ParameterValueValidation.Message.Resources.ValidarValor                 = '@Html.Raw(IndexResource.LabelValueValidate)';
+        Yanbal.SFT.Presentation.Web.ParameterValueValidation.Message.Resources.ValidarCodigoParametro       = '@Html.Raw(IndexResource.LabelCodeParameterValid)';
+        Yanbal.SFT.Presentation.Web.ParameterValueValidation.Message.Resources.ValidarNombreParametro       = '@Html.Raw(IndexResource.LabelParameterNameValid)';
+        Yanbal.SFT.Presentation.Web.ParameterValueValidation.Message.Resources.ModificationReasonReq        = '@Html.Raw(GeneralResource.LabelModificationReason)';
+        Yanbal.SFT.Presentation.Web.ParameterValueValidation.Message.Resources.Parametro                    = '@Html.Raw(IndexResource.LabelValidateParameter)';
+        Yanbal.SFT.Presentation.Web.ParameterValueValidation.Message.Resources.EtiquetaColDescripcion       = '@Html.Raw(GeneralResource.LabelSelectRecord)';
+        Yanbal.SFT.Presentation.Web.ParameterValueValidation.Message.Resources.RangeDataInvalid             = '@Html.Raw(IndexResource.LabelRangeDataInvalid)';
+        Yanbal.SFT.Presentation.Web.ParameterValueValidation.Message.Resources.SelectParameterReq           = '@Html.Raw(IndexResource.LabelParameter)';
+    </script>
+
+    <link href="~/Scripts/Components/Dialog/Dialog.css" rel="stylesheet" />
+    <script src="~/Scripts/Components/Dialog/Dialog.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/Views/Policy/ParameterValue/Index/Index.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/ParameterValue/Index/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/ParameterValue/Create/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/ParameterValue/Edit/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/Parameter/FindParameter/Controller.js"></script>
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Models');
+        Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Models.Index = @(Html.Raw(Json.Encode(Model)));
+    </script>
+}

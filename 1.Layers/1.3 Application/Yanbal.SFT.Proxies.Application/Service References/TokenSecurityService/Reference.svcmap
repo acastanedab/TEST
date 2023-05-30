@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="02b8f5a8-ec47-4faa-a0a0-a19f067a7ed3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://localhost/srvMSFTokenSecurity/TokenSecurity.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TokenSecurity1.wsdl" MetadataType="Wsdl" ID="aa115f78-d0e2-45d4-90af-ffc42d93ed7f" SourceId="1" SourceUrl="https://localhost/srvMSFTokenSecurity/TokenSecurity.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="TokenSecurity.xsd" MetadataType="Schema" ID="e84c07cc-9e88-4a71-bc7f-3acf72e8c563" SourceId="1" SourceUrl="https://localhost/srvMSFTokenSecurity/TokenSecurity.svc?xsd=xsd1" />
+    <MetadataFile FileName="TokenSecurity1.xsd" MetadataType="Schema" ID="7d53fc8b-d23b-49c4-b396-3010915db14b" SourceId="1" SourceUrl="https://localhost/srvMSFTokenSecurity/TokenSecurity.svc?xsd=xsd0" />
+    <MetadataFile FileName="TokenSecurity2.xsd" MetadataType="Schema" ID="0524c638-c158-4735-97df-c3194b8ff4b8" SourceId="1" SourceUrl="https://localhost/srvMSFTokenSecurity/TokenSecurity.svc?xsd=xsd2" />
+    <MetadataFile FileName="TokenSecurityService.wsdl" MetadataType="Wsdl" ID="b7e2133a-743b-487f-a77a-77f50c0568d1" SourceId="1" SourceUrl="https://localhost/srvMSFTokenSecurity/TokenSecurity.svc?wsdl" />
+    <MetadataFile FileName="TokenSecurity.disco" MetadataType="Disco" ID="043575db-7f78-4ce7-a087-75f3dbe27878" SourceId="1" SourceUrl="https://localhost/srvMSFTokenSecurity/TokenSecurity.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

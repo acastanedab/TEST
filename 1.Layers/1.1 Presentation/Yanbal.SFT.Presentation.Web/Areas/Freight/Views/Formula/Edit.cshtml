@@ -1,0 +1,161 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Freight.Formula
+@using Yanbal.SFT.Presentation.Web.Source.Models.Freight;
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+@using Yanbal.SFT.FreightManagement.Common;
+@model FormulaModel
+
+@{
+    string valueOperationAddition = "";
+    string valueOperationSubtraction = "";
+    string valueOperationMultiplication = "";
+    string valueOperationDivision = "";
+    string valueFactorTypeAmount = "";
+    string valueFactorTypePercentage = "";
+    string valueFactorTypeFixedValue = "";
+}
+
+<div class="w-formulario-popup">
+    <div class="w-title-2">
+        @Html.Raw(IndexResource.LabelTitleEdit)
+    </div>
+    <div id="divRequiredField">
+        <span class="fa fa-info-circle"></span>
+        <span>@GeneralResource.LabelRequiredField1<span class="danger">*</span>@GeneralResource.LabelRequiredField2</span>
+    </div>
+    <hr />
+    <div class="w-form">
+        <div id="divContainerNew" class="w-item">
+            <form id="frmEditFormula">
+                <div id="divEditFormula">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelSendType)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <select id="slcSendTypeEdit" class="form-control" data-bind="options: ListSendType, optionsText: 'Name', optionsValue: 'Id',optionsCaption: '@Html.Raw(GeneralResource.LabelSelectAll)', value: '@Model.ValueSendType'"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelParameter)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <select id="slcParameterEdit" class="form-control" validable="required ParameterReq" data-bind="options: ListParameter, optionsText: 'Name', optionsValue: 'Id', value:'@Model.ParameterCode' "></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelParameterValue)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <select id="slcParameterValueEdit" class="form-control" validable="required ParameterValueReq" data-bind="options: ListParameterValue, optionsText: 'Name', optionsValue: 'Id', value:'@Model.Value' "></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelOperation)</label>
+                                    <div class="col-sm-8">
+                                        <div class="col-sm-3">
+                                            @{
+                                                if (Model.Operation == "+")
+                                                {
+                                                    valueOperationAddition = "checked='checked'";
+                                                }
+                                            }
+                                            <input id="rdoAdditionEdit" type="radio" name="rdoOperationEdit" @valueOperationAddition value="+" />  <label style="font:bold;font-size:20px">@Html.Raw(IndexResource.LabelOperationAddition)</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            @{
+                                                if (Model.Operation == "-")
+                                                {
+                                                    valueOperationSubtraction = "checked='checked'";
+                                                }
+                                            }
+                                            <input id="rdoSubtractionEdit" type="radio" name="rdoOperationEdit" @valueOperationSubtraction value="-" />  <label style="font:bold;font-size:20px">@Html.Raw(IndexResource.LabelOperationSubtraction)</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            @{
+                                                if (Model.Operation == "*")
+                                                {
+                                                    valueOperationMultiplication = "checked='checked'";
+                                                }
+                                            }
+                                            <input id="rdoMultiplicationEdit" type="radio" name="rdoOperationEdit" @valueOperationMultiplication value="*" />  <label style="font:bold;font-size:20px">@Html.Raw(IndexResource.LabelOperationMultiplication)</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            @{
+                                                if (Model.Operation == "/")
+                                                {
+                                                    valueOperationDivision = "checked='checked'";
+                                                }
+                                            }
+                                            <input id="rdoDivisionEdit" type="radio" name="rdoOperationEdit" @valueOperationDivision value="/" />  <label style="font:bold;font-size:20px">@Html.Raw(IndexResource.LabelOperationDivision)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelFactor)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtFactorEdit" maxlength="9" style="width:150px" type="text" name="Factor" value="@Model.FactorString" validable="required FactorReq" class="form-control" placeholder="@Html.Raw(IndexResource.LabelFactor)" mask="decimal" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelFactorType):</label>
+                                    <div class="col-sm-8">
+                                        <p></p>
+                                        <div class="col-sm-4">
+                                            @{
+                                                if (Model.FactorType == Enumerated.FactorType.Amount)
+                                                {
+                                                    valueFactorTypeAmount = "checked='checked'";
+                                                }
+                                            }
+                                            <input id="rdoFactorTypeAmountEdit" type="radio" name="rdoFactorTypeEdit" @valueFactorTypeAmount value="@Html.Raw(Enumerated.FactorType.Amount)" /> @Html.Raw(IndexResource.LabelFactorTypeAmount)
+                                        </div>
+                                        <div class="col-sm-4">
+                                            @{
+                                                if (Model.FactorType == Enumerated.FactorType.Percent)
+                                                {
+                                                    valueFactorTypePercentage = "checked='checked'";
+                                                }
+                                            }
+                                            <input id="rdoFactorTypePercentageEdit" type="radio" name="rdoFactorTypeEdit" @valueFactorTypePercentage value="@Html.Raw(Enumerated.FactorType.Percent)" /> @Html.Raw(IndexResource.LabelFactorTypePercentage)
+                                        </div>
+                                        <div class="col-sm-4">
+                                            @{
+                                                if (Model.FactorType == Enumerated.FactorType.FixedValue)
+                                                {
+                                                    valueFactorTypeFixedValue = "checked='checked'";
+                                                }
+                                            }
+                                            <input id="rdoFactorTypeFixedValueEdit" type="radio" name="rdoFactorTypeEdit" @valueFactorTypeFixedValue value="@Html.Raw(Enumerated.FactorType.FixedValue)" /> @Html.Raw(IndexResource.LabelFactorTypeFixedValue)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus):</label>
+                                    <div class="col-sm-8">
+                                        <select id="slcRegistrationStatusEdit" data-bind="options: ListRegistrationStatus, optionsText: 'Name', optionsValue: 'Id', value: '@Model.RegistrationStatus'" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(GeneralResource.LabelModificationReason)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <textarea id="txtModificationReasonEdit" class="w-textarea" maxlength="255" validable="Comment true" placeholder="@Html.Raw(GeneralResource.LabelModificationReason)"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div class="cnt-button">
+        <input id="btnSaveEdit" class="btn btn-primary" type="button" data-bind="visible: Save.Visible, enable: Save.Enabled" value="@GeneralResource.LabelSave" />
+        <input id="btnCancelEdit" class="btn btn-default" type="button" data-bind="visible: Cancel.Visible, enable: Cancel.Enabled" value="@GeneralResource.LabelGetOut" />
+    </div>
+</div>
+
+<script type="text/javascript">
+    ns('Yanbal.SFT.Presentation.Web.Freight.Formula.Models');
+    Yanbal.SFT.Presentation.Web.Freight.Formula.Models.Edit = @(Html.Raw(Json.Encode(Model)));
+</script>

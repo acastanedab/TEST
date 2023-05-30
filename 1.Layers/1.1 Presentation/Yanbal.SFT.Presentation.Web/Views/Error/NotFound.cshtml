@@ -1,0 +1,24 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared;
+@{
+    ViewBag.Title = ErrorResource.LabelTitlePageNotFound;
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>@ErrorResource.LabelTitlePageNotFound</strong>
+    </div>
+    <div class="panel-body">
+        <div>
+            <span class="fa fa-info-circle"></span>
+            <span id="informacion">@String.Format(@Html.Raw(@ErrorResource.LabelMessagePageNotFound).ToString(),@ViewData["error_path"].ToString() )</span>
+        </div>
+    </div>
+    <div style="display: block; min-height: 400px; text-align: center;">
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript" src="~/Scripts/Components/Storage/Storage.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Home/Index/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Home/Index/Index.js"></script>
+}

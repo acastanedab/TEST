@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{09DB9F39-8873-48B9-A9E6-C62C12486F85}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yanbal.SFT.Proxies.Application</RootNamespace>
+    <AssemblyName>Yanbal.SFT.Proxies.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Yanbal.SFT.Proxies.Application.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>Yanbal.SFT.Proxies.Application.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Yanbal.SFT.Proxies.Application.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authentication\ITokenSecurityProxy.cs" />
+    <Compile Include="Authentication\TokenSecurityGeneratedRequestTypeProxy.cs" />
+    <Compile Include="Authentication\TokenSecurityGeneratedResponseTypeProxy.cs" />
+    <Compile Include="Authentication\TokenSecurityInformationRequestTypeProxy.cs" />
+    <Compile Include="Authentication\TokenSecurityInformationResponseTypeProxy.cs" />
+    <Compile Include="Authentication\TokenSecurityProxy.cs" />
+    <Compile Include="Authentication\TokenSecurityResponse.cs" />
+    <Compile Include="Authentication\TokenSecurityTypeProxy.cs" />
+    <Compile Include="Common\ErrorManagerType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\EndPointSetting.cs" />
+    <Compile Include="Security\ISecurityProxy.cs" />
+    <Compile Include="Security\LoginAccesRequest.cs" />
+    <Compile Include="Security\LoginAccesResponse.cs" />
+    <Compile Include="Security\PermissionAccesResponse.cs" />
+    <Compile Include="Security\PermissionAccessRequest.cs" />
+    <Compile Include="Security\SearchCountryUserRequest.cs" />
+    <Compile Include="Security\SearchCountryUserResponse.cs" />
+    <Compile Include="Security\SearchCountryUserType.cs" />
+    <Compile Include="Security\SearchUserServiceSecurityRequest.cs" />
+    <Compile Include="Security\SearchUserServiceSecurityResponse.cs" />
+    <Compile Include="Security\SecurityProxy.cs" />
+    <Compile Include="Security\UserServiceJ6.cs" />
+    <Compile Include="Service References\SRAService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\TokenSecurityService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SRAService\SecurityService1.wsdl" />
+    <None Include="Service References\SRAService\SecurityService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SRAService\SecurityService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SRAService\SecurityService32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SRAService\SRAService1.wsdl" />
+    <None Include="Service References\SRAService\Yanbal.SFT.Proxies.Application.SRAService.getRolesResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SRAService\Yanbal.SFT.Proxies.Application.SRAService.GetRolesResponseType1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SRAService\Yanbal.SFT.Proxies.Application.SRAService.loginAdministratorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SRAService\Yanbal.SFT.Proxies.Application.SRAService.loginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SRAService\Yanbal.SFT.Proxies.Application.SRAService.LoginResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SRAService\Yanbal.SFT.Proxies.Application.SRAService.permissionAccessResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SRAService\Yanbal.SFT.Proxies.Application.SRAService.PermissionAccessResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SRAService\Yanbal.SFT.Proxies.Application.SRAService.searchCountryUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SRAService\Yanbal.SFT.Proxies.Application.SRAService.SearchCountryUserResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TokenSecurityService\TokenSecurity.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TokenSecurityService\TokenSecurity1.wsdl" />
+    <None Include="Service References\TokenSecurityService\TokenSecurity1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TokenSecurityService\TokenSecurity2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TokenSecurityService\TokenSecurityService.wsdl" />
+    <None Include="Service References\TokenSecurityService\Yanbal.SFT.Proxies.Application.TokenSecurityService.generateTokenSecurityResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TokenSecurityService\Yanbal.SFT.Proxies.Application.TokenSecurityService.getTokenSecurityByTokenIdResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TokenSecurityService\Yanbal.SFT.Proxies.Application.TokenSecurityService.setExpireTokenSecurityByIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TokenSecurityService\Yanbal.SFT.Proxies.Application.TokenSecurityService.TokenSecurityGeneratedResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TokenSecurityService\Yanbal.SFT.Proxies.Application.TokenSecurityService.TokenSecurityInformationResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SRAService\" />
+    <WCFMetadataStorage Include="Service References\TokenSecurityService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SRAService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SRAService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SRAService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TokenSecurityService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TokenSecurityService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TokenSecurityService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TokenSecurityService\TokenSecurity.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SRAService\SecurityService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Yanbal.SFT.Infrastructure.CrossCutting\Yanbal.SFT.Infrastructure.CrossCutting.csproj">
+      <Project>{5B20F1A2-4FD0-4F55-BF01-04A3A049E4AF}</Project>
+      <Name>Yanbal.SFT.Infrastructure.CrossCutting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

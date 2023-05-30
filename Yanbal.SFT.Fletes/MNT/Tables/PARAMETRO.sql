@@ -1,0 +1,94 @@
+﻿CREATE TABLE [MNT].[PARAMETRO] (
+    [CODIGO_UNIDAD_NEGOCIO]             INT            NOT NULL,
+    [CODIGO_PARAMETRO]                  INT            NOT NULL,
+    [CODIGO]                            CHAR (3)       NOT NULL,
+    [NOMBRE]                            NVARCHAR (100) NOT NULL,
+    [DESCRIPCION]                       NVARCHAR (255) NULL,
+    [TIPO_PARAMETRO]                    CHAR (3)       NOT NULL,
+    [INDICADOR_PARAMETRO_SISTEMA]       BIT            NOT NULL,
+    [INDICADOR_PERMITE_AGREGAR_VALOR]   BIT            NOT NULL,
+    [INDICADOR_PERMITE_MODIFICAR_VALOR] BIT            NOT NULL,
+    [ESTADO_REGISTRO]                   CHAR (1)       NOT NULL,
+    [OBSERVACION]                       NVARCHAR (255) NULL,
+    [USUARIO_CREACION]                  NVARCHAR (50)  NOT NULL,
+    [FECHA_CREACION]                    DATETIME       NOT NULL,
+    [TERMINAL_CREACION]                 NVARCHAR (50)  NOT NULL,
+    [USUARIO_MODIFICACION]              NVARCHAR (50)  NULL,
+    [FECHA_MODIFICACION]                DATETIME       NULL,
+    [TERMINAL_MODIFICACION]             NVARCHAR (50)  NULL,
+    CONSTRAINT [PK_PARAMETRO_1] PRIMARY KEY CLUSTERED ([CODIGO_PARAMETRO] ASC) WITH (FILLFACTOR = 25),
+    CONSTRAINT [FK_PARAMETRO_UNIDAD_NEGOCIO] FOREIGN KEY ([CODIGO_UNIDAD_NEGOCIO]) REFERENCES [MNT].[UNIDAD_NEGOCIO] ([CODIGO_UNIDAD_NEGOCIO])
+);
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Tabla de parámetros por unidad de negocio.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Código de unidad de negocio.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'CODIGO_UNIDAD_NEGOCIO';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Código de parámetro.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'CODIGO_PARAMETRO';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Código de parámetro definido por el usuario.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'CODIGO';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Nombre de parámetro.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'NOMBRE';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Descripción de parámetro.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'DESCRIPCION';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Tipo de parámetro.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'TIPO_PARAMETRO';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Indicador de parámetro de sistema.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'INDICADOR_PARAMETRO_SISTEMA';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Indicador que permite agregar valor.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'INDICADOR_PERMITE_AGREGAR_VALOR';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Indicador que permite agregar valor.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'INDICADOR_PERMITE_MODIFICAR_VALOR';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Estado del registro.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'ESTADO_REGISTRO';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Observación por modificación.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'OBSERVACION';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Usuario que crea el registro.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'USUARIO_CREACION';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Fecha de creación del registro.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'FECHA_CREACION';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'IP del terminal desde donde se crea el registro.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'TERMINAL_CREACION';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Usuario que realiza la última modificación del registro.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'USUARIO_MODIFICACION';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Fecha en que se realizó la última modificación al registro.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'FECHA_MODIFICACION';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'IP del terminal desde donde se realizó la última modificación al registro.', @level0type = N'SCHEMA', @level0name = N'MNT', @level1type = N'TABLE', @level1name = N'PARAMETRO', @level2type = N'COLUMN', @level2name = N'TERMINAL_MODIFICACION';
+

@@ -1,0 +1,86 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Freight.Combination
+@using Yanbal.SFT.Presentation.Web.Source.Models.Freight;
+@using Yanbal.SFT.Domain.Common.Messages;
+@model CombinationModel
+
+<div class="w-formulario-popup">
+    <div class="w-title-2">
+        @Html.Raw(IndexResource.LabelTitleNew)
+    </div>
+    <hr />
+    <div class="w-form">
+        <div id="divContainerNew" class="w-item">
+            <form id="frmCreateParameterCombination">
+                <div id="divCreateParameterCombination">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-horizontal" role="form">
+                                <div class="subtitle">
+                                    @Html.Raw(IndexResource.LabelSubTitleDataCombination)
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelAmount)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtFreightAmountCreate" type="text" class="form-control" maxlength="12" validable="required FreightAmountReq" placeholder="@Html.Raw(IndexResource.LabelAmount)" mask="decimal" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus):</label>
+                                    <div class="col-sm-8">
+                                        <label class="col-sm-5 control-label-bold">@Html.Raw(Model.LabelRegistrationStatus)</label>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="subtitle">
+                                    @Html.Raw(IndexResource.LabelSubTitleParameterCombination)
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelParameter):</label>
+                                    <div class="col-sm-8">
+                                        <label id="lblParameterName" class="col-sm-8 control-label-bold"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelParameterValue):</label>
+                                    <div class="col-sm-8">
+                                        <select id="slcParameterValueCreate" validable="required ParameterValueReq" class="form-control"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-sm-12" style="text-align: right;">
+                                        <input id="btnAddPCCreate" class="btn btn-default btn-filter" type="button" data-bind="visible: Add.Visible, enable: Add.Enabled" value="@GeneralResource.LabelAdd"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divSearchResultParameterCombination" style="display: none" onscroll="true">
+                        <div class="table-responsive u-table-search">
+                            <div id="grdResultParameterCombination" class="table table-bordered table-striped table-hover table-responsive">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div class="cnt-button">
+        <input id="btnSavePCCreate" class="btn btn-primary" type="button" data-bind="visible: Save.Visible, enable: Save.Enabled" value="@GeneralResource.LabelSave"/>
+        <input id="btnCancelPCCreate" class="btn btn-default" type="button" data-bind="visible: CancelPC.Visible, enable: CancelPC.Enabled" value="@GeneralResource.LabelGetOut" />
+    </div>
+</div>
+
+<script type="text/javascript">
+    ns('Yanbal.SFT.Presentation.Web.Freight.Combination.Models');
+    Yanbal.SFT.Presentation.Web.Freight.Combination.Models.CreateParameterCombination = @(Html.Raw(Json.Encode(Model)));
+</script>

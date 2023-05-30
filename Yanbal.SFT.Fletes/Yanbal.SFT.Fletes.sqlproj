@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Yanbal.SFT.Fletes</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{1bdb4ab4-66e4-414e-ac9b-b5b5e9fc6e11}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Yanbal.SFT.Fletes</RootNamespace>
+    <AssemblyName>Yanbal.SFT.Fletes</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="CONF\" />
+    <Folder Include="CONF\Tables\" />
+    <Folder Include="GRL\" />
+    <Folder Include="GRL\Tables\" />
+    <Folder Include="MNT\" />
+    <Folder Include="MNT\Tables\" />
+    <Folder Include="GRL\Functions\" />
+    <Folder Include="MNT\Functions\" />
+    <Folder Include="CONF\Stored Procedures\" />
+    <Folder Include="GRL\Stored Procedures\" />
+    <Folder Include="MNT\Stored Procedures\" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\User Defined Types\" />
+    <Folder Include="Security\" />
+    <Folder Include="CONF\User Defined Types\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="GRL\Tables\City.sql" />
+    <Build Include="GRL\Tables\District.sql" />
+    <Build Include="GRL\Tables\StateProvince.sql" />
+    <Build Include="GRL\Tables\VW_CIUDAD.sql" />
+    <Build Include="GRL\Tables\VW_DISTRITO.sql" />
+    <Build Include="GRL\Tables\VW_PROVINCIA.sql" />
+    <Build Include="MNT\Tables\COMBINACION.sql" />
+    <Build Include="MNT\Tables\COMBINACION_PARAMETRO.sql" />
+    <Build Include="MNT\Tables\CULTURA.sql" />
+    <Build Include="MNT\Tables\FORMATO_CADENA.sql" />
+    <Build Include="MNT\Tables\FORMULA.sql" />
+    <Build Include="MNT\Tables\IDIOMA.sql" />
+    <Build Include="MNT\Tables\ORDEN_COMBINACION.sql" />
+    <Build Include="MNT\Tables\PAIS.sql" />
+    <Build Include="MNT\Tables\PARAMETRO.sql" />
+    <Build Include="MNT\Tables\PARAMETRO_SECCION.sql" />
+    <Build Include="MNT\Tables\PARAMETRO_VALOR.sql" />
+    <Build Include="MNT\Tables\TIPO_ZONA_UBIGEO.sql" />
+    <Build Include="MNT\Tables\UNIDAD_NEGOCIO.sql" />
+    <Build Include="MNT\Tables\UNIDAD_NEGOCIO_CONFIGURACION.sql" />
+    <Build Include="MNT\Tables\ZONA_HORARIA.sql" />
+    <Build Include="GRL\Functions\F_OBTENER_FECHA_SERVIDOR.sql" />
+    <Build Include="GRL\Functions\F_VALIDA_ZONA_GEOGRAFICA.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="MNT\Functions\F_OBTENER_COMBINACION.sql" />
+    <Build Include="MNT\Functions\F_PARAMETRO_VALOR_LISTA_PARAMETRO_SECCION.sql" />
+    <Build Include="MNT\Functions\F_PARAMETRO_VALOR_LISTA_SECCION.sql" />
+    <Build Include="GRL\Stored Procedures\USP_GET_NIVELES_SEL.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="GRL\Stored Procedures\USP_OBTENER_FECHA_UNIDAD_NEGOCIO.sql" />
+    <Build Include="MNT\Stored Procedures\USP_COMBINACION_INS.sql" />
+    <Build Include="MNT\Stored Procedures\USP_COMBINACION_PARAMETRO_INS.sql" />
+    <Build Include="MNT\Stored Procedures\USP_COMBINACION_PARAMETRO_SEL.sql" />
+    <Build Include="MNT\Stored Procedures\USP_COMBINACION_PARAMETRO_UPD.sql" />
+    <Build Include="MNT\Stored Procedures\USP_COMBINACION_SEL.sql" />
+    <Build Include="MNT\Stored Procedures\USP_COMBINACION_UPD.sql" />
+    <Build Include="MNT\Stored Procedures\USP_CULTURA_INS.sql" />
+    <Build Include="MNT\Stored Procedures\USP_CULTURA_SEL.sql" />
+    <Build Include="MNT\Stored Procedures\USP_CULTURA_UPD.sql" />
+    <Build Include="MNT\Stored Procedures\USP_FORMATO_CADENA_SEL.sql" />
+    <Build Include="MNT\Stored Procedures\USP_FORMULA_INS.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="MNT\Stored Procedures\USP_FORMULA_SEL.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="MNT\Stored Procedures\USP_FORMULA_UPD.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="MNT\Stored Procedures\USP_IDIOMA_SEL.sql" />
+    <Build Include="MNT\Stored Procedures\USP_ORDEN_COMBINACION_INS.sql" />
+    <Build Include="MNT\Stored Procedures\USP_ORDEN_COMBINACION_SEL.sql" />
+    <Build Include="MNT\Stored Procedures\USP_ORDEN_COMBINACION_UPD.sql" />
+    <Build Include="MNT\Stored Procedures\USP_PAIS_SEL.sql" />
+    <Build Include="MNT\Stored Procedures\USP_PARAMETRO_INS.sql" />
+    <Build Include="MNT\Stored Procedures\USP_PARAMETRO_SECCION_INS.sql" />
+    <Build Include="MNT\Stored Procedures\USP_PARAMETRO_SECCION_SEL.sql" />
+    <Build Include="MNT\Stored Procedures\USP_PARAMETRO_SECCION_UPD.sql" />
+    <Build Include="MNT\Stored Procedures\USP_PARAMETRO_SEL.sql" />
+    <Build Include="MNT\Stored Procedures\USP_PARAMETRO_UPD.sql" />
+    <Build Include="MNT\Stored Procedures\USP_PARAMETRO_VALOR_INS.sql" />
+    <Build Include="MNT\Stored Procedures\USP_PARAMETRO_VALOR_SEL.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="MNT\Stored Procedures\USP_PARAMETRO_VALOR_UDP.sql" />
+    <Build Include="MNT\Stored Procedures\USP_TIPO_ZONA_UBIGEO_INS.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="MNT\Stored Procedures\USP_TIPO_ZONA_UBIGEO_SEL.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="MNT\Stored Procedures\USP_TIPO_ZONA_UBIGEO_UPD.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="MNT\Stored Procedures\USP_UNIDAD_NEGOCIO_CONFIGURACION_INS.sql" />
+    <Build Include="MNT\Stored Procedures\USP_UNIDAD_NEGOCIO_CONFIGURACION_LOGO_SEL.sql" />
+    <Build Include="MNT\Stored Procedures\USP_UNIDAD_NEGOCIO_CONFIGURACION_OBTENER_LOGO.sql" />
+    <Build Include="MNT\Stored Procedures\USP_UNIDAD_NEGOCIO_CONFIGURACION_SEL.sql" />
+    <Build Include="MNT\Stored Procedures\USP_UNIDAD_NEGOCIO_CONFIGURACION_UPD.sql" />
+    <Build Include="MNT\Stored Procedures\USP_UNIDAD_NEGOCIO_INS.sql" />
+    <Build Include="MNT\Stored Procedures\USP_UNIDAD_NEGOCIO_SEL.sql" />
+    <Build Include="MNT\Stored Procedures\USP_UNIDAD_NEGOCIO_UPD.sql" />
+    <Build Include="MNT\Stored Procedures\USP_ZONA_CIUDAD_SEL.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="MNT\Stored Procedures\USP_ZONA_DISTRITO_SEL.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="MNT\Stored Procedures\USP_ZONA_HORARIA_SEL.sql" />
+    <Build Include="MNT\Stored Procedures\USP_ZONA_PROVINCIA_SEL.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\User Defined Types\LISTA_PARAMETRO_VALOR_TYPE.sql" />
+    <Build Include="Security\CONF.sql" />
+    <Build Include="Security\FLT.sql" />
+    <Build Include="Security\GRL.sql" />
+    <Build Include="Security\MNT.sql" />
+    <Build Include="ExtendedProperties.sql" />
+    <Build Include="MNT\Stored Procedures\USP_COMBINACION_PARAMETRO_SEARCH_SEL.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="CONF\Tables\SISTEMA_VERSION.sql" />
+    <Build Include="CONF\Tables\SISTEMA.sql" />
+    <Build Include="CONF\Tables\COMPONENTE_VERSION.sql" />
+    <Build Include="CONF\Tables\COMPONENTE.sql" />
+    <Build Include="MNT\Stored Procedures\USP_GET_PARAMETROS_VALOR_POR_CODIGOVALOR_SEL.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="MNT\Stored Procedures\USP_CONFIGURACION_KEY_ENDPOINT_SEL.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="CONF\Stored Procedures\USP_UPDATEVERSION_COMPONENTE_SEL.sql" />
+    <Build Include="CONF\Stored Procedures\USP_SISTEMA_COMPONENTE_VERSION_INS.sql" />
+    <Build Include="CONF\User Defined Types\LISTA_SISTEMA_VERSION.sql" />
+    <Build Include="CONF\User Defined Types\LISTA_COMPONENTE_VERSION.sql" />
+  </ItemGroup>
+</Project>

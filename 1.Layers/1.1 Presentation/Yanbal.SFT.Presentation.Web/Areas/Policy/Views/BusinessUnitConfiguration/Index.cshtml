@@ -1,0 +1,130 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.BusinessUnitConfiguration
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy;
+@model BusinessUnitConfigurationModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>
+            @Html.Raw(Yanbal.SFT.Presentation.Web.Source.Resources.Policy.BusinessUnit.IndexResource.LabelTitleBusinessUnit)
+            @Html.Raw(GeneralResource.LabelConcatenateUrlMenu)
+            @Html.Raw(IndexResource.LabelTitleBusinessUnitConfiguration)</strong>
+    </div>
+    <div class="panel-body">
+        <div id="divBusinessUnitConfiguration">
+            <form id="frmBusinessUnitConfigurationIndex" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelBusinessUnit):</label>
+                                <div class="col-sm-7">
+                                    <label id="lblBusinessUnitName" class="control-label-bold" style="max-width: 100%; word-wrap: break-word">@Model.BusinessUnitName</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div id="divSearchResult" style="display: none" onscroll="true">
+                <div class="table-responsive u-table-search">
+                    <div id="grdResult" name="gridResult" class="table table-bordered table-striped table-hover table-responsive">
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <input id="btnCreate" class="pull-left btn btn-primary btn-filter" type="button" value='@Html.Raw(GeneralResource.LabelAdd)' data-bind="visible: Create.Visible, enable: Create.Enabled" />
+                <a href="@Url.Action("Index", "BusinessUnit", new { indicatorFilterCleaning = 1 })" class="pull-right btn btn-default btn-filter">@Html.Raw(GeneralResource.EtiquetaRegresar)</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <link href="~/Scripts/Components/Dialog/Dialog.css" rel="stylesheet" />
+    <script src="~/Scripts/Components/Dialog/Dialog.js"></script>
+    <script src="~/Scripts/Util.js"></script>
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Actions')
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Actions.Index                              = '@Url.Action("Index", "BusinessUnitConfiguration")';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Actions.Search                             = '@Url.Action("Search", "BusinessUnitConfiguration")';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Actions.Create                             = '@Url.Action("Create", "BusinessUnitConfiguration")';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Actions.Edit                               = '@Url.Action("Edit", "BusinessUnitConfiguration")';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Actions.RegisterBusinessUnitConfiguration  = '@Url.Action("RegisterBusinessUnitConfiguration", "BusinessUnitConfiguration")';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Actions.ModifyBusinessUnitConfiguration    = '@Url.Action("ModifyBusinessUnitConfiguration", "BusinessUnitConfiguration")';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Actions.ViewCompanyLogo                    = '@Url.Action("ViewCompanyLogo", "BusinessUnitConfiguration")';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Actions.ViewReportLogo                     = '@Url.Action("ViewReportLogo", "BusinessUnitConfiguration")';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Actions.ViewCompanyLogoImage               = '@Url.Action("ViewCompanyLogoImage", "BusinessUnitConfiguration")';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Actions.ViewLogoReportImage                = '@Url.Action("ViewLogoReportImage", "BusinessUnitConfiguration")';
+
+        ns('Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources')
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelGridCulture                 = '@Html.Raw(IndexResource.LabelGridCulture)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelGridTimeZone                = '@Html.Raw(IndexResource.LabelGridTimeZone)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelGridDisplayFormReport       = '@Html.Raw(IndexResource.LabelGridDisplayFormReport)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelGridAcquiringMainMenu       = '@Html.Raw(IndexResource.LabelGridAcquiringMainMenu)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelGridRowsPerPage             = '@Html.Raw(IndexResource.LabelGridRowsPerPage)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelGridCharactersMinimumGloss  = '@Html.Raw(IndexResource.LabelGridCharactersMinimumGloss)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelGridVowelsMinimumGloss      = '@Html.Raw(IndexResource.LabelGridVowelsMinimumGloss)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelGridCompanyLogo             = '@Html.Raw(IndexResource.LabelGridCompanyLogo)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelGridReportLogo              = '@Html.Raw(IndexResource.LabelGridReportLogo)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelGridRegistrationStatus      = '@Html.Raw(GeneralResource.LabelRegistrationStatus)';
+
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelConfirmationHeader   = '@Html.Raw(GeneralResource.LabelConfirmationHeader)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelSaveConfirmation     = '@Html.Raw(MessageResource.SaveConfirmation)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.SatisfactorySaved         = '@Html.Raw(MessageResource.SatisfactorySaved)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.FailedSaved               = '@Html.Raw(MessageResource.FailedSaved)';
+
+
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelCulture                 = '@Html.Raw(IndexResource.LabelCulture)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelTimeZone                = '@Html.Raw(IndexResource.LabelTimeZone)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelDisplayFormReport       = '@Html.Raw(IndexResource.LabelDisplayFormReport)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelAcquiringMainMenu       = '@Html.Raw(IndexResource.LabelAcquiringMainMenu)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelRowsPerPage             = '@Html.Raw(IndexResource.LabelRowsPerPage)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelCharactersMinimumGloss  = '@Html.Raw(IndexResource.LabelCharactersMinimumGloss)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelVowelsMinimumGloss      = '@Html.Raw(IndexResource.LabelVowelsMinimumGloss)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelCompanyLogo             = '@Html.Raw(IndexResource.LabelCompanyLogo)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelReportLogo              = '@Html.Raw(IndexResource.LabelReportLogo)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelModificationReason      = '@Html.Raw(GeneralResource.LabelModificationReason)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelExistingConfiguration   = '@Html.Raw(IndexResource.LabelExistingConfiguration)';
+
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelCompanyLogoWithoutConfiguration  = '@Html.Raw(IndexResource.LabelCompanyLogoWithoutConfiguration)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelReportLogoWithoutConfiguration   = '@Html.Raw(IndexResource.LabelReportLogoWithoutConfiguration)';
+        
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelSelect        = '@Html.Raw(GeneralResource.LabelSelect)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Resources.LabelSelectAll     = '@Html.Raw(GeneralResource.LabelSelectAll)';
+        
+        ns('Yanbal.SFT.Presentation.Web.BusinessUnitConfigurationValidation.Message.Resources')
+        Yanbal.SFT.Presentation.Web.BusinessUnitConfigurationValidation.Message.Resources.CultureReq                        = '@Html.Raw(IndexResource.LabelCulture)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitConfigurationValidation.Message.Resources.TimeZoneReq                       = '@Html.Raw(IndexResource.LabelTimeZone)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitConfigurationValidation.Message.Resources.DisplayFormReportReq              = '@Html.Raw(IndexResource.LabelDisplayFormReport)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitConfigurationValidation.Message.Resources.RowsPerPageReq                    = '@Html.Raw(IndexResource.LabelRowsPerPage)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitConfigurationValidation.Message.Resources.RowsPerPageMin                    = '@Html.Raw(IndexResource.LabelMinRowsPerPage)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitConfigurationValidation.Message.Resources.RowsPerPageMax                    = '@Html.Raw(IndexResource.LabelMaxRowsPerPage)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitConfigurationValidation.Message.Resources.MinCharactersGlossReq             = '@Html.Raw(IndexResource.LabelCharactersMinimumGloss)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitConfigurationValidation.Message.Resources.MinVowelsGlossReq                 = '@Html.Raw(IndexResource.LabelVowelsMinimumGloss)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitConfigurationValidation.Message.Resources.MinCharactersGloss                = '@Html.Raw(IndexResource.LabelCharacteresMinGloss)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitConfigurationValidation.Message.Resources.MinVowelsGloss                    = '@Html.Raw(IndexResource.LabelVowelsMinGloss)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitConfigurationValidation.Message.Resources.ModificationReasonReq             = '@Html.Raw(GeneralResource.LabelModificationReason)';
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/Components/FileUpload/FileUpload.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/Views/Policy/BusinessUnitConfiguration/Index/Index.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/BusinessUnitConfiguration/Index/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/BusinessUnitConfiguration/Create/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/BusinessUnitConfiguration/Edit/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/BusinessUnitConfiguration/ViewCompanyLogo/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/BusinessUnitConfiguration/ViewReportLogo/Controller.js"></script>
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Models');
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Models.Index = @(Html.Raw(Json.Encode(Model)));
+    </script>
+}

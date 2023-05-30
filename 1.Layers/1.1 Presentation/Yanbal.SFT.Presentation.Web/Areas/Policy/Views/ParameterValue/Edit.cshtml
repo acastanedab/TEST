@@ -1,0 +1,140 @@
+﻿@using Yanbal.SFT.FreightManagement.Common.Messages 
+@using Yanbal.SFT.FreightManagement.Common
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.ParameterValue
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy
+@model ParameterValueModel
+
+<div class="w-formulario-popup">
+    <div class="w-title-2">
+        <strong>@IndexResource.LabelTitleEdit</strong>
+    </div>
+    <div id="divFieldRequired">
+        <span class="fa fa-info-circle"></span>
+        <span>@GeneralResource.LabelRequiredField1<span class="danger">*</span>@GeneralResource.LabelRequiredField2</span>
+    </div>
+    <hr />
+    <form id="frmEditParameterValue">
+        <div id="divEdit" class="w-form">
+            <div class="w-item">
+                <div>
+                    <table>
+                        <tbody>
+                            @if (Model.ListParameterSection != null)
+                            {
+                                foreach (var item in Model.ListParameterSection)
+                                {
+                                    string value = "";
+                                    if (Model.ListParameterValue.FirstOrDefault().RecordValueString.Any(itemParameterValue => itemParameterValue.Key == item.CodeSection.ToString()))
+                                    {
+                                        value = Model.ListParameterValue.FirstOrDefault().RecordValueString[item.CodeSection.ToString()];
+                                    }                                    
+                                    string maxlenght = "";
+                                    string mask = "";
+                                    string sytle = "";
+                                    string labelExtra = "";
+                                    string validable = "";
+                                    string spanRequired = "";
+                                <tr>
+                                    <td class="w-size-1">                                        
+                                        @if (item.RequiredIndicator)
+                                        {
+                                            validable = "validable = \"required DataRequired_" + item.CodeSection + "\"";
+                                            if (!item.ReadOnlyIndicator)
+                                            {                                          
+                                                spanRequired = "<span class=\"danger\">*</span>";
+                                            }
+                                        }
+                                        <label style="font-weight: normal">@item.NameSection@Html.Raw(spanRequired):</label>
+                                    </td>
+                                    <td>
+                                        @switch (item.CodeParameterSectionType)
+                                        {
+                                            case Enumerated.SectionType.String:
+                                                maxlenght = "maxlength=\"255\"";
+                                                break;
+                                            case Enumerated.SectionType.Integer:
+                                                maxlenght = "maxlength=\"9\"";
+                                                mask = "mask=\"integer\"";
+                                                break;
+                                            case Enumerated.SectionType.Decimal:
+                                                maxlenght = "maxlength=\"9\"";
+                                                mask = "mask=\"decimal\"";
+                                                break;
+                                            case Enumerated.SectionType.Date:
+                                                sytle = "style=\"width: 80%;\"";
+                                                labelExtra = "<i class=\"fa fa-calendar\"></i>";
+                                                break;
+                                            default:
+                                                maxlenght = "maxlength=\"255\"";
+                                                break;
+                                        }
+                                        @if (item.ReadOnlyIndicator)
+                                        {
+                                            <label class="col-sm-5 control-label-bold">@Html.Raw(value)</label>
+                                        }                                    
+                                        else
+                                        {
+                                            <input id="@Html.Raw(item.CodeSection)Edit" idSectionEdit="@Html.Raw(item.CodeSection)" type="text" nameEdit="txtValueEdit" typeSectionEdit="@Html.Raw(item.CodeParameterSectionType)" typeRangeEdit="@Html.Raw(item.RangeIndicator)" value="@Html.Raw(value)" class="form-control" @Html.Raw(maxlenght) @Html.Raw(sytle) @Html.Raw(mask) @Html.Raw(validable)/>
+                                            @Html.Raw(labelExtra)
+                                        }
+                                    </td>
+                                </tr>                        
+                                }
+                                <tr>
+                                    <td class="w-size-1">
+                                        <label style="font-weight: normal">@GeneralResource.LabelRegistrationStatus:</label>
+                                    </td>
+                                    <td class="w-size-1">
+                                        <select class="form-control" id="slcRegistrationStatusEdit" data-bind="options: ListRegistrationStatus, optionsText: 'Name', optionsValue: 'Id', value: '@Model.RegistrationStatus'">
+								        </select>
+                                    </td>
+                                </tr>
+						        <tr>
+							        <td>
+								        <label style="font-weight:normal">@GeneralResource.LabelModificationReason<span class="danger">*</span>:</label>
+							        </td>
+							        <td class="w-size-1">
+								        <textarea maxlength="255" class="w-textarea" id="txtModificationReasonEdit"  validable="Comment true" placeholder="@Html.Raw(GeneralResource.LabelModificationReason)"></textarea>
+							        </td>
+						        </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="3">
+                                        <strong>@IndexResource.LabelNoSections</strong>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <hr />
+            <div class="cnt-button">
+                @if (Model.ListParameterSection != null && Model.ListParameterSection.Count > 0)
+                {
+                    <input class="btn btn-primary" id="btnSaveEdit" type="button" value="@GeneralResource.LabelSave" />
+                }
+                <input class="btn btn-default btn-filter" id="btnCancelEdit" type="button"  value="@GeneralResource.LabelClose" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@if (Model.ListParameterSection != null)
+{
+    foreach (var item in Model.ListParameterSection)
+    {
+    <script>
+        ns('Yanbal.SFT.Presentation.Web.ParameterValueValidationEdit.Message.Resources')
+        Yanbal.SFT.Presentation.Web.ParameterValueValidationEdit.Message.Resources.DataRequired_@item.CodeSection = '@Html.Raw(item.NameSection)';
+        Yanbal.SFT.Presentation.Web.ParameterValueValidationEdit.Message.Resources.ModificationReasonReq = '@Html.Raw(GeneralResource.LabelModificationReason)';
+    </script>
+    }
+}
+<script type="text/javascript">
+    ns('Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Models');
+    Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Models.Edit = @(Html.Raw(Json.Encode(Model)));
+</script>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f9cd56ef-282b-4278-9426-7f1793fca9e1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://localhost/srvMSFSecurity/SecurityService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SecurityService1.disco" MetadataType="Disco" ID="1c7ea5b4-9399-40af-8e22-28e6912512a5" SourceId="1" SourceUrl="https://localhost/srvMSFSecurity/SecurityService.svc?disco" />
+    <MetadataFile FileName="SecurityService3.xsd" MetadataType="Schema" ID="58cdd626-3214-493e-a9c0-64d371b49438" SourceId="1" SourceUrl="https://localhost/srvMSFSecurity/SecurityService.svc?xsd=xsd2" />
+    <MetadataFile FileName="SecurityService1.wsdl" MetadataType="Wsdl" ID="619dcadb-b7fc-4399-b06f-b77299e0ace2" SourceId="1" SourceUrl="https://localhost/srvMSFSecurity/SecurityService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="SecurityService31.xsd" MetadataType="Schema" ID="4a953305-a9af-435e-9a3f-4f7ccde0e3c8" SourceId="1" SourceUrl="https://localhost/srvMSFSecurity/SecurityService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SRAService1.wsdl" MetadataType="Wsdl" ID="bcb25ff3-40aa-46ed-a5df-b2e48654047f" SourceId="1" SourceUrl="https://localhost/srvMSFSecurity/SecurityService.svc?wsdl" />
+    <MetadataFile FileName="SecurityService32.xsd" MetadataType="Schema" ID="b63caf49-f16e-4fe6-87b9-8a0b45164c4f" SourceId="1" SourceUrl="https://localhost/srvMSFSecurity/SecurityService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

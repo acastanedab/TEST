@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn:pyf:schema:token" elementFormDefault="qualified" targetNamespace="urn:pyf:schema:token" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="TokenSecurityInformationRequest" type="tns:TokenSecurityInformationType" />
+  <xs:complexType name="TokenSecurityInformationType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="tokenSecurityId" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TokenSecurityGeneratedRequest" type="tns:TokenSecurityGeneratedType" />
+  <xs:complexType name="TokenSecurityGeneratedType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="userName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="userFirstName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="roleCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="languageCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="businessUnitCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="systemCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="roleName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="cultureCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="currentConsultantCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="expirationTime" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TokenSecurityInformationResponse" type="tns:TokenSecurity" />
+  <xs:complexType name="TokenSecurity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="tokenSecurityId" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="expirationTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="userName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="userFirstName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="roleCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="languageCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="businessUnitCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="systemCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="roleName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="cultureCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="currentConsultantCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TokenSecurityGeneratedResponse" type="tns:TokenSecurity" />
+</xs:schema>

@@ -1,0 +1,138 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Freight.Formula
+@using Yanbal.SFT.Presentation.Web.Source.Models.Freight;
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+@model FormulaModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>@Html.Raw(IndexResource.LabelTitleFormula)</strong>
+    </div>
+    <div class="panel-body">
+        <div id="divFormula">
+            <form id="frmFormulaIndex" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelParameter):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcSearchParameter" class="form-control" data-bind="options: ListParameter, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelectAll)'">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelParameterValue):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcSearchParameterValue" class="form-control" >
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcSearchRegistrationStatus" class="form-control" data-bind="options: ListRegistrationStatus, optionsText: 'Name', optionsValue: 'Id'">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input id="btnSearch" type="button" class="pull-right btn btn-primary" value='@Html.Raw(GeneralResource.LabelShow)' data-bind="visible: Search.Visible, enable: Search.Enabled" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divSearchResult" style="display: none" onscroll="true">
+                    <div class="table-responsive u-table-search">
+                        <div id="grdResult" name="gridResult" class="table table-bordered table-striped table-hover table-responsive">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div>
+                    <input id="btnCreate" type="button" class="pull-left btn btn-default btn-filter" value='@Html.Raw(GeneralResource.LabelAdd)' data-bind="visible: Create.Visible, enable: Create.Enabled"/>
+                    @*<div>@Html.Raw(IndexResource.LabelParameterValue)</div>*@
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/Util.js"></script>
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Freight.Formula.Actions')
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Actions.Index            = '@Url.Action("Index", "Formula")';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Actions.Search           = '@Url.Action("Search", "Formula")';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Actions.Create           = '@Url.Action("Create", "Formula")';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Actions.Edit             = '@Url.Action("Edit", "Formula")';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Actions.RegisterFormula  = '@Url.Action("RegisterFormula", "Formula")';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Actions.ModifyFormula    = '@Url.Action("ModifyFormula", "Formula")';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Actions.ChangeParameter  = '@Url.Action("ChangeParameter", "Formula")';
+
+        ns('Yanbal.SFT.Presentation.Web.Freight.Formula.Resources')
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelGridCode                  = '@Html.Raw(IndexResource.LabelGridCode)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelGridParameter             = '@Html.Raw(IndexResource.LabelGridParameter)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelGridParameterValue        = '@Html.Raw(IndexResource.LabelGridParameterValue)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelGridOperation             = '@Html.Raw(IndexResource.LabelGridOperation)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelGridFactor                = '@Html.Raw(IndexResource.LabelGridFactor)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelGridSendType      = '@Html.Raw(IndexResource.LabelGridSendType)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelGridFactorType            = '@Html.Raw(IndexResource.LabelGridFactorType)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelGridFactorTypeAmount      = '@Html.Raw(IndexResource.LabelGridFactorTypeAmount)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelGridFactorTypePercentage  = '@Html.Raw(IndexResource.LabelGridFactorTypePercentage)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelGridFactorTypeFixedValue  = '@Html.Raw(IndexResource.LabelGridFactorTypeFixedValue)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelGridRegistrationStatus    = '@Html.Raw(GeneralResource.LabelRegistrationStatus)';
+
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelConfirmationHeader   = '@Html.Raw(GeneralResource.LabelConfirmationHeader)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelSaveConfirmation     = '@Html.Raw(MessageResource.SaveConfirmation)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.SatisfactorySaved         = '@Html.Raw(MessageResource.SatisfactorySaved)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.FailedSaved               = '@Html.Raw(MessageResource.FailedSaved)';
+
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelParameter                    = '@Html.Raw(IndexResource.LabelParameter)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelParameterValue               = '@Html.Raw(IndexResource.LabelParameterValue)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelOperation                    = '@Html.Raw(IndexResource.LabelOperation)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelFactor                       = '@Html.Raw(IndexResource.LabelFactor)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelFactorType                   = '@Html.Raw(IndexResource.LabelFactorType)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelModificationReason           = '@Html.Raw(GeneralResource.LabelModificationReason)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelInvalidCancellationFormula   = '@Html.Raw(IndexResource.LabelInvalidCancellationFormula)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelExistingFormula              = '@Html.Raw(IndexResource.LabelExistingFormula)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelSelect                       = '@Html.Raw(GeneralResource.LabelSelect)';
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Resources.LabelSelectAll                    = '@Html.Raw(GeneralResource.LabelSelectAll)';
+
+        ns('Yanbal.SFT.Presentation.Web.FormulaValidation.Message.Resources')
+        Yanbal.SFT.Presentation.Web.FormulaValidation.Message.Resources.ParameterReq            = '@Html.Raw(IndexResource.LabelParameter)';
+        Yanbal.SFT.Presentation.Web.FormulaValidation.Message.Resources.ParameterValueReq       = '@Html.Raw(IndexResource.LabelParameterValue)';
+        Yanbal.SFT.Presentation.Web.FormulaValidation.Message.Resources.OperationReq            = '@Html.Raw(IndexResource.LabelOperation)';
+        Yanbal.SFT.Presentation.Web.FormulaValidation.Message.Resources.FactorReq               = '@Html.Raw(IndexResource.LabelFactor)';
+        Yanbal.SFT.Presentation.Web.FormulaValidation.Message.Resources.FactorMin               = '@Html.Raw(IndexResource.LabelFactorMin)';
+        Yanbal.SFT.Presentation.Web.FormulaValidation.Message.Resources.ModificationReasonReq   = '@Html.Raw(GeneralResource.LabelModificationReason)';
+        Yanbal.SFT.Presentation.Web.FormulaValidation.Message.Resources.InvalidFactorOperation  = '@Html.Raw(IndexResource.LabelInvalidFactorOperation)';
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/Views/Freight/Formula/Index/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Freight/Formula/Index/Index.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Freight/Formula/Edit/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Freight/Formula/Create/Controller.js"></script>
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Freight.Formula.Models');
+        Yanbal.SFT.Presentation.Web.Freight.Formula.Models.Index = @(Html.Raw(Json.Encode(Model)));
+    </script>
+}

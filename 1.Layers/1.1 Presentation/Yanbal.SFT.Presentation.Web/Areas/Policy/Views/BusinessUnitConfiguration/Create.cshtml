@@ -1,0 +1,124 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.BusinessUnitConfiguration
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy;
+@using Yanbal.SFT.FreightManagement.Common.Messages
+
+@model BusinessUnitConfigurationModel
+
+<div class="w-formulario-popup">
+    <div class="w-title-2">
+        @Html.Raw(IndexResource.LabelTitleNew)
+    </div>
+    <div id="divRequiredField">
+        <span class="fa fa-info-circle"></span>
+        <span>@GeneralResource.LabelRequiredField1<span class="danger">*</span>@GeneralResource.LabelRequiredField2</span>
+    </div>
+    <hr />
+    <div class="w-form">
+        <div id="divContainerNew" class="w-item">
+            <form id="frmCreateBusinessUnitConfiguration">
+                <div id="divCreateBusinessUnitConfiguration">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelCulture)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <select id="slcCultureCreate" class="form-control" data-bind="options: ListCulture, optionsText: 'Name', optionsValue: 'Id', value:'@Model.CultureCode', optionsCaption: '@Html.Raw(GeneralResource.LabelSelect)'" validable="required CultureReq">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelTimeZone)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <select id="slcTimeZoneCreate" class="form-control" data-bind="options: ListTimeZone, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelect)'" validable="required TimeZoneReq">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelDisplayFormReport)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <select id="slcDisplayFormReportCreate" class="form-control" data-bind="options: ListDisplayFormReport, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelect)'" validable="required DisplayFormReportReq">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelAcquiringMainMenu):</label>
+                                    <div class="col-sm-7 control-label">
+                                        <input id="chkAcquiringMainMenuCreate" type="checkbox" name="chkAcquiringMainMenu" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelRowsPerPage)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <input id="txtRowsPerPage" type="text" class="form-control" maxlength="3" validable="required RowsPerPageReq, max 255 RowsPerPageMax, min 1 RowsPerPageMin " value="10" placeholder="@Html.Raw(IndexResource.LabelRowsPerPage)"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelCharactersMinimumGloss)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <input id="txtCharactersMinimumGlossCreate" type="text" class="form-control" maxlength="3" validable="required MinCharactersGlossReq, max 100 MinCharactersGloss, min 1 MinCharactersGloss" placeholder="@Html.Raw(IndexResource.LabelCharacteresMinGloss)"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelVowelsMinimumGloss)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <input id="txtVowelsMinimumGlossCreate" type="text" class="form-control" maxlength="3" validable="required MinVowelsGlossReq, max 100 MinVowelsGloss, min 1 MinVowelsGloss" placeholder="@Html.Raw(IndexResource.LabelVowelsMinGloss)"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelCompanyLogo):</label>
+                                    <div class="col-sm-7">
+                                        <div id="CompanyImageUploadCreate"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelReportLogo):</label>
+                                    <div class="col-sm-7">
+                                        <div id="ReportImageUploadCreate"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus) :</label>
+                                    <div class="col-sm-7">
+                                        <label class="col-sm-5 control-label-bold">@Html.Raw(Model.LabelRegistrationStatus)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div class="cnt-button">
+        <input id="btnSaveCreate" class="btn btn-primary" type="button" value="@Html.Raw(GeneralResource.LabelSave)" data-bind="visible: Save.Visible, enable: Save.Enabled"/>
+        <input id="btnCancelCreate" class="btn btn-default" type="button" value="@Html.Raw(GeneralResource.LabelGetOut)" data-bind="visible: Cancel.Visible, enable: Cancel.Enabled" />
+    </div>
+</div>
+
+<script type="text/javascript">
+    ns('Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Models');
+    Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Models.Create = @(Html.Raw(Json.Encode(Model)))
+</script>

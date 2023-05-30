@@ -1,0 +1,58 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Freight.FormulaOrder
+@using Yanbal.SFT.Presentation.Web.Source.Models.Freight;
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+@model FormulaOrderModel
+
+<div class="w-formulario-popup">
+    <div class="w-title-2">
+        @Html.Raw(IndexResource.LabelTitleEdit)
+    </div>
+    <div id="divRequiredField">
+        <span class="fa fa-info-circle"></span>
+        <span>@GeneralResource.LabelRequiredField1<span class="danger">*</span>@GeneralResource.LabelRequiredField2</span>
+    </div>
+    <hr />
+    <div class="w-form">
+        <div id="divContainerEdit" class="w-item">
+            <form id="frmEditFormulaOrder">
+                <div id="divEditFormulaOrder">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelFormula):</label>
+                                    <div class="col-sm-7">
+                                        <label class="control-label-bold">@Html.Raw(Model.FormulaDescription)</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelOrder):</label>
+                                    <div class="col-sm-7">
+                                        <label class="control-label-bold">@Html.Raw(Model.Order)</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(GeneralResource.LabelModificationReason)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <textarea id="txtModificationReasonEdit" class="w-textarea" maxlength="250" validable="Comment true" placeholder="@Html.Raw(GeneralResource.LabelModificationReason)"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div class="cnt-button">
+        <input id="btnSaveEdit" class="btn btn-primary" type="button" data-bind="visible: Save.Visible, enable: Save.Enabled" value="@GeneralResource.LabelSave"/>
+        <input id="btnCancelEdit" class="btn btn-default" type="button" data-bind="visible: Cancel.Visible, enable: Cancel.Enabled" value="@GeneralResource.LabelGetOut" />
+    </div>
+</div>
+
+<script type="text/javascript">
+    ns('Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Models');
+    Yanbal.SFT.Presentation.Web.Freight.FormulaOrder.Models.Edit = @(Html.Raw(Json.Encode(Model)));
+</script>

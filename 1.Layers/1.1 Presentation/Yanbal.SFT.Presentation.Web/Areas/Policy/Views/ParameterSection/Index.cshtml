@@ -1,0 +1,124 @@
+﻿@using Yanbal.SFT.FreightManagement.Common.Messages
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.ParameterSection
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy
+@model ParameterSectionModel
+@{
+    ViewBag.Title = @Html.Raw(IndexResource.LabelTitleSection);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>
+            @Html.Raw(Yanbal.SFT.Presentation.Web.Source.Resources.Policy.Parameter.IndexResource.LabelTitleParameter)
+            > 
+	        @Html.Raw(IndexResource.LabelTitleSection)
+        </strong>
+    </div>
+    <div class="panel-body">
+        <form id="frmParameterSectionIndex" method="post">
+            <div id="divParameterSection">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelParameterCode):</label>
+                                <div class="col-sm-7">
+                                    <label id="lblCode" class="control-label-bold" style="max-width: 100%; word-wrap: break-word">@Model.Code</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelParameterName):</label>
+                                <div class="col-sm-7">
+                                    <label id="lblParameterName" class="control-label-bold" style="max-width: 100%; word-wrap: break-word">@Model.NameParameter</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelParameterType):</label>
+                                <div class="col-sm-7">
+                                    <label id="lblParameterType" class="control-label-bold" style="max-width: 100%; word-wrap: break-word">@Model.DescriptionParamterType</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus):</label>
+                                <div class="col-sm-5">
+                                    <select id="slcSearchRegistrationStatus" name="RegistrationStatus" data-bind="options: ListRegistrationStatus, optionsText: 'Name', optionsValue: 'Id'" class="form-control">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="divSearchResultParameterSection" style="display: none">
+            <div class="table-responsive u-table-search">
+                <div id="grdResultParameterSection" name="gridResult" class="table table-bordered table-striped table-hover table-responsive">
+                </div>
+                <br />
+                <div>
+                    <input id="btnCreateParameterSection" type="button" class="pull-left btn btn-primary" value='@Html.Raw(GeneralResource.LabelAdd)' data-bind="visible: Create.Visible, enable: Create.Enabled"/>
+                    <a href="@Url.Action("Index", "Parameter", new { indicatorFilterCleaning = 1 })" class="pull-right btn btn-default btn-filter">@Html.Raw(GeneralResource.EtiquetaRegresar)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/Util.js"></script>
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.ParameterSection.Actions')
+        Yanbal.SFT.Presentation.Web.Policy.ParameterSection.Actions.Index                       = '@Url.Action("Index", "ParameterSection")';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterSection.Actions.Create                      = '@Url.Action("Create", "ParameterSection")';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterSection.Actions.Edit                        = '@Url.Action("Edit", "ParameterSection")';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterSection.Actions.Search                      = '@Url.Action("Search", "ParameterSection")';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterSection.Actions.RegisterParameterSection    = '@Url.Action("RegisterParameterSection", "ParameterSection")';
+        Yanbal.SFT.Presentation.Web.Policy.ParameterSection.Actions.ModififyParameterSection    = '@Url.Action("ModifyParameterSection", "ParameterSection")';
+
+        ns('Yanbal.SFT.Web.Policy.ParameterSection.Resources')
+        Yanbal.SFT.Web.Policy.ParameterSection.Resources.LabelGridEdit                  = '@Html.Raw(GeneralResource.LabelGridEdit)';
+        Yanbal.SFT.Web.Policy.ParameterSection.Resources.LabelGridSection               = '@Html.Raw(IndexResource.LabelSectionName)';
+        Yanbal.SFT.Web.Policy.ParameterSection.Resources.LabelGridRegistrationStatus    = '@Html.Raw(GeneralResource.LabelRegistrationStatus)';        
+        Yanbal.SFT.Web.Policy.ParameterSection.Resources.LabelGridReadOnly              = '@Html.Raw(IndexResource.LabelReadOnly)';
+        Yanbal.SFT.Web.Policy.ParameterSection.Resources.LabelGridRequired              = '@Html.Raw(IndexResource.LabelRequired)';
+        Yanbal.SFT.Web.Policy.ParameterSection.Resources.LabelGridSectionType           = '@Html.Raw(IndexResource.LabelGridSectionType)';
+        Yanbal.SFT.Web.Policy.ParameterSection.Resources.LabelTitleNew                  = '@Html.Raw(IndexResource.LabelTitleNew)';
+        Yanbal.SFT.Web.Policy.ParameterSection.Resources.LabelTitleEdit                 = '@Html.Raw(IndexResource.LabelTitleEdit)';
+        Yanbal.SFT.Web.Policy.ParameterSection.Resources.LabelConfirmationHeader        = '@Html.Raw(GeneralResource.LabelConfirmationHeader)';
+        Yanbal.SFT.Web.Policy.ParameterSection.Resources.LabelSaveConfirmation          = '@Html.Raw(MessageResource.SaveConfirmation)';
+        Yanbal.SFT.Web.Policy.ParameterSection.Resources.LabelSatisfactorySaved         = '@Html.Raw(MessageResource.SatisfactorySaved)';
+        Yanbal.SFT.Web.Policy.ParameterSection.Resources.LabelFailedSaved               = '@Html.Raw(MessageResource.FailedSaved)';
+        Yanbal.SFT.Web.Policy.ParameterSection.Resources.LabelExistingName              = '@Html.Raw(IndexResource.LabelExistingSection)';
+            
+        ns('Yanbal.SFT.Presentation.Web.ParameterSectionValidation.Message.Resources')
+        Yanbal.SFT.Presentation.Web.ParameterSectionValidation.Message.Resources.NameReq              = '@Html.Raw(IndexResource.LabelSectionName)';
+        Yanbal.SFT.Presentation.Web.ParameterSectionValidation.Message.Resources.SectionTypeReq         = '@Html.Raw(IndexResource.LabelSectionType)';
+        Yanbal.SFT.Presentation.Web.ParameterSectionValidation.Message.Resources.ModificationReasonReq  = '@Html.Raw(GeneralResource.LabelModificationReason)';
+
+    </script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/ParameterSection/Index/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/ParameterSection/Index/Index.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/ParameterSection/Create/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/ParameterSection/Edit/Controller.js"></script>
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.ParameterSection.Models');
+        Yanbal.SFT.Presentation.Web.Policy.ParameterSection.Models.Index = @(Html.Raw(Json.Encode(Model)));
+    </script>
+}
+

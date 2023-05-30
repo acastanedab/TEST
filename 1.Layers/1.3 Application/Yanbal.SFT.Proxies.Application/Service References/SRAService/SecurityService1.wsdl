@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="urn:gmd:contract:task:security" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:gmd:contract:task:security" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:gmd:contract:task:security/Imports">
+      <xsd:import schemaLocation="https://localhost/srvMSFSecurity/SecurityService.svc?xsd=xsd0" namespace="urn:gmd:contract:task:security" />
+      <xsd:import schemaLocation="https://localhost/srvMSFSecurity/SecurityService.svc?xsd=xsd1" namespace="urn:gmd:schema:base" />
+      <xsd:import schemaLocation="https://localhost/srvMSFSecurity/SecurityService.svc?xsd=xsd2" namespace="urn:gmd:schema:security" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getRolesRequest">
+    <wsdl:part name="getRolesRequest" element="tns:getRolesRequest" />
+  </wsdl:message>
+  <wsdl:message name="getRolesResponse">
+    <wsdl:part name="getRolesResponse" element="tns:getRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchCountryUserRequest">
+    <wsdl:part name="searchCountryUserRequest" element="tns:searchCountryUserRequest" />
+  </wsdl:message>
+  <wsdl:message name="searchCountryUserResponse">
+    <wsdl:part name="searchCountryUserResponse" element="tns:searchCountryUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="loginAdministratorRequest">
+    <wsdl:part name="loginAdministratorRequest" element="tns:loginAdministratorRequest" />
+  </wsdl:message>
+  <wsdl:message name="loginAdministratorResponse">
+    <wsdl:part name="loginAdministratorResponse" element="tns:loginAdministratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="loginRequest">
+    <wsdl:part name="loginRequest" element="tns:loginRequest" />
+  </wsdl:message>
+  <wsdl:message name="loginResponse">
+    <wsdl:part name="loginResponse" element="tns:loginResponse" />
+  </wsdl:message>
+  <wsdl:message name="permissionAccessRequest">
+    <wsdl:part name="permissionAccessRequest" element="tns:permissionAccessRequest" />
+  </wsdl:message>
+  <wsdl:message name="permissionAccessResponse">
+    <wsdl:part name="permissionAccessResponse" element="tns:permissionAccessResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISRAService">
+    <wsdl:operation name="getRoles">
+      <wsdl:input wsaw:Action="urn:gmd:contract:task:security:getRoles" name="getRolesRequest" message="tns:getRolesRequest" />
+      <wsdl:output wsaw:Action="" name="getRolesResponse" message="tns:getRolesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchCountryUser">
+      <wsdl:input wsaw:Action="urn:gmd:contract:task:security:searchCountryUser" name="searchCountryUserRequest" message="tns:searchCountryUserRequest" />
+      <wsdl:output wsaw:Action="" name="searchCountryUserResponse" message="tns:searchCountryUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="loginAdministrator">
+      <wsdl:input wsaw:Action="urn:gmd:contract:task:security:loginAdministrator" name="loginAdministratorRequest" message="tns:loginAdministratorRequest" />
+      <wsdl:output wsaw:Action="" name="loginAdministratorResponse" message="tns:loginAdministratorResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <wsdl:input wsaw:Action="urn:gmd:contract:task:security:login" name="loginRequest" message="tns:loginRequest" />
+      <wsdl:output wsaw:Action="" name="loginResponse" message="tns:loginResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="permissionAccess">
+      <wsdl:input wsaw:Action="urn:gmd:contract:task:security:permissionAccess" name="permissionAccessRequest" message="tns:permissionAccessRequest" />
+      <wsdl:output wsaw:Action="" name="permissionAccessResponse" message="tns:permissionAccessResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

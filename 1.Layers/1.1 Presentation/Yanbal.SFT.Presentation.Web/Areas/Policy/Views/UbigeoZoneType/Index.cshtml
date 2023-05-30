@@ -1,0 +1,156 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.UbigeoZoneType
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy;
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+@model UbigeoZoneTypeModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>@Html.Raw(IndexResource.LabelTitleUbigeoZoneType)</strong>
+    </div>
+    <div class="panel-body">
+        <div id="divUbigeoZoneType">
+            <form id="frmUbigeoZoneTypeIndex" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(Model.LabelGeoLevel1):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcGeoLevel1" name="CodeLevel1" class="form-control" data-bind="options: ListZoneLevel1, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelectAll)'">
+                                    </select>
+                                    <input id="hdnGeoLevel1" name="Level1" type="hidden" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(Model.LabelGeoLevel2):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcGeoLevel2" name="CodeLevel2" class="form-control">
+                                    </select>
+                                    <input id="hdnGeoLevel2" name="Level2" type="hidden" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(Model.LabelGeoLevel3):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcGeoLevel3" name="CodeLevel3" class="form-control">
+                                    </select>
+                                    <input id="hdnGeoLevel3" name="Level3" type="hidden" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelZoneType):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcZoneType" name="CodeTypeZone" class="form-control" data-bind="options: ListTypeZone, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelectAll)'">
+                                    </select>
+                                    <input id="hdnZoneType" name="TypeZoneDescription" type="hidden" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcSearchRegistrationStatus" name="RegistrationStatus"  class="form-control" data-bind="options: ListRegistrationStatus, optionsText: 'Name', optionsValue: 'Id'">
+                                    </select>
+                                    <input id="hdnRegistrationStatus" name="DescriptionRegistrationStatus" type="hidden" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-12" align="right">                                    
+                                    <input id="btnVisualize" type="button" class="btn btn-default btn-filter" value="@GeneralResource.LabelVisualize" data-bind="visible: Visualize.Visible, enable: Visualize.Enabled" />
+                                    <input id="btnSearch" type="button" class="btn btn-primary" value='@Html.Raw(GeneralResource.LabelShow)' data-bind="visible: Search.Visible, enable: Search.Enabled" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divSearchResult" style="display: none" onscroll="true">
+                    <div class="table-responsive u-table-search">
+                        <div id="grdResult" name="gridResult" class="table table-bordered table-striped table-hover table-responsive">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div>
+                    <input id="btnCreate" type="button" class="pull-left btn btn-default btn-filter" value='@Html.Raw(GeneralResource.LabelAdd)' data-bind="visible: Create.Visible, enable: Create.Enabled"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/Util.js"></script>
+    <script type="text/javascript">
+
+        ns('Yanbal.SFT.Presentation.Web.General.ReportViewer.Actions')
+        Yanbal.SFT.Presentation.Web.General.ReportViewer.Actions.AllocationAreas            = '@Url.Action("AllocationAreas", "Report", new { Area = "General" })';
+
+        ns('Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Actions')
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Actions.Index                     = '@Url.Action("Index", "UbigeoZoneType")';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Actions.Search                    = '@Url.Action("Search", "UbigeoZoneType")';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Actions.Create                    = '@Url.Action("Create", "UbigeoZoneType")';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Actions.Edit                      = '@Url.Action("Edit", "UbigeoZoneType")';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Actions.RegisterUbigeoZoneType    = '@Url.Action("RegisterUbigeoZoneType", "UbigeoZoneType")';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Actions.ModifyUbigeoZoneType      = '@Url.Action("ModifyUbigeoZoneType", "UbigeoZoneType")';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Actions.ChangeZoneLevel1          = '@Url.Action("ChangeZoneLevel1", "UbigeoZoneType")';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Actions.ChangeZoneLevel2          = '@Url.Action("ChangeZoneLevel2", "UbigeoZoneType")';
+
+        ns('Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources')
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelGridEdit               = '@Html.Raw(GeneralResource.LabelGridEdit)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelGridCountry            = '@Html.Raw(IndexResource.LabelGridCountry)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelGridLevel1             = '@Html.Raw(Model.LabelGeoLevel1)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelGridLevel2             = '@Html.Raw(Model.LabelGeoLevel2)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelGridLevel3             = '@Html.Raw(Model.LabelGeoLevel3)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelGridZoneType           = '@Html.Raw(IndexResource.LabelGridZoneType)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelGridRegistrationStatus = '@Html.Raw(GeneralResource.LabelRegistrationStatus)';
+
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelConfirmationHeader   = '@Html.Raw(GeneralResource.LabelConfirmationHeader)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelSaveConfirmation     = '@Html.Raw(MessageResource.SaveConfirmation)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.SatisfactorySaved       = '@Html.Raw(MessageResource.SatisfactorySaved)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.FailedSaved             = '@Html.Raw(MessageResource.FailedSaved)';
+
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelModificationReason = '@Html.Raw(GeneralResource.LabelModificationReason)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelExistingZone       = '@Html.Raw(IndexResource.LabelExistingZone)';
+
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelCountry    = '@Html.Raw(IndexResource.LabelCountry)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelLevel1     = '@Html.Raw(IndexResource.LabelLevel1)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelLevel2     = '@Html.Raw(IndexResource.LabelLevel2)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelLevel3     = '@Html.Raw(IndexResource.LabelLevel3)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelZoneType   = '@Html.Raw(IndexResource.LabelZoneType)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelTitleNew   = '@Html.Raw(IndexResource.LabelTitleNew)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelTitleEdit  = '@Html.Raw(IndexResource.LabelTitleEdit)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelSelect  = '@Html.Raw(GeneralResource.LabelSelect)';
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Resources.LabelSelectAll  = '@Html.Raw(GeneralResource.LabelSelectAll)';
+        
+    
+        ns('Yanbal.SFT.Presentation.Web.UbigeoZoneTypeValidation.Message.Resources')
+        Yanbal.SFT.Presentation.Web.UbigeoZoneTypeValidation.Message.Resources.ZoneTypeReq = '@Html.Raw(IndexResource.LabelZoneType)';
+        Yanbal.SFT.Presentation.Web.UbigeoZoneTypeValidation.Message.Resources.ModificationReasonReq = '@Html.Raw(GeneralResource.LabelModificationReason)';
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/Views/Policy/UbigeoZoneType/Index/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/UbigeoZoneType/Index/Index.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/UbigeoZoneType/Create/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/UbigeoZoneType/Edit/Controller.js"></script>
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Models');
+        Yanbal.SFT.Presentation.Web.Policy.UbigeoZoneType.Models.Index = @(Html.Raw(Json.Encode(Model)));
+    </script>
+}

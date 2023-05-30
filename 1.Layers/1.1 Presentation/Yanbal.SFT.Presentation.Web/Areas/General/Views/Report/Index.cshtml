@@ -1,0 +1,26 @@
+﻿@model Yanbal.SFT.Presentation.Web.Source.Models.Report.ReportModel
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    @* <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />*@
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    @*    @Styles.Render("~/Bootstrap/css")
+    @Styles.Render("~/Components/css")
+    @Styles.Render("~/JQuery/css")
+    @Styles.Render("~/Content/css")*@
+    @Scripts.Render("~/bundles/JQuery")
+</head>
+
+<body>
+@Html.Partial("~/Reports/ReportViewControl.ascx", Model)
+</body>
+
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $("a[title='MHTML (web archive)']").parent().hide();
+            $("a[title='MHTML (archivo web)']").parent().hide();
+        });
+    </script>
+</html>*@

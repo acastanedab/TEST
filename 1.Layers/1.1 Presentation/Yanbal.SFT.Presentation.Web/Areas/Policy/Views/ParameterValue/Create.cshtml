@@ -1,0 +1,115 @@
+﻿@using Yanbal.SFT.FreightManagement.Common.Messages 
+@using Yanbal.SFT.FreightManagement.Common
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.ParameterValue
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy
+@model ParameterValueModel
+
+<div class="w-formulario-popup">
+    <div class="w-title-2">
+        <strong>@IndexResource.LabelTitleNew</strong>
+    </div>
+    <div id="divCampoObligatorio">
+        <span class="fa fa-info-circle"></span>
+        <span>@GeneralResource.LabelRequiredField1<span class="danger">*</span>@GeneralResource.LabelRequiredField2</span>
+    </div>
+    <hr />
+    <form id="frmCreateParameterValue">
+        <div id="divNew" class="w-form">
+            <div class="w-item">
+                <div>
+                    <table>
+                        <tbody>
+                            @if (Model.ListParameterSection != null && Model.ListParameterSection.Count > 0)
+                            {
+                                foreach (var item in Model.ListParameterSection)
+                                {
+                                    string maxlenght = "";
+                                    string mask = "";
+                                    string sytle = "";
+                                    string labelExtra = "";
+                                    string validable = "";
+                                    string spanRequired = "";
+                                <tr>
+                                    <td class="w-size-1">
+                                        @if (item.RequiredIndicator)
+                                        {
+                                            validable = "validable = \"required DataRequired_" + item.CodeSection + "\"";
+                                            spanRequired = "<span class=\"danger\">*</span>";
+                                        }
+                                        <label style="font-weight: normal">@item.NameSection@Html.Raw(spanRequired):</label>
+                                    </td>
+                                    <td>
+                                        @switch(item.CodeParameterSectionType)
+                                        {
+                                            case Enumerated.SectionType.String:
+                                                maxlenght = "maxlength=\"255\"";
+                                                break;
+                                            case Enumerated.SectionType.Integer:
+                                                maxlenght = "maxlength=\"9\"";
+                                                mask = "mask=\"integer\"";
+                                                break;
+                                            case Enumerated.SectionType.Decimal:
+                                                maxlenght = "maxlength=\"9\"";
+                                                mask = "mask=\"decimal\"";
+                                                break;
+                                            case Enumerated.SectionType.Date:
+                                                sytle = "style=\"width: 80%;\"";
+                                                labelExtra = "<i class=\"fa fa-calendar\"></i>";
+                                                break;
+                                            default:
+                                                maxlenght = "maxlength=\"255\"";
+                                                break;
+                                        }
+                                        <input id="@Html.Raw(item.CodeSection)Create" idSectionCreate="@Html.Raw(item.CodeSection)" type="text" nameCreate="txtValueCreate" typeSectionCreate="@Html.Raw(item.CodeParameterSectionType)" typeRangeCreate="@item.RangeIndicator" class="form-control" @Html.Raw(maxlenght) @Html.Raw(sytle) @Html.Raw(mask) @Html.Raw(validable)/>
+                                        @Html.Raw(labelExtra)
+                                    </td>
+                                </tr>                        
+                                }
+                                <tr>
+                                    <td class="w-size-1">
+                                        <label style="font-weight: normal">@GeneralResource.LabelRegistrationStatus:</label>
+                                    </td>
+                                    <td class="w-size-1">
+                                        <label class="col-sm-5 control-label-bold">@Html.Raw(Model.LabelRegistrationStatus)</label>
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="3">
+                                        <strong>@IndexResource.LabelNoSections</strong>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <hr />
+            <div class="cnt-button">
+                @if (Model.ListParameterSection != null && Model.ListParameterSection.Count > 0)
+                {
+                    <input class="btn btn-primary" id="btnSaveCreate" type="button" value="@GeneralResource.LabelSave" />
+                }
+                <input class="btn btn-default btn-filter" id="btnCancelCreate" type="button"  value="@GeneralResource.LabelClose" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@if (Model.ListParameterSection != null)
+{
+    foreach (var item in Model.ListParameterSection)
+    {
+    <script>
+        ns('Yanbal.SFT.Presentation.Web.ParameterValueValidationCreate.Message.Resources')
+        Yanbal.SFT.Presentation.Web.ParameterValueValidationCreate.Message.Resources.DataRequired_@item.CodeSection = '@Html.Raw(item.NameSection)';
+    </script>
+    }
+}
+<script type="text/javascript">
+    ns('Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Models');
+    Yanbal.SFT.Presentation.Web.Policy.ParameterValue.Models.Create = @(Html.Raw(Json.Encode(Model)));
+</script>

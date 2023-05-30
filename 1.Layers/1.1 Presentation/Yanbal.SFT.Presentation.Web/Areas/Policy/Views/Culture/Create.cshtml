@@ -1,0 +1,120 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.Culture
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy;
+@model CultureModel
+
+<div class="w-formulario-popup">
+    <div class="w-title-2">
+        @Html.Raw(IndexResource.LabelTitleNew)
+    </div>
+    <div id="divRequiredField">
+        <span class="fa fa-info-circle"></span>
+        <span>@GeneralResource.LabelRequiredField1<span class="danger">*</span>@GeneralResource.LabelRequiredField2</span>
+    </div>
+    <hr />
+    <div class="w-form">
+        <div id="divContainerCreate" class="w-item">
+            <form id="frmCreateCulture">
+                <div id="divCreateCulture">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelCultureCode)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <input id="txtCultureCodeCreate" class="form-control" maxlength="4" type="text" style="text-align: center; text-transform:uppercase" validable="required CultureCodeReq, minlength 5 CultureCodeLength, maxlength 5 CultureCodeLength" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelLanguage)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <select id="slcLanguageCreate" class="form-control" data-bind="options: ListLanguage, optionsText: 'Name', optionsValue: 'Id', value:'@Model.LanguageCode', optionsCaption:'@Html.Raw(GeneralResource.LabelSelect)'" validable="required LanguageReq" >
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelCountry)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <select id="slcCountryCreate" class="form-control" data-bind="options: ListCountry, optionsText: 'Name', optionsValue: 'Id', value:'@Model.CountryCode', optionsCaption:'@Html.Raw(GeneralResource.LabelSelect)'" validable="required CountryReq" >
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelShortDateFormat)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <select id="slcShortDateFormatCreate" class="form-control" data-bind="options: ListShortDateFormat, optionsText: 'Name', optionsValue: 'Id', optionsCaption:'@Html.Raw(GeneralResource.LabelSelect)'" validable="required ShortDateFormatReq" >
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelLongDateFormat)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <p></p>
+                                        <select id="slcLongDateFormatCreate" class="form-control" data-bind="options: ListLongDateFormat, optionsText: 'Name', optionsValue: 'Id', optionsCaption:'@Html.Raw(GeneralResource.LabelSelect)'" validable="required LongDateFormatReq" >
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelRangeLimitYears)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" style="width: 89px" id="spnLowerLimitYearCreate" maxlength="4" value="@Model.LowerLimitYear" class="w-input" validable="required Year, digits true" />&nbsp;-&nbsp;<input type="text" style="width: 89px" id="spnUpperLimitYearCreate" maxlength="4" value="@Model.UpperLimitYear" class="w-input" validable="required ValidateYearRange, min 1999 ValidateSuperiorYear, max 2999 ValidateSuperiorYearMax" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelShortTimeFormat)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <select id="slcShortTimeFormatCreate" class="form-control" data-bind="options: ListShortTimeFormat, optionsText: 'Name', optionsValue: 'Id', optionsCaption:'@Html.Raw(GeneralResource.LabelSelect)'" validable="required ShortTimeFormatReq">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelLongTimeFormat)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <select id="slcLongTimeFormatCreate" class="form-control" data-bind="options: ListLongTimeFormat, optionsText: 'Name', optionsValue: 'Id', optionsCaption:'@Html.Raw(GeneralResource.LabelSelect)'" validable="required LongTimeFormatReq">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelFormatIntegerNumbers)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <p></p>
+                                        <select id="slcFormatIntegerNumberCreate" class="form-control" data-bind="options: ListFormatIntegerNumber, optionsText: 'Name', optionsValue: 'Id', optionsCaption:'@Html.Raw(GeneralResource.LabelSelect)'" validable="required FormatIntegerNumbersReq">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelFormatDecimalNumbers)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <p></p>
+                                        <select id="slcFormatDecimalNumberCreate" class="form-control" data-bind="options: ListFormatDecimalNumber, optionsText: 'Name', optionsValue: 'Id', optionsCaption:'@Html.Raw(GeneralResource.LabelSelect)'" validable="required FormatDecimalNumbersReq">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus):</label>
+                                    <div class="col-sm-7">
+                                        <label class="col-sm-5 control-label-bold">@Html.Raw(Model.LabelRegistrationStatus)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div class="cnt-button">
+        <input id="btnSaveCreate" class="btn btn-primary" type="button" data-bind="visible: Save.Visible, enable: Save.Enabled" value="@GeneralResource.LabelSave"/>
+        <input id="btnCancelCreate" class="btn btn-default" type="button" data-bind="visible: Cancel.Visible, enable: Cancel.Enabled" value="@GeneralResource.LabelGetOut" />
+    </div>
+</div>
+
+<script type="text/javascript">
+    ns('Yanbal.SFT.Presentation.Web.Policy.Culture.Models');
+    Yanbal.SFT.Presentation.Web.Policy.Culture.Models.Create = @(Html.Raw(Json.Encode(Model)));
+</script>

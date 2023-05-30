@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn:gmd:schema:security" elementFormDefault="qualified" targetNamespace="urn:gmd:schema:security" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CountryUserRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="codeSystem" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="user" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LoginTypeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="user" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="password" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="languageCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="systemCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PermissionRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="user" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="systemIdentificationCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RolesRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="systemCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="roleCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="roleName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="userCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CountryUserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="listCountry" type="tns:Country" />
+      <xs:element minOccurs="1" maxOccurs="1" name="indicatorCorporate" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Country">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="countryCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="countryName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LoginTypeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="userName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PermissionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="listPermission" type="tns:Permission" />
+      <xs:element minOccurs="1" maxOccurs="1" name="cultureFlag" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Permission">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="systemCode" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="systemIdentificationCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="systemName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="systemDescription" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="systemPath" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="moduleCode" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="moduleIdentificationCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="moduleName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="moduleDescription" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="moduleIconClassName" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="externalURLFlag" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="moduleURL" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="optionCode" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="optionIdentificationCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="optionName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="optionDescription" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="optionURL" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="actionCode" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="actionIdentificationCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="actionName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="actionDescription" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="status" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="parentResultId" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="resultType" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="referenceResultId" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="resultId" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfRoleType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="roleType" type="tns:RoleType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RoleType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="roleCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="roleName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

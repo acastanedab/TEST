@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1474ACF7-5943-44B5-96B0-7DB98A1309D7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yanbal.SFT.FreightManager.Domain</RootNamespace>
+    <AssemblyName>Yanbal.SFT.FreightManager.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Yanbal.SFT.FreightManager.Domain.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>Yanbal.SFT.FreightManager.Domain.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Yanbal.SFT.FreightManager.Domain.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="FreightDomain.cs" />
+    <Compile Include="IFreightDomain.cs" />
+    <Compile Include="Wrappers\CollectorParameterRequest.cs" />
+    <Compile Include="Wrappers\FreightRequest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yanbal.SFT.Domain.Common\Yanbal.SFT.FreightManagement.Common.csproj">
+      <Project>{25c4e95d-dcc0-4b4a-920f-b66192bc69ac}</Project>
+      <Name>Yanbal.SFT.FreightManagement.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yanbal.SFT.Domain.Entities.Logic\Yanbal.SFT.Domain.Entities.Logic.csproj">
+      <Project>{a313e510-ad35-4950-a312-54889f830e08}</Project>
+      <Name>Yanbal.SFT.Domain.Entities.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yanbal.SFT.Domain.Entities\Yanbal.SFT.Domain.Entities.csproj">
+      <Project>{2788782a-17ca-4feb-8801-19a5a340dccd}</Project>
+      <Name>Yanbal.SFT.Domain.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yanbal.SFT.PolicyManager.Domain\Yanbal.SFT.PolicyManager.Domain.csproj">
+      <Project>{444f23be-d133-4689-be85-73e388480715}</Project>
+      <Name>Yanbal.SFT.PolicyManager.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yanbal.SFT.Infrastructure.CrossCutting\Yanbal.SFT.Infrastructure.CrossCutting.csproj">
+      <Project>{5b20f1a2-4fd0-4f55-bf01-04a3a049e4af}</Project>
+      <Name>Yanbal.SFT.Infrastructure.CrossCutting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn:pyf:contract:task:security" elementFormDefault="qualified" targetNamespace="urn:pyf:contract:task:security" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://localhost/srvMSFTokenSecurity/TokenSecurity.svc?xsd=xsd1" namespace="urn:pyf:schema:base" />
+  <xs:import schemaLocation="https://localhost/srvMSFTokenSecurity/TokenSecurity.svc?xsd=xsd2" namespace="urn:pyf:schema:token" />
+  <xs:element name="TokenSecurityRequest" type="tns:TokenSecurityGeneratedRequestType" />
+  <xs:complexType name="TokenSecurityGeneratedRequestType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="urn:pyf:schema:base" base="q1:GenericTypeRequest">
+        <xs:sequence>
+          <xs:element xmlns:q2="urn:pyf:schema:token" minOccurs="0" maxOccurs="1" ref="q2:TokenSecurityGeneratedRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TokenSecurityInformationRequestType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="urn:pyf:schema:base" base="q3:GenericTypeRequest">
+        <xs:sequence>
+          <xs:element xmlns:q4="urn:pyf:schema:token" minOccurs="0" maxOccurs="1" ref="q4:TokenSecurityInformationRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TokenSecurityResponse" type="tns:TokenSecurityGeneratedResponseType" />
+  <xs:complexType name="TokenSecurityGeneratedResponseType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="urn:pyf:schema:base" base="q5:GenericTypeResponse">
+        <xs:sequence>
+          <xs:element xmlns:q6="urn:pyf:schema:token" minOccurs="0" maxOccurs="1" ref="q6:TokenSecurityGeneratedResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TokenSecurityInformationResponseType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="urn:pyf:schema:base" base="q7:GenericTypeResponse">
+        <xs:sequence>
+          <xs:element xmlns:q8="urn:pyf:schema:token" minOccurs="0" maxOccurs="1" ref="q8:TokenSecurityInformationResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TokenSecurityInformationRequest" type="tns:TokenSecurityInformationRequestType" />
+  <xs:element name="TokenSecurityInformationResponse" type="tns:TokenSecurityInformationResponseType" />
+</xs:schema>

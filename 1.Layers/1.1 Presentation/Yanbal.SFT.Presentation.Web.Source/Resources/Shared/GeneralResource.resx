@@ -1,0 +1,504 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="LabelAccept" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="EtiquetaAceptarResumen" xml:space="preserve">
+    <value>¿Esta conforme con los datos a procesar?</value>
+  </data>
+  <data name="EtiquetaActualiacionExito" xml:space="preserve">
+    <value>Se guardó la información con éxito.</value>
+  </data>
+  <data name="EtiquetaActualizacionConforme" xml:space="preserve">
+    <value>Actualización Realizada con Éxito</value>
+  </data>
+  <data name="EtiquetaActualizacionDatosIncompleto" xml:space="preserve">
+    <value>Datos faltantes para la actualización</value>
+  </data>
+  <data name="EtiquetaActualizacionDatosNoModificados" xml:space="preserve">
+    <value>No ha modificado ningún valor.</value>
+  </data>
+  <data name="EtiquetaActualizacionError" xml:space="preserve">
+    <value>Ocurrió un error inesperado. Inténtelo nuevamente.</value>
+  </data>
+  <data name="EtiquetaActualizar" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="EtiquetaAdvertencia" xml:space="preserve">
+    <value>Advertencia</value>
+  </data>
+  <data name="EtiquetaAnadir" xml:space="preserve">
+    <value>Añadir</value>
+  </data>
+  <data name="EtiquetaAnio" xml:space="preserve">
+    <value>Año(s)</value>
+  </data>
+  <data name="EtiquetaAnular" xml:space="preserve">
+    <value>Anular</value>
+  </data>
+  <data name="EtiquetaAnularPagoUtilizado" xml:space="preserve">
+    <value>Anular Pago</value>
+  </data>
+  <data name="LabelDeleteRecord" xml:space="preserve">
+    <value>Anular Registro</value>
+  </data>
+  <data name="EtiquetaAplicar" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="LabelSeacrh" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="LabelConfirmationHeader" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="EtiquetaCabeceraSituacion" xml:space="preserve">
+    <value>Situación del Registro</value>
+  </data>
+  <data name="EtiquetaCabeceraValidacion" xml:space="preserve">
+    <value>Validación</value>
+  </data>
+  <data name="LabelRequiredField1" xml:space="preserve">
+    <value>Los campos con (</value>
+  </data>
+  <data name="LabelRequiredField2" xml:space="preserve">
+    <value>) son obligatorios.</value>
+  </data>
+  <data name="LabelCancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="LabelLoading" xml:space="preserve">
+    <value>Procesando...</value>
+  </data>
+  <data name="EtiquetaCargarInformacion" xml:space="preserve">
+    <value>Cargar Información</value>
+  </data>
+  <data name="LabelClose" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="EtiquetaConfirmacion" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="EtiquetaConfirmacionGuardar" xml:space="preserve">
+    <value>¿Desea Guardar el Registro?</value>
+  </data>
+  <data name="EtiquetaContinuar" xml:space="preserve">
+    <value>Continuar</value>
+  </data>
+  <data name="EtiquetaCorrectoDesde" xml:space="preserve">
+    <value>Fecha Desde Correcto</value>
+  </data>
+  <data name="EtiquetaCorrectoHasta" xml:space="preserve">
+    <value>Fecha Hasta Correcto</value>
+  </data>
+  <data name="EtiquetaCriterioBusqueda" xml:space="preserve">
+    <value>Criterios de Búsqueda</value>
+  </data>
+  <data name="EtiquetaCriterioModificar" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
+  <data name="EtiquetaCriterioNuevo" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="LabelMustEnterField" xml:space="preserve">
+    <value>Debe ingresar :</value>
+  </data>
+  <data name="LabelFrom" xml:space="preserve">
+    <value>Desde</value>
+  </data>
+  <data name="EtiquetaDetallePagoUtilizado" xml:space="preserve">
+    <value>Detalle de Pago</value>
+  </data>
+  <data name="EtiquetaDia" xml:space="preserve">
+    <value>Día(s)</value>
+  </data>
+  <data name="EtiquetaDocumentoIdentidad" xml:space="preserve">
+    <value>Documento de Identidad</value>
+  </data>
+  <data name="LabelGridEdit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="EtiquetaEditarTooltip" xml:space="preserve">
+    <value>Editar Registro</value>
+  </data>
+  <data name="EtiquetaElijaColor" xml:space="preserve">
+    <value>Elija un color</value>
+  </data>
+  <data name="EtiquetaEliminar" xml:space="preserve">
+    <value>Registro eliminado correctamente.</value>
+  </data>
+  <data name="LabelDeleteTooltip" xml:space="preserve">
+    <value>Eliminar Registro</value>
+  </data>
+  <data name="EtiquetaErrorEliminar" xml:space="preserve">
+    <value>No se pudo eliminar el registro. Ya está procesado.</value>
+  </data>
+  <data name="EtiquetaErrorRegistro" xml:space="preserve">
+    <value>Ocurrió un error inesperado. Inténtelo nuevamente.</value>
+  </data>
+  <data name="EtiquetaEstado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="LabelRegistrationStatus" xml:space="preserve">
+    <value>Estado de Registro</value>
+  </data>
+  <data name="EtiquetaFechaNotificacion" xml:space="preserve">
+    <value>Fecha de Notificación</value>
+  </data>
+  <data name="EtiquetaFechaVencimiento" xml:space="preserve">
+    <value>Fecha de Vencimiento</value>
+  </data>
+  <data name="LabelRowsPerPage" xml:space="preserve">
+    <value>Filas por Página</value>
+  </data>
+  <data name="EtiquetaFiltrar" xml:space="preserve">
+    <value>Filtrar</value>
+  </data>
+  <data name="EtiquetaFiltro" xml:space="preserve">
+    <value>Filtros</value>
+  </data>
+  <data name="LabelGenerate" xml:space="preserve">
+    <value>Generar</value>
+  </data>
+  <data name="EtiquetaGenerarArchivo" xml:space="preserve">
+    <value>Generar Archivo</value>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>Grabar</value>
+  </data>
+  <data name="EtiquetaGrabarExito" xml:space="preserve">
+    <value>Se guardó la información con éxito.</value>
+  </data>
+  <data name="EtiquetaGrupo" xml:space="preserve">
+    <value>Grupo</value>
+  </data>
+  <data name="LabelTo" xml:space="preserve">
+    <value>Hasta</value>
+  </data>
+  <data name="EtiquetaImprimir" xml:space="preserve">
+    <value>Imprimir</value>
+  </data>
+  <data name="EtiquetaInformacion" xml:space="preserve">
+    <value>Información</value>
+  </data>
+  <data name="LabelSomeInformationRequiredFields" xml:space="preserve">
+    <value>Debe ingresar al menos un filtro de búsqueda.</value>
+  </data>
+  <data name="EtiquetaInformativoCamposObligatorios" xml:space="preserve">
+    <value>Los campos con (&lt;span class="danger"&gt;*&lt;/span&gt;) son obligatorios.</value>
+  </data>
+  <data name="EtiquetaInformativoNoSeEncontraronRegistros" xml:space="preserve">
+    <value>No se encontraron registros para la búsqueda realizada.</value>
+  </data>
+  <data name="LabelClean" xml:space="preserve">
+    <value>Limpiar</value>
+  </data>
+  <data name="EtiquetaMes" xml:space="preserve">
+    <value>Mes(es)</value>
+  </data>
+  <data name="EtiquetaModificarRegistro" xml:space="preserve">
+    <value>¿Desea suspender acción de cobranza?</value>
+  </data>
+  <data name="EtiquetaMoneda" xml:space="preserve">
+    <value>Moneda</value>
+  </data>
+  <data name="LabelShow" xml:space="preserve">
+    <value>Mostrar</value>
+  </data>
+  <data name="EtiquetaMotivo" xml:space="preserve">
+    <value>Motivo</value>
+  </data>
+  <data name="LabelModificationReason" xml:space="preserve">
+    <value>Motivo de Modificación</value>
+  </data>
+  <data name="EtiquetaNinguno" xml:space="preserve">
+    <value>Ninguno</value>
+  </data>
+  <data name="EtiquetaNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="LabelAdd" xml:space="preserve">
+    <value>Añadir</value>
+  </data>
+  <data name="EtiquetaPreGenerar" xml:space="preserve">
+    <value>Pre - Generar</value>
+  </data>
+  <data name="EtiquetaProcesar" xml:space="preserve">
+    <value>Procesar</value>
+  </data>
+  <data name="EtiquetaProveedor" xml:space="preserve">
+    <value>Proveedor</value>
+  </data>
+  <data name="EtiquetaProveedorCobranza" xml:space="preserve">
+    <value>Proveedor de Cobranza</value>
+  </data>
+  <data name="EtiquetaRangoFechas" xml:space="preserve">
+    <value>Rango de Fechas Correcto</value>
+  </data>
+  <data name="EtiquetaReasignar" xml:space="preserve">
+    <value>Reasignar</value>
+  </data>
+  <data name="EtiquetaRegistroConforme" xml:space="preserve">
+    <value>Registro realizado con éxito.</value>
+  </data>
+  <data name="EtiquetaRegistroDatosIncompleto" xml:space="preserve">
+    <value>Datos faltantes para el registro</value>
+  </data>
+  <data name="EtiquetaRegistroDuplicado" xml:space="preserve">
+    <value>El registro ingresado ya se encuentra registrado.</value>
+  </data>
+  <data name="EtiquetaRegresar" xml:space="preserve">
+    <value>Regresar</value>
+  </data>
+  <data name="EtiquetaResultadoBusqueda" xml:space="preserve">
+    <value>Resultados de Búsqueda</value>
+  </data>
+  <data name="LabelSearchResultsBlank" xml:space="preserve">
+    <value>No se encontraron registros para la búsqueda realizada.</value>
+  </data>
+  <data name="LabelGetOut" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="LabelSelect" xml:space="preserve">
+    <value>Seleccionar</value>
+  </data>
+  <data name="LabelSelectDeselectAll" xml:space="preserve">
+    <value>Seleccionar/Deseleccionar Todos</value>
+  </data>
+  <data name="LabelSelectRecord" xml:space="preserve">
+    <value>Seleccionar Registro</value>
+  </data>
+  <data name="EtiquetaSeleccionarTooltip" xml:space="preserve">
+    <value>Seleccionar Registro</value>
+  </data>
+  <data name="EtiquetaSeleccionPendientes" xml:space="preserve">
+    <value>Pendientes</value>
+  </data>
+  <data name="LabelSelectAll" xml:space="preserve">
+    <value>Todos</value>
+  </data>
+  <data name="EtiquetaSi" xml:space="preserve">
+    <value>Si</value>
+  </data>
+  <data name="EtiquetaSubirArchivo" xml:space="preserve">
+    <value>Subir Archivo</value>
+  </data>
+  <data name="EtiquetaTipoExtensionValido" xml:space="preserve">
+    <value>Tipo de Extensión Válido - extensión .txt</value>
+  </data>
+  <data name="EtiquetaTipoMoneda" xml:space="preserve">
+    <value>Tipo de Moneda</value>
+  </data>
+  <data name="EtiquetaTipoProceso" xml:space="preserve">
+    <value>Tipo de Proceso</value>
+  </data>
+  <data name="EtiquetaTituloCampoRequerido" xml:space="preserve">
+    <value>Campo Requerido</value>
+  </data>
+  <data name="EtiquetaTotal" xml:space="preserve">
+    <value>TOTAL</value>
+  </data>
+  <data name="EtiquetaTransparente" xml:space="preserve">
+    <value>Transparente</value>
+  </data>
+  <data name="LabelUser" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="EtiquetaVerArchivoTooltip" xml:space="preserve">
+    <value>Ver Archivo</value>
+  </data>
+  <data name="EtiquetaVerDetalle" xml:space="preserve">
+    <value>Ver Detalle</value>
+  </data>
+  <data name="LabelVisualize" xml:space="preserve">
+    <value>Ver Reporte</value>
+  </data>
+  <data name="ValidacionFormatoInvalido" xml:space="preserve">
+    <value>formato inválido de la configuración de columnas</value>
+  </data>
+  <data name="ValidacionNoDecimal" xml:space="preserve">
+    <value>valor del campo no es decimal:</value>
+  </data>
+  <data name="ValidacionNoExisteConfiguracion" xml:space="preserve">
+    <value>No existe configuración para la entidad actual</value>
+  </data>
+  <data name="ValidacionNoFecha" xml:space="preserve">
+    <value>valor del campo no es fecha:</value>
+  </data>
+  <data name="ValidacionNoGeneroArchivo" xml:space="preserve">
+    <value>No se pudo generar el archivo:</value>
+  </data>
+  <data name="ValidacionNoNumero" xml:space="preserve">
+    <value>valor del campo no es número:</value>
+  </data>
+  <data name="ValidacionSinInformacion" xml:space="preserve">
+    <value>No existe información para la entidad recaudadora</value>
+  </data>
+  <data name="LabelTitle" xml:space="preserve">
+    <value>SFT</value>
+  </data>
+  <data name="LabelEditRecord" xml:space="preserve">
+    <value>Editar Registro</value>
+  </data>
+  <data name="LabelExport" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="LabelImport" xml:space="preserve">
+    <value>Importar</value>
+  </data>
+  <data name="LabelNext" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="LabelTitleReport" xml:space="preserve">
+    <value>REPORTE DE {0}</value>
+  </data>
+  <data name="LabelReportEndOf" xml:space="preserve">
+    <value>*** FIN DE {0} ***</value>
+  </data>
+  <data name="LabelArea" xml:space="preserve">
+    <value>Área</value>
+  </data>
+  <data name="LabelConcatenateUrlMenu" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="LabelSeeCompanyLogo" xml:space="preserve">
+    <value>Ver Logo</value>
+  </data>
+  <data name="LabelSeeReportLogo" xml:space="preserve">
+    <value>Ver Logo</value>
+  </data>
+  <data name="LabelSelectFilter" xml:space="preserve">
+    <value>Seleccione Filtro</value>
+  </data>
+  <data name="LabelRow" xml:space="preserve">
+    <value>Fila</value>
+  </data>
+  <data name="LabelPage" xml:space="preserve">
+    <value>Página</value>
+  </data>
+  <data name="LabelSubTitleGreeting" xml:space="preserve">
+    <value>Por favor seleccione una opción del sistema.</value>
+  </data>
+  <data name="LabelTitleHome" xml:space="preserve">
+    <value>Bienvenido al Sistema de Fletes (SFT)</value>
+  </data>
+  <data name="LabelSystem" xml:space="preserve">
+    <value>SISTEMA DE FLETES</value>
+  </data>
+</root>

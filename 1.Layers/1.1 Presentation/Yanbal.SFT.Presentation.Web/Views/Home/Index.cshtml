@@ -1,0 +1,19 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>@GeneralResource.LabelTitleHome</strong>
+    </div>
+    <div class="panel-body">
+        <div>
+            <span class="fa fa-info-circle"></span>
+            <span id="informacion">@Html.Raw(GeneralResource.LabelSubTitleGreeting)</span>
+        </div>
+    </div>
+    <div style="display: block; min-height: 350px; text-align: center;">
+        <img src="~/Content/Images/LogoYANBALHome.png" style="position: absolute; top: 50%; left: 50%; margin-top: -135px; margin-left: -144px;" />
+    </div>
+</div>

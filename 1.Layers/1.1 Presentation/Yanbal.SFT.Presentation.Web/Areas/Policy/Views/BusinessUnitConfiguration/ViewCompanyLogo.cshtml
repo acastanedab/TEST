@@ -1,0 +1,29 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.BusinessUnitConfiguration
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy;
+
+@model BusinessUnitConfigurationModel
+
+<div class="w-formulario-popup">
+    <div class="w-title-2">
+        @IndexResource.LabelCompanyLogo
+    </div>
+    <hr />
+    <form>
+        <div id="divViewLogo">
+            <div class="w-item">
+                <div>                    
+                    @{
+                        if (Model.CompanyLogoImage != null)
+                        {
+                            <img src="@Url.Action("ViewCompanyLogoImage", "BusinessUnitConfiguration", new { businessUnitConfigurationCode = Model.BusinessUnitConfigurationCode })" />
+                        }
+                        else
+                        {
+                            <label class="control-label">@Html.Raw(IndexResource.LabelCompanyLogoWithoutConfiguration)</label>                        
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

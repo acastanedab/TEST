@@ -1,0 +1,15 @@
+﻿@using Yanbal.SFT.Domain.Common.Messages;
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.TaxProfile
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy
+@model TaxProfileModel
+<div class="w-formulario-popup">
+    <div class="w-title-2">
+        @Html.Raw(IndexResource.labelTittleTaxProfile) 
+    </div>
+    <div id="divRequierdField">
+        <span class=" fa fa-info-circle"></span>
+        <span>@GeneralResource.LabelRequiredField1<span class="danger">*</span>@GeneralResource.LabelRequiredField2</span>
+    </div>
+    <hr />
+</div>

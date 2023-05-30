@@ -1,0 +1,84 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.Parameter
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy;
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+@model ParameterModel
+
+<div class="w-formulario-popup">
+    <div class="w-title-2">
+        @Html.Raw(IndexResource.LabelTitleNew)
+    </div>
+    <div id="divRequiredField">
+        <span class="fa fa-info-circle"></span>
+        <span>@GeneralResource.LabelRequiredField1<span class="danger">*</span>@GeneralResource.LabelRequiredField2</span>
+    </div>
+    <hr/>
+    <div class="w-form">
+        <div id="divContenedorNuevo" class="w-item">
+            <form id="frmCreateParameter">
+                <div id="divCreateParameter">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelCode)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtCodeCreate" class="form-control" type="text" maxlength="3" validable="required CodeReq, minlength 3 CodeMinLength" placeholder="@Html.Raw(IndexResource.LabelCode)" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelName)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtNameCreate" class="form-control" type="text" maxlength="100" validable="required NameReq" placeholder="@Html.Raw(IndexResource.LabelName)" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelDescription)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtDescriptionCreate" class="form-control" type="text" maxlength="255" validable="required DescriptionReq" placeholder="@Html.Raw(IndexResource.LabelDescription)"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelParameterType)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <select id="slcParameterTypeCreate" class="form-control" validable="required ParameterTypeReq" data-bind="options: ListParameterType, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelect)'"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelAllowAddValue):</label>
+                                    <div class="col-sm-8">
+                                        <p></p>
+                                        <input id="chkAllowAddValueCreate" type="checkbox" name="rdbAllowAddValue" checked="checked" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelAllowModifyValue):</label>
+                                    <div class="col-sm-8">
+                                        <p></p>
+                                        <input id="chkAllowModifyValueCreate" type="checkbox" name="rdbAllowModifyValue" checked="checked" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus):</label>
+                                    <div class="col-sm-8">
+                                        <label class="col-sm-5 control-label-bold">@Html.Raw(Model.LabelRegistrationStatus)</label>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div class="cnt-button">
+        <input id="btnSaveParameter" class="btn btn-primary" type="button" data-bind="visible: Save.Visible, enable: Save.Enabled" value="@GeneralResource.LabelSave"/>
+        <input id="btnCancelParameter" class="btn btn-default" type="button" data-bind="visible: Cancel.Visible, enable: Cancel.Enabled" value="@GeneralResource.LabelGetOut" />
+    </div>
+</div>
+
+<script type="text/javascript">
+    ns('Yanbal.SFT.Presentation.Web.Policy.Parameter.Models');
+    Yanbal.SFT.Presentation.Web.Policy.Parameter.Models.Nuevo = @(Html.Raw(Json.Encode(Model)));
+</script>

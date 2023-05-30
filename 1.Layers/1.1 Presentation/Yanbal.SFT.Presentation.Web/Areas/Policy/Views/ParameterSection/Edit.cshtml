@@ -1,0 +1,105 @@
+﻿@using Yanbal.SFT.FreightManagement.Common.Messages
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.ParameterSection
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy
+@model ParameterSectionModel
+
+<div class="w-formulario-popup">
+    <div class="w-title-2">
+        @Html.Raw(IndexResource.LabelTitleEdit)
+    </div>
+    <div id="divRequiredField">
+        <span class="fa fa-info-circle"></span>
+        <span>@GeneralResource.LabelRequiredField1<span class="danger">*</span>@GeneralResource.LabelRequiredField2</span>
+    </div>
+    <hr />
+    <div class="w-form">
+        <div id="divCreateContainer" class="w-item">
+            <form id="frmEditParameterSection">
+                <div id="divEditParameterSection">
+                    <div class="row">
+                        @{
+                            string valueReadOnly = "";
+                            string valueRequired = "";
+                        }
+                        <div class="col-md-12">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelSectionName)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <input id="txtSectionNameEdit" class="form-control" type="text" maxlength="100" validable="required NameReq" value="@Model.NameSection" placeholder="@Html.Raw(IndexResource.LabelSectionName)" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelSectionType)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <select id="slcSectionTypeEdit" class="form-control" data-bind="options: ListSectionType, optionsText: 'Name', optionsValue: 'Id', value: '@Model.SectionType'">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelReadOnly):</label>
+                                    <div class="col-sm-6">
+                                        @{
+                                            if (Model.ReadOnlyIndicator)
+                                            {
+                                                valueReadOnly = "checked='checked'";
+                                            }
+                                        }
+                                        <p></p>
+                                        <input id="chkReadOnlyEdit" type="checkbox" name="chkReadOnlyEdit"  @valueReadOnly />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelRequired):</label>
+                                    <div class="col-sm-6">
+                                        @{
+                                            if (Model.RequiredIndicator)
+                                            {
+                                                valueRequired = "checked='checked'";
+                                            }
+                                        }                                        
+                                        <p></p>
+                                        <input id="chkRequiredEdit" type="checkbox" name="chkRequiredEdit" @valueRequired/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus):</label>
+                                    <div class="col-sm-6">
+                                        @{
+                                            if (!Model.CreationIndicator)
+                                            {
+                                                <select id="slcRegistrationStatusEdit" class="form-control" data-bind="options: ListRegistrationStatus, optionsText: 'Name', optionsValue: 'Id', value: '@Model.RegistrationStatus'">
+                                                </select>
+                                            } 
+                                            if (Model.CreationIndicator)
+                                            {
+                                                <label class="col-sm-5 control-label-bold">@Html.Raw(Model.LabelRegistrationStatus)</label>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">@Html.Raw(GeneralResource.LabelModificationReason)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-7">
+                                        <textarea id="txtModificationReasonEdit" class="w-textarea" maxlength="255"validable="Comment true" placeholder="@Html.Raw(GeneralResource.LabelModificationReason)"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div class="cnt-button">
+        <input id="btnSaveEditParameterSection" class="btn btn-primary" type="button" data-bind="visible: Save.Visible, enable: Save.Enabled" value="@GeneralResource.LabelSave"/>
+        <input id="btnCancelEditParameterSection" class="btn btn-default" type="button" data-bind="visible: Cancel.Visible, enable: Cancel.Enabled" value="@GeneralResource.LabelGetOut" />
+    </div>
+</div>
+
+<script type="text/javascript">
+    ns('Yanbal.SFT.Presentation.Web.Policy.ParameterSection.Models');
+    Yanbal.SFT.Presentation.Web.Policy.ParameterSection.Models.Edit = @(Html.Raw(Json.Encode(Model)));
+</script>

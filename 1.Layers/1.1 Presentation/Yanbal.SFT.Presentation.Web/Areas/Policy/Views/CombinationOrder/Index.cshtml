@@ -1,0 +1,98 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.CombinationOrder
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy;
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+@model CombinationOrderModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>@Html.Raw(IndexResource.LabelTitleCombinationOrder)</strong>
+    </div>
+    <div class="panel-body">
+        <div id="divInformationalMessage">
+            <span class="fa fa-info-circle"></span>
+            <span id="lblInformationalMessage">@Html.Raw(GeneralResource.LabelSomeInformationRequiredFields)</span>
+            <hr />
+        </div>
+        <div id="divCombinationOrder">
+            <form id="frmCombinationOrderIndex" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelParameter)<span class="danger">*</span>:</label>
+                                <div class="col-sm-7">
+                                    <select id="slcParameter" class="form-control" validable="required ParameterReq" data-bind="options: ListParameter, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelect)    '">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input id="btnSaveCreate" type="button" class="pull-right btn btn-primary" value='@Html.Raw(GeneralResource.LabelAdd)' data-bind="visible: Save.Visible, enable: Save.Enabled" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divSearchResult" style="display: none" onscroll="true">
+                    <div class="table-responsive u-table-search">
+                        <div id="grdResult" name="gridResult" class="table table-bordered table-striped table-hover table-responsive">
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/Util.js"></script>
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Actions')
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Actions.Index                     = '@Url.Action("Index", "CombinationOrder")';
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Actions.Search                    = '@Url.Action("Search", "CombinationOrder")';
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Actions.Create                    = '@Url.Action("Create", "CombinationOrder")';
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Actions.Edit                      = '@Url.Action("Edit", "CombinationOrder")';
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Actions.RegisterCombinationOrder  = '@Url.Action("RegisterCombinationOrder", "CombinationOrder")';
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Actions.ModifyCombinationOrder    = '@Url.Action("ModifyCombinationOrder", "CombinationOrder")';
+
+        ns('Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Resources')
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Resources.LabelGridParameter          = '@Html.Raw(IndexResource.LabelGridParameter)';
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Resources.LabelGridOrder              = '@Html.Raw(IndexResource.LabelGridOrder)';
+
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Resources.LabelConfirmationHeader   = '@Html.Raw(GeneralResource.LabelConfirmationHeader)';
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Resources.LabelSaveConfirmation     = '@Html.Raw(MessageResource.SaveConfirmation)';
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Resources.SatisfactorySaved         = '@Html.Raw(MessageResource.SatisfactorySaved)';
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Resources.FailedSaved               = '@Html.Raw(MessageResource.FailedSaved)';
+
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Resources.LabelModificationReason               = '@Html.Raw(GeneralResource.LabelModificationReason)';
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Resources.LabelExistingParameter                = '@Html.Raw(IndexResource.LabelExistingParameter)';
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Resources.LabelExistingParameterInCombination   = '@Html.Raw(IndexResource.LabelExistingParameterInCombination)';
+
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Resources.LabelParameter  = '@Html.Raw(IndexResource.LabelParameter)';
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Resources.LabelSelect  = '@Html.Raw(GeneralResource.LabelSelect)';
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Resources.LabelSelectAll  = '@Html.Raw(GeneralResource.LabelSelectAll)';
+    
+        ns('Yanbal.SFT.Presentation.Web.CombinationOrderValidation.Message.Resources')
+        Yanbal.SFT.Presentation.Web.CombinationOrderValidation.Message.Resources.ParameterReq = '@Html.Raw(IndexResource.LabelParameter)';
+        Yanbal.SFT.Presentation.Web.CombinationOrderValidation.Message.Resources.ModificationReasonReq = '@Html.Raw(GeneralResource.LabelModificationReason)';
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/Views/Policy/CombinationOrder/Index/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/CombinationOrder/Index/Index.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/CombinationOrder/Edit/Controller.js"></script>
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Models');
+        Yanbal.SFT.Presentation.Web.Policy.CombinationOrder.Models.Index = @(Html.Raw(Json.Encode(Model)));
+    </script>
+}

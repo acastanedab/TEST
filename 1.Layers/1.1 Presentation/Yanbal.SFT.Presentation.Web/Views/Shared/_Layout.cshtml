@@ -1,0 +1,519 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Security.Account;
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared;
+@using System.Configuration;
+@using Yanbal.SFT.Presentation.Web.Source.Context.Common;
+@using Yanbal.SFT.Presentation.Web.Source.Session;
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+@using Yanbal.SFT.FreightManagement.Common;
+@using Yanbal.SFT.FreightManagement.Common.Custom;
+@using Yanbal.SFT.Presentation.Web.Source.Models.Base;
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <title>@GeneralResource.LabelTitle</title>
+
+    @Styles.Render("~/Bootstrap/css")
+    @Styles.Render("~/JQuery/css")
+    @Styles.Render("~/TimePicker/css")
+    @Styles.Render("~/ColorPicker/css")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Font-awesome/css")
+    @Styles.Render("~/Components/css")
+    @Scripts.Render("~/bundles/JQuery")
+    @Scripts.Render("~/bundles/JQueryui")
+    @Scripts.Render("~/bundles/TimePicker")
+
+    @Scripts.Render("~/bundles/JQueryval")
+    @Scripts.Render("~/bundles/Bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/Knockout")
+    @Scripts.Render("~/bundles/Components")
+    @Scripts.Render("~/JQuery/Resources")
+    @Scripts.Render("~/ColorPicker/Resources")
+
+    @{
+        YanbalSession Model = Yanbal.SFT.Presentation.Web.Source.Session.SessionContext.GetYanbalSession();
+        MenuItem menuCurrent = BaseContext.GetCurrentModule();
+        string countryCode = (Model.BusinessUnit != null) ? (Model.BusinessUnit.CountryCode) : "";
+        string pathFlag = (!string.IsNullOrEmpty(countryCode)) ? (countryCode + ".png") : "";
+
+        string indicatorDropdownMenu = Enumerated.MenuDisplayForm.ExpandedForm;
+        if (Model.BusinessUnit.BusinessUnitConfiguration.CollapseMenuIndicator == true)
+        {
+            indicatorDropdownMenu = Enumerated.MenuDisplayForm.ContractedForm;
+        }
+        string VersionComponente = Yanbal.SFT.Presentation.Web.Source.Models.ViewModels.ViewModelDatosUsuario.GetVersionComponente();
+    }
+
+    <style>
+        .ui-menu {
+            width: 70px;
+            z-index: 10;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            @{
+                string stlyeSelectCountry = "";
+            }
+            <div class="col-xs-12 page-user text-left clearfix" style="z-index: 1;">
+                @if (!@Model.User.CorporateIndicator)
+                {
+                    stlyeSelectCountry = "border:none; background:none;";
+                }
+                <div class="pull-right" style="width: auto;">
+                    <div style="width: auto; float:right;">
+                        <div style="margin-top: 5px;">
+                            <span class="link">
+                                &nbsp;|&nbsp;
+                                <span class=" glyphicon glyphicon-user"></span>
+                                @Model.User.Login
+                            </span>
+                            @*<a href= "@Url.Content("~/Account")" class=" btn-default btn-sm">@Yanbal.SFT.Presentation.Web.Source.Resources.Security.Account.IndexResource.FinalizarSesionLabel</a>*@
+                            <a href="@Url.Content("~/Home/LogOut")" class=" btn-default btn-sm">@Yanbal.SFT.Presentation.Web.Source.Resources.Security.Account.IndexResource.FinalizarSesionLabel</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-right" style="width: auto;">
+                    <ul id="mnuSelectCountry" class="menu" style="width: 70px; text-align: center; display: none; @stlyeSelectCountry">
+                        @if (@Model.User.CorporateIndicator)
+                        {
+                            if (string.IsNullOrEmpty(countryCode))
+                            {
+                                <li>
+                                    <ul style="width: 70px;">
+                                        @foreach (var item in Model.ListCountry)
+                                        {
+                                            string pathFlagCountry = item.CountryCode + ".png";
+                                            <li><a href='~/Home/Index?lang=@item.CountryCode'>@item.CountryCode-<span><img src="~/Images/Flag/@pathFlagCountry" class="logo" /></span></a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    @countryCode-<img src="~/Images/Flag/@pathFlag" class="logo" />
+                                    <ul style="width: 70px;">
+                                        @foreach (var item in Model.ListCountry)
+                                        {
+                                            string pathFlagCountry = item.CountryCode + ".png";
+                                            <li><a href='~/Home/Index?lang=@item.CountryCode'>@item.CountryCode-<span><img src="~/Images/Flag/@pathFlagCountry" class="logo" /></span></a></li>
+                                        }
+                                    </ul>
+                                </li>
+
+                            }
+                        }
+                        else
+                        {
+                            <li>@countryCode-<img src="~/Images/Flag/@pathFlag" class="logo" /></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="page-header clearfix">
+                    <div class="col-md-4">
+                        <div class="pull-left">
+                            <a href="@Url.Action("Index", "Home", new { Area = string.Empty })">
+                                @if (Model.BusinessUnit.BusinessUnitConfiguration.CompanyLogo != null)
+                                {
+                                    var base64 = Convert.ToBase64String(Model.BusinessUnit.BusinessUnitConfiguration.ReportLogo);
+                                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                    <img src="@imgSrc" class="logo" height="30" />
+                                }
+                                else
+                                {
+                                    <img src="@Url.Content("~/Content/Images/logo.png")" class="logo" />
+                                }
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="pull-right">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pos-rel">
+
+            <div class="col-md-3 u-module-nav">
+                <div>
+                    <ul class="list-group u-action-nav">
+                        <li class="list-group-item ">
+                            <a href="#" class="item item-menu" id="toggle-menu">
+                                <span class="fa fa-bars"></span>
+                                <span class="u-label">Menú</span>
+                                <span class="fa fa-angle-double-left pull-right"></span>
+                            </a>
+                        </li>
+
+                        @foreach (var menu in Model.Menu.MyMenu)
+                        {
+                            if (menu.ParentResultId == null || menu.ParentResultId == "")
+                            {
+
+                                var submenu = Model.Menu.MyMenu.Where(m => m.ParentResultId == menu.ResultId);
+
+                                <li id="@menu.IdentificationModuleCode" class="list-group-item w-submenu">
+                                    <a href="#" class="btn-submenu">
+                                        <span class="@menu.ModuleNameIcoClass"></span><span class="u-label">&nbsp;@(BaseContext.GetValueResourceMenu(menu.IdentificationModuleCode) ?? menu.ModuleName)</span>
+                                    </a>
+
+                                    <ul id="@("ulsubMenu_" + menu.IdentificationModuleCode)">
+                                        @foreach (var subMenu in submenu)
+                                        {
+                                            <li>
+                                                @{
+                                                    string hreferencia = "";
+                                                    string targetPage = "";
+                                                }
+
+                                                @if (subMenu.IndicatorUrlExternal == true)
+                                                {
+                                                    hreferencia = subMenu.ModuleUrlAddress;
+                                                    targetPage = "target=_blank";
+                                                }
+                                                else
+                                                {
+                                                    hreferencia = Url.Content("~/" + subMenu.ModuleUrlAddress);
+                                                }
+                                                <a id="@subMenu.IdentificationModuleCode" href='@hreferencia' @targetPage>
+                                                    <span class="fa fa-chevron-right"></span>
+                                                    <span class="u-label">@(BaseContext.GetValueResourceMenu(subMenu.IdentificationModuleCode) ?? subMenu.ModuleName)</span>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-9 u-module-panel" style="min-height: 380px;">
+                @RenderSection("featured", required: false)
+                <section>
+                    @RenderBody()
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="col-xs-12">
+                <p class="pull-left">Yanbal Internacional - Todos los Derechos Reservados @DateTime.Now.Year - Versión @VersionComponente</p>
+                <p class="pull-right">
+                    Powered by <a href="#">
+                        <img src="@Url.Content("~/Content/Images/gm.png")" alt="CANVIA" />
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="~/Scripts/Base/jquery.ba-resize.js"></script>
+    <script type="text/javascript">
+
+        ns('Yanbal.SFT.Presentation.Web.Global.MenuCurrent');
+        Yanbal.SFT.Presentation.Web.Global.MenuCurrent.Module = '@Html.Raw(menuCurrent != null ? menuCurrent.ParentMenuId : "")';
+        Yanbal.SFT.Presentation.Web.Global.MenuCurrent.SubModule = '@Html.Raw(menuCurrent != null ? menuCurrent.MenuId : "")';
+
+        ns('Yanbal.SFT.Presentation.Web.Global.Format');
+        Yanbal.SFT.Presentation.Web.Global.Format.Date = '@Utility.ConvertFormatDatePresentation(Model.BusinessUnit.BusinessUnitConfiguration.Culture.DescriptionShortDateFormat)';
+        Yanbal.SFT.Presentation.Web.Global.Format.DatePicker = '@Model.BusinessUnit.BusinessUnitConfiguration.Culture.DescriptionShortDateFormat.Replace("y", "0").Replace("M", "0").Replace("d", "0")';
+        Yanbal.SFT.Presentation.Web.Global.Format.Timer = 'hh:mm';
+        Yanbal.SFT.Presentation.Web.Global.Format.Decimal = '@Model.BusinessUnit.BusinessUnitConfiguration.Culture.DescriptionFormatDecimalNumber';
+        Yanbal.SFT.Presentation.Web.Global.Format.DecimalSeparatorDecimal = '@Model.BusinessUnit.BusinessUnitConfiguration.Culture.DecimalSeparator';
+        Yanbal.SFT.Presentation.Web.Global.Format.DecimalSeparatorMiles = '@Model.BusinessUnit.BusinessUnitConfiguration.Culture.DecimalThousandsSeparator';
+        Yanbal.SFT.Presentation.Web.Global.Format.Integer = '@Model.BusinessUnit.BusinessUnitConfiguration.Culture.DescriptionFormatIntegerNumber';
+        Yanbal.SFT.Presentation.Web.Global.Format.IntegerSeparatorMiles = '@Model.BusinessUnit.BusinessUnitConfiguration.Culture.IntegerThousandsSeparator';
+
+        Yanbal.SFT.Presentation.Web.Global.Format.Language = '@Model.BusinessUnit.BusinessUnitConfiguration.Culture.CultureCode.ToLower()';
+        Yanbal.SFT.Presentation.Web.Global.Format.MinimumCharactersGloss = '@Model.BusinessUnit.BusinessUnitConfiguration.MinimumNumberCharactersGloss.ToString()';
+        Yanbal.SFT.Presentation.Web.Global.Format.MinimumVocalsGloss = '@Model.BusinessUnit.BusinessUnitConfiguration.MinimumNumberVowelGloss.ToString()';
+        Yanbal.SFT.Presentation.Web.Global.Format.ListAllowCharacters = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U', 'á', 'é', 'í', 'ó', 'ú'];
+
+        ns('Yanbal.SFT.Presentation.Web.Global.Url');
+        Yanbal.SFT.Presentation.Web.Global.Url.Aplicacion = '@Url.Content("~/")';
+        Yanbal.SFT.Presentation.Web.Global.Url.Images = Yanbal.SFT.Presentation.Web.Global.Url.Aplicacion + 'Images/';
+
+        ns('Yanbal.SFT.Presentation.Web.Global.Policy');
+        Yanbal.SFT.Presentation.Web.Global.Policy.Reports = {
+            PresentedInPopup: false,
+            PresentationFormat: {
+                Horizontal: 'width=1100, height=600, resizable=yes, scrollbars=yes',
+                Vertical: 'width=600, height=800'
+            }
+        };
+        Yanbal.SFT.Presentation.Web.Global.Policy.Menu = {
+
+            IndicatorDropdownMenu: '@indicatorDropdownMenu'
+        };
+
+        ns('Yanbal.SFT.Presentation.Web.Global.Report');
+        Yanbal.SFT.Presentation.Web.Global.Report.BusinessUnitConfiguration = '@Model.BusinessUnit.BusinessUnitConfiguration.DisplayFormReport';
+
+        ns('Yanbal.SFT.Presentation.Web.Enumerated.ReportDisplayForm');
+        Yanbal.SFT.Presentation.Web.Enumerated.ReportDisplayForm.Window = '@Html.Raw(Enumerated.ReportDisplayForm.Window)';
+        Yanbal.SFT.Presentation.Web.Enumerated.ReportDisplayForm.Tab    = '@Html.Raw(Enumerated.ReportDisplayForm.Tab)';
+
+        ns('Yanbal.SFT.Presentation.Web.Enumerated.MenuDisplayForm');
+        Yanbal.SFT.Presentation.Web.Enumerated.MenuDisplayForm.ExpandedForm     = '@Html.Raw(Enumerated.MenuDisplayForm.ExpandedForm)';
+        Yanbal.SFT.Presentation.Web.Enumerated.MenuDisplayForm.ContractedForm   = '@Html.Raw(Enumerated.MenuDisplayForm.ContractedForm)';
+
+        ns('Yanbal.SFT.Presentation.Web.Shared.Resources');
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelSelectDeselectAll = '@Html.Raw(GeneralResource.LabelSelectDeselectAll)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelSelect = '@Html.Raw(GeneralResource.LabelSelect)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelSelectAll = '@Html.Raw(GeneralResource.LabelSelectAll)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelMustEnterField = '@Html.Raw(GeneralResource.LabelMustEnterField)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelRowsPerPage = '@Html.Raw(GeneralResource.LabelRowsPerPage)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelRow = '@Html.Raw(GeneralResource.LabelRow)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelPage = '@Html.Raw(GeneralResource.LabelPage)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelAcceptConfirmation = '@Html.Raw(GeneralResource.LabelAccept)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelCancel = '@Html.Raw(GeneralResource.LabelCancel)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelLoading = '@Html.Raw(GeneralResource.LabelLoading)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelSearchResultsBlank = '@Html.Raw(GeneralResource.LabelSearchResultsBlank)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaInformacion = '@Html.Raw(GeneralResource.EtiquetaInformacion)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelConfirmationHeader = '@Html.Raw(GeneralResource.LabelConfirmationHeader)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaAdvertencia = '@Html.Raw(GeneralResource.EtiquetaAdvertencia)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelSelectRecord = '@Html.Raw(GeneralResource.LabelSelectRecord)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaGenerarArchivo = '@Html.Raw(GeneralResource.EtiquetaGenerarArchivo)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaCargarInformacion = '@Html.Raw(GeneralResource.EtiquetaCargarInformacion)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelDeleteRecord = '@Html.Raw(GeneralResource.LabelDeleteRecord)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaEditarRegistro = '@Html.Raw(GeneralResource.EtiquetaEditarTooltip)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelDeleteTooltip = '@Html.Raw(GeneralResource.LabelDeleteTooltip)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaElijaColor = '@Html.Raw(GeneralResource.EtiquetaElijaColor)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaTransparente = '@Html.Raw(GeneralResource.EtiquetaTransparente)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaNinguno = '@Html.Raw(GeneralResource.EtiquetaNinguno)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelAdd = '@Html.Raw(GeneralResource.LabelAdd)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaVerArchivo = '@Html.Raw(GeneralResource.EtiquetaVerArchivoTooltip)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaVerDetalle = '@Html.Raw(GeneralResource.EtiquetaVerDetalle)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaInformacionAlgunosCamposObligatorio = '@Html.Raw(GeneralResource.LabelSomeInformationRequiredFields)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaEditarTooltip = '@Html.Raw(GeneralResource.EtiquetaEditarTooltip)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelSeeCompanyLogo = '@Html.Raw(GeneralResource.LabelSeeCompanyLogo)';
+        Yanbal.SFT.Presentation.Web.Shared.Resources.LabelSeeReportLogo = '@Html.Raw(GeneralResource.LabelSeeReportLogo)';
+
+        ns('Yanbal.SFT.Presentation.Web.Shared.Message');
+        Yanbal.SFT.Presentation.Web.Shared.Message.InformationSaved = '@Html.Raw(MessageResource.InformationSaved)';
+        Yanbal.SFT.Presentation.Web.Shared.Message.LoadErrorViewModel = '@Html.Raw(MessageResource.LoadErrorViewModel)';
+        Yanbal.SFT.Presentation.Web.Shared.Message.ValidationObservation = '@Html.Raw(MessageResource.LabelValidationObservation)';
+
+        ns('Yanbal.SFT.Presentation.Web.Global.Grid.Options');
+        Yanbal.SFT.Presentation.Web.Global.Grid.Options.PagerpageSize = '@Model.BusinessUnit.BusinessUnitConfiguration.RowsPerPage';
+
+        function disableBackButtonAllBrowsers() {
+
+            window.history.forward()
+
+        };
+
+
+        window.onload = disableBackButtonAllBrowsers();
+
+        window.onpageshow = function (evts) {
+
+            if (evts.persisted) {
+
+                disableBackButtonAllBrowsers();
+
+            }
+
+        };
+
+
+
+        window.onunload = function () {
+
+            void (0)
+
+        };
+
+        languageSelected = '@Html.Raw(@ViewBag.LanguageSelected)'
+
+        ns('Yanbal.SFT.Presentation.Web.Global.Grid.Buttons');
+        Yanbal.SFT.Presentation.Web.Global.Grid.Buttons.Selection = {
+            id: 'selection',
+            icon: 'fa fa-arrow-right',
+            title: Yanbal.SFT.Presentation.Web.Shared.Resources.TagSelectRecord
+        };
+
+        Yanbal.SFT.Presentation.Web.Global.Grid.Buttons.Edit = {
+            id: 'edit',
+            icon: 'fa fa-edit',
+            title: Yanbal.SFT.Presentation.Web.Shared.Resources.TagEditRecord
+        };
+
+        Yanbal.SFT.Presentation.Web.Global.Grid.Buttons.Delete = {
+            id: 'delete',
+            icon: 'fa fa-times',
+            title: Yanbal.SFT.Presentation.Web.Shared.Resources.TagDeleteRecord
+        };
+
+        ns('Yanbal.SFT.Presentation.Web.Global.Grid.Action');
+        Yanbal.SFT.Presentation.Web.Global.Grid.Action.SelectCompanyLogo = {
+            id: 'selectCompanyLogo',
+            icon: 'fa fa-arrow-right',
+            title: Yanbal.SFT.Presentation.Web.Shared.Resources.LabelSeeCompanyLogo
+        };
+        Yanbal.SFT.Presentation.Web.Global.Grid.Action.SelectReportLogo = {
+            id: 'selectReportLogo',
+            icon: 'fa fa-arrow-right',
+            title: Yanbal.SFT.Presentation.Web.Shared.Resources.LabelSeeReportLogo
+        };
+        Yanbal.SFT.Presentation.Web.Global.Grid.Action.Seleccionar = {
+            id: 'seleccionar',
+            icon: 'fa fa-arrow-right',
+            title: Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaSeleccionarRegistro
+        };
+        Yanbal.SFT.Presentation.Web.Global.Grid.Action.GenerarArchivo = {
+            id: 'generarArchivo',
+            icon: 'fa fa-download',
+            title: Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaGenerarArchivo
+        };
+        Yanbal.SFT.Presentation.Web.Global.Grid.Action.CargarInformacion = {
+            id: 'cargarInformacion',
+            icon: 'fa fa-upload',
+            title: Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaCargarInformacion
+        };
+        Yanbal.SFT.Presentation.Web.Global.Grid.Action.VerArchivo = {
+            id: 'Ver',
+            icon: 'fa fa-arrow-right',
+            title: Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaVerArchivo
+        };
+        Yanbal.SFT.Presentation.Web.Global.Grid.Action.Protestar = {
+            id: 'protestar',
+            icon: 'fa fa-book',
+            title: 'Protestar'
+        };
+        Yanbal.SFT.Presentation.Web.Global.Grid.Action.Modificar = {
+            id: 'edit',
+            icon: 'fa fa-edit',
+            title: Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaEditarTooltip
+        };
+        Yanbal.SFT.Presentation.Web.Global.Grid.Action.Delete = {
+            id: 'delete',
+            icon: 'fa fa-times',
+            title: Yanbal.SFT.Presentation.Web.Shared.Resources.LabelDeleteTooltip
+        };
+        Yanbal.SFT.Presentation.Web.Global.Grid.Action.Anadir = {
+            id: 'anadir',
+            icon: 'fa fa-arrow-right',
+            title: Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaAnadir
+        };
+        Yanbal.SFT.Presentation.Web.Global.Grid.Action.VerDetalleConvenio = {
+            id: 'Ver',
+            icon: 'fa fa-arrow-right',
+            title: Yanbal.SFT.Presentation.Web.Shared.Resources.EtiquetaVerDetalle
+        };
+
+        Yanbal.SFT.Presentation.Web.Global.Grid.Buttons.ValidateSecurity = function (accion, seguridad, title) {
+            var cadena = "";
+
+            if (title == undefined || title == null || title == '') {
+                title = accion.title;
+            }
+
+            if (seguridad.Visible) {
+                cadena += '<a  style="cursor:pointer;margin-left:4px"'
+                var identificador = '';
+
+                if (seguridad.Enabled) {
+                    cadena += ' title="' + title + '" ';
+                    identificador = accion.id;
+                } else {
+                    cadena += ' class="enabled" ';
+                }
+                cadena += '><i class="' + accion.icon + ' ' + identificador + '"></i></a>';
+            }
+            return cadena;
+        };
+        Yanbal.SFT.Presentation.Web.Global.Grid.Buttons.ValidateSecurityLink = function (accion, seguridad, title, url, parametro) {
+            var cadena = "";
+
+            if (title == undefined || title == null || title == '') {
+                title = accion.title;
+            }
+
+            if (seguridad.Visible) {
+                cadena += '<a  style="cursor:pointer;margin-left:4px"'
+                var identificador = '';
+
+                if (seguridad.Enabled) {
+                    cadena += ' title="' + title + '" ';
+                    cadena += ' href="' + url + parametro + '" ';
+                    identificador = accion.id;
+                } else {
+                    cadena += ' class="enabled" ';
+                }
+                cadena += '><i class="' + accion.icon + ' ' + identificador + '"></i></a>';
+            }
+            return cadena;
+        };
+
+        $.validator.addMethod("Alfhanumeric", function (value, element) {
+            return this.optional(element) || /^[\u00F1A-Za-z0-9\-.\s]+$/i.test(value);
+        }, "");
+        $.validator.addMethod("DateTime", function (value, element) {
+            if (this.optional(element)) {
+                return true;
+            }
+            var ok = true;
+            if (value.length < 10)
+                ok = false;
+            try {
+                var date = $.datepicker.parseDate(Yanbal.SFT.Presentation.Web.Global.Format.Date, value);
+                ok = (date.getFullYear() >= 1900)
+            }
+            catch (err) {
+                ok = false;
+            }
+            return ok;
+        });
+        $.validator.addMethod("Comment", function (value, element) {
+            var ok = true;
+            try {
+                ok = ValidateFieldComment(value, element);
+            }
+            catch (err) {
+                ok = false;
+            }
+            return ok;
+        }, Yanbal.SFT.Presentation.Web.Shared.Message.ValidationObservation);
+
+        $(document).ready(function () {
+            var controles = $('.datepicker1');
+            controles.bind("blur", function () {
+                return ValidarFechaOnBlur(this);
+            });
+            var format = '@Model.BusinessUnit.BusinessUnitConfiguration.Culture.DescriptionShortDateFormat.Replace("y", "0").Replace("M", "0").Replace("d", "0")';
+
+            controles.mask(format);
+
+            $("#mnuSelectCountry").menu({ position: { my: "right top", at: "right+2 bottom+2" } });
+            $("#mnuSelectCountry").fadeIn();
+        });
+    </script>
+    @Scripts.Render("~/bundles/ColorPicker")
+    <script src="~/Scripts/Views/Layout/Index.js"></script>
+    <script src="~/Scripts/Util.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

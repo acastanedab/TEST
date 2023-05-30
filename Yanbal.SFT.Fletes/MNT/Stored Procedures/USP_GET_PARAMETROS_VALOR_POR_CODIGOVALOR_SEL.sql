@@ -1,0 +1,64 @@
+﻿
+CREATE PROCEDURE [MNT].[USP_GET_PARAMETROS_VALOR_POR_CODIGOVALOR_SEL]
+(
+    @CODIGO_UNIDAD_NEGOCIO BIGINT = 0,
+	@CODIGO_PAIS VARCHAR(5) = '',
+    @CODIGO VARCHAR(5),
+	@CODIGO_VALOR INT
+	
+)
+AS
+/****************************************************************************
+Nombre SP: [MNT].[USP_GET_PARAMETROS_VALOR_POR_CODIGOVALOR_SEL]
+[MNT].[USP_GET_PARAMETROS_VALOR_POR_CODIGOVALOR_SEL] 2,'PE','CLF',1
+Propósito: Obtener el listado de Parámetro Valor por Codigo del parametro y codigo del valor.
+Input:
+	@CODIGO_UND_NEGOCIO:	Parámetro de entrada que representa el código de unidad de negocio.
+	@CODIGO_PAIS:			Parámetro de entrada que representa él código del Pais.
+	@CODIGO:				Parámetro de entrada que representa él código del parámetro.
+	@CODIGO_VALOR:			Parámetro de entrada que representa él código del valor.
+Output: 
+
+28-12-2020	MMEZA	UNI-8162 Implementación de log4net - FinancialPayment y los demás servicios Web SUITE PYF CORP
+18-03-2021	DDURAND	UNI-9098 Mejora en el registro de log por Nodos y Configuracion de EndPoint en Base de Datos
+****************************************************************************/
+BEGIN
+	SET NOCOUNT ON
+	SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+	DECLARE @CODIGO_UND_NEGOCIO_OBTENIDO INT = 0;
+
+	IF(ISNULL(@CODIGO_PAIS,'') != '' AND ISNULL(@CODIGO_UNIDAD_NEGOCIO,0) = 0)
+	BEGIN
+		SELECT TOP(1)
+		@CODIGO_UND_NEGOCIO_OBTENIDO = UN.CODIGO_UNIDAD_NEGOCIO
+		FROM MNT.UNIDAD_NEGOCIO UN 
+		INNER JOIN MNT.PAIS PA ON UN.CODIGO_PAIS = PA.CODIGO_PAIS
+		WHERE PA.CODIGO_PAIS = @CODIGO_PAIS
+		AND UN.ESTADO_REGISTRO = '1' AND PA.ESTADO_REGISTRO = '1';
+
+		SET @CODIGO_UNIDAD_NEGOCIO = @CODIGO_UND_NEGOCIO_OBTENIDO;
+	END
+
+	SELECT
+		CAST(ROW_NUMBER() OVER(ORDER BY PV.CODIGO_SECCION ASC) AS INT) AS Correlativo, 
+		CAST(@CODIGO_UNIDAD_NEGOCIO AS INT) AS CodigoUnidadNegocio,
+		PA.CODIGO_PARAMETRO AS CodigoParametro,
+		PA.NOMBRE AS NombreParametro,
+		CONVERT(VARCHAR, PS.CODIGO_PARAMETRO) + '.'
+		+ CONVERT(VARCHAR, PS.CODIGO_SECCION) AS sCodigoSeccion,
+		PS.NOMBRE AS NombreParametroSeccion,
+		CONVERT(VARCHAR, PV.CODIGO_PARAMETRO) + '.'
+		+ CONVERT(VARCHAR, PV.CODIGO_SECCION) + '.'
+		+ CONVERT(VARCHAR, PV.CODIGO_VALOR) AS sCodigoValor,
+		PV.VALOR AS Valor
+	FROM MNT.PARAMETRO PA
+	INNER JOIN MNT.PARAMETRO_SECCION PS
+		ON PA.CODIGO_PARAMETRO = PS.CODIGO_PARAMETRO
+	INNER JOIN MNT.PARAMETRO_VALOR PV
+		ON PA.CODIGO_PARAMETRO = PV.CODIGO_PARAMETRO AND PS.CODIGO_SECCION = PV.CODIGO_SECCION
+	WHERE PV.CODIGO_UNIDAD_NEGOCIO = @CODIGO_UNIDAD_NEGOCIO
+	AND PA.ESTADO_REGISTRO = '1'
+	AND PV.ESTADO_REGISTRO = '1'			
+	AND PV.CODIGO_VALOR = @CODIGO_VALOR
+	AND	PA.CODIGO = @CODIGO
+END

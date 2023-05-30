@@ -1,0 +1,131 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.BusinessUnit
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy;
+@model BusinessUnitModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>@Html.Raw(IndexResource.LabelTitleBusinessUnit)</strong>
+    </div>
+    <div class="panel-body">
+        <div id="divBusinessUnit">
+            <form id="frmBusinessUnitIndex" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelCountry):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcSearchCountry" class="form-control" data-bind="options: ListCountry, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelectAll)'">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelBusinessUnitName):</label>
+                                <div class="col-sm-7">
+                                    <input id="txtSearchBusinessUnitName" class="form-control" type="text" name="BusinessUnitName" maxlength="255" placeholder="@Html.Raw(IndexResource.LabelBusinessUnitName)"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcSearchRegistrationStatus" class="form-control" data-bind="options: ListRegistrationStatus, optionsText: 'Name', optionsValue: 'Id'">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-12" style="text-align: right;">
+                                    <input id="btnSearch" type="button" class="btn btn-primary" value="@Html.Raw(GeneralResource.LabelShow)" data-bind="visible: Search.Visible, enable: Search.Enabled"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divSearchResult" style="display: none" onscroll="true">
+                    <div class="table-responsive u-table-search">
+                        <div id="grdResult" name="gridResult" class="table table-bordered table-striped table-hover table-responsive">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div>
+                    <input id="btnCreate" class="pull-left btn btn-default btn-filter" type="button" value='@Html.Raw(GeneralResource.LabelAdd)' data-bind="visible: Create.Visible, enable: Create.Enabled" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Actions')
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Actions.Index                   = '@Url.Action("Index", "BusinessUnit")';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Actions.Search                  = '@Url.Action("Search", "BusinessUnit")';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Actions.Create                  = '@Url.Action("Create", "BusinessUnit")';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Actions.Edit                    = '@Url.Action("Edit", "BusinessUnit")';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Actions.RegisterBusinessUnit    = '@Url.Action("RegisterBusinessUnit", "BusinessUnit")';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Actions.ModifyBusinessUnit      = '@Url.Action("ModifyBusinessUnit", "BusinessUnit")';
+        
+        ns('Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Actions')
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnitConfiguration.Actions.Index = '@Url.Action("Index", "BusinessUnitConfiguration", new { Id = "/" })';
+
+        ns('Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources')
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelGridConfiguration        = '@Html.Raw(IndexResource.LabelGridConfiguration)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelGridCountry              = '@Html.Raw(IndexResource.LabelGridCountry)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelGridBusinessUnitName     = '@Html.Raw(IndexResource.LabelGridBusinessUnitName)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelGridAddress              = '@Html.Raw(IndexResource.LabelGridAddress)';        
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelGridRegistrationStatus   = '@Html.Raw(GeneralResource.LabelRegistrationStatus)';
+
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelConfirmationHeader   = '@Html.Raw(GeneralResource.LabelConfirmationHeader)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelSaveConfirmation     = '@Html.Raw(MessageResource.SaveConfirmation)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.SatisfactorySaved         = '@Html.Raw(MessageResource.SatisfactorySaved)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.FailedSaved               = '@Html.Raw(MessageResource.FailedSaved)';
+        
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelGeneralData          = '@Html.Raw(IndexResource.LabelGeneralData)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelCountry              = '@Html.Raw(IndexResource.LabelCountry)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelBusinessUnitName     = '@Html.Raw(IndexResource.LabelBusinessUnitName)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelAddress              = '@Html.Raw(IndexResource.LabelAddress)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelModificationReason   = '@Html.Raw(GeneralResource.LabelModificationReason)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelExistingBusinessUnit = '@Html.Raw(IndexResource.LabelExistingBusinessUnit)';
+
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelSelect        = '@Html.Raw(GeneralResource.LabelSelect)';
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Resources.LabelSelectAll     = '@Html.Raw(GeneralResource.LabelSelectAll)';
+        
+        ns('Yanbal.SFT.Presentation.Web.BusinessUnitValidation.Message.Resources')
+        Yanbal.SFT.Presentation.Web.BusinessUnitValidation.Message.Resources.NameReq                = '@Html.Raw(IndexResource.LabelName)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitValidation.Message.Resources.BusinessUnitNameReq    = '@Html.Raw(IndexResource.LabelBusinessUnitName)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitValidation.Message.Resources.CountryReq             = '@Html.Raw(IndexResource.LabelCountry)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitValidation.Message.Resources.AddressReq             = '@Html.Raw(IndexResource.LabelAddress)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitValidation.Message.Resources.DocumentReq            = '@Html.Raw(IndexResource.LabelDocument)';
+        Yanbal.SFT.Presentation.Web.BusinessUnitValidation.Message.Resources.ModificationReasonReq  = '@Html.Raw(GeneralResource.LabelModificationReason)';
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/Views/Policy/BusinessUnit/Index/Index.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/BusinessUnit/Index/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/BusinessUnit/Edit/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/BusinessUnit/Create/Controller.js"></script>
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Models');
+        Yanbal.SFT.Presentation.Web.Policy.BusinessUnit.Models.Index = @(Html.Raw(Json.Encode(Model)));
+    </script>
+}

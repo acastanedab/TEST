@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{444F23BE-D133-4689-BE85-73E388480715}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yanbal.SFT.PolicyManager.Domain</RootNamespace>
+    <AssemblyName>Yanbal.SFT.PolicyManager.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Yanbal.SFT.PolicyManager.Domain.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>Yanbal.SFT.PolicyManager.Domain.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Yanbal.SFT.PolicyManager.Domain.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigLog4Net.cs" />
+    <Compile Include="IConfigLog4Net.cs" />
+    <Compile Include="PolicyDomain.cs" />
+    <Compile Include="IPolicyDomain.cs" />
+    <Compile Include="Wrappers\AuditReportRequest.cs" />
+    <Compile Include="Wrappers\BusinessUnitRequest.cs" />
+    <Compile Include="Wrappers\BusinessUnitConfigurationRequest.cs" />
+    <Compile Include="Wrappers\CombinationOrderRequest.cs" />
+    <Compile Include="Wrappers\CombinationRequest.cs" />
+    <Compile Include="Wrappers\ConfiguracionKeyResponse.cs" />
+    <Compile Include="Wrappers\ConfiguracionEndPointResponse.cs" />
+    <Compile Include="Wrappers\DistrictRequest.cs" />
+    <Compile Include="Wrappers\CityRequest.cs" />
+    <Compile Include="Wrappers\CountryRequest.cs" />
+    <Compile Include="Wrappers\CultureRequest.cs" />
+    <Compile Include="Wrappers\FormulaRequest.cs" />
+    <Compile Include="Wrappers\LanguageRequest.cs" />
+    <Compile Include="Wrappers\ParameterCombinationRequest.cs" />
+    <Compile Include="Wrappers\ParameterValueRequest.cs" />
+    <Compile Include="Wrappers\ParameterSectionRequest.cs" />
+    <Compile Include="Wrappers\ParameterRequest.cs" />
+    <Compile Include="Wrappers\StringFormatRequest.cs" />
+    <Compile Include="Wrappers\TimeZoneRequest.cs" />
+    <Compile Include="Wrappers\UbigeoZoneTypeRequest.cs" />
+    <Compile Include="Wrappers\ProvinceRequest.cs" />
+    <Compile Include="Wrappers\UpdateVersionComponenteResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yanbal.SFT.Domain.Entities.Logic\Yanbal.SFT.Domain.Entities.Logic.csproj">
+      <Project>{a313e510-ad35-4950-a312-54889f830e08}</Project>
+      <Name>Yanbal.SFT.Domain.Entities.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yanbal.SFT.Domain.Entities\Yanbal.SFT.Domain.Entities.csproj">
+      <Project>{2788782a-17ca-4feb-8801-19a5a340dccd}</Project>
+      <Name>Yanbal.SFT.Domain.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yanbal.SFT.Domain.Common\Yanbal.SFT.FreightManagement.Common.csproj">
+      <Project>{25c4e95d-dcc0-4b4a-920f-b66192bc69ac}</Project>
+      <Name>Yanbal.SFT.FreightManagement.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yanbal.SFT.Domain.Mappers\Yanbal.SFT.Domain.Mappers.csproj">
+      <Project>{099d6148-9403-495b-83c8-d4b6c2008a66}</Project>
+      <Name>Yanbal.SFT.Domain.Mappers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yanbal.SFT.Infrastructure.CrossCutting\Yanbal.SFT.Infrastructure.CrossCutting.csproj">
+      <Project>{5b20f1a2-4fd0-4f55-bf01-04a3a049e4af}</Project>
+      <Name>Yanbal.SFT.Infrastructure.CrossCutting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

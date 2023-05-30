@@ -1,0 +1,160 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.TaxProduct
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy;
+@using Yanbal.SFT.Domain.Common.Messages;
+@model TaxProductModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>@Html.Raw(IndexResource.LabelTitle)</strong>
+    </div>
+    <div class="panel-body">
+        <div id="divTaxProduct">
+            <form id="frmTaxProductIndex" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelCodeProduct):</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtCodeProduct" name="CodeProduct" class="form-control" maxlength="100" placeholder="@Html.Raw(IndexResource.LabelCodeProduct)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelOrigin):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcOrigin" class="form-control" data-bind="options: ListOrigin, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelect)'">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelTax):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcTaxType" class="form-control" data-bind="options: ListTaxType, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelect)'">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelException):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcException" class="form-control" data-bind="options: ListException, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '@Html.Raw(GeneralResource.LabelSelect)'">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcRegistrationStatus" class="form-control" data-bind="options: ListRegistrationStatus, optionsText: 'Name', optionsValue: 'Id'">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-7"></div>
+                                <div class="col-sm-5" style="text-align: right;">
+                                    <input id="btnSearch" type="button" class="pull-right btn btn-primary" value='@Html.Raw(GeneralResource.LabelShow)' data-bind="visible: Search.Visible, enable: Search.Enabled" />
+                                    @*<input id="btnClean" type="button" class="pull-left btn btn-default btn-filter" value='@Html.Raw(GeneralResource.LabelClean)' data-bind="visible: Clean.Visible, enable: Clean.Enabled" />*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divSearchResultParameter" style="display: none" onscroll="true">
+                    <div class="table-responsive u-table-search">
+                        <div id="grdResultTaxProduct" class="table table-bordered table-striped table-hover table-responsive">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div>
+                    <input id="btnCreate" type="button" class="pull-left btn btn-default btn-filter" value='@Html.Raw(GeneralResource.LabelAdd)' data-bind="visible: Create.Visible, enable: Create.Enabled"/>
+                </div>
+                @*<div>
+                    <input id="btnImport" type="button" class="pull-left btn btn-default btn-filter" value='@Html.Raw(GeneralResource.LabelImport)' data-bind="visible: Import.Visible, enable: Import.Enabled"/>
+                </div>
+                <div>
+                    <input id="btnExport" type="button" class="pull-left btn btn-default btn-filter" value='@Html.Raw(GeneralResource.LabelExport)' data-bind="visible: Export.Visible, enable: Export.Enabled"/>
+                </div>*@
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @*<script src="~/Scripts/Util.js"></script>*@
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Actions')
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Actions.Search                             = '@Url.Action("Search", "TaxProduct")';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Actions.Create                             = '@Url.Action("Create", "TaxProduct")';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Actions.Index                              = '@Url.Action("Index", "TaxProduct")';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Actions.Edit                               = '@Url.Action("Edit", "TaxProduct")';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Actions.ModifyParameter                    = '@Url.Action("ModifyParameter", "TaxProduct")';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Actions.RegisterParameter                  = '@Url.Action("RegisterParameter", "TaxProduct")';
+
+        ns('Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources')
+
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources.LabelGridCode                    = '@Html.Raw(IndexResource.LabelGridCode)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources.LabelGridOrigin                  = '@Html.Raw(IndexResource.LabelGridOrigin)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources.LabelGridException               = '@Html.Raw(IndexResource.LabelGridException)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources.LabelGridTaxPercentage           = '@Html.Raw(IndexResource.LabelGridTaxPercentage)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources.LabelGridTax                     = '@Html.Raw(IndexResource.LabelGridTax)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources.LabelGridReferencePrice          = '@Html.Raw(IndexResource.LabelGridReferencePrice)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources.LabelGridEdit                    = '@Html.Raw(GeneralResource.LabelGridEdit)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources.LabelGridRegistrationStatus      = '@Html.Raw(GeneralResource.LabelRegistrationStatus)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources.LabelConfirmationHeader          = '@Html.Raw(GeneralResource.LabelConfirmationHeader)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources.LabelSaveConfirmation            = '@Html.Raw(MessageResource.SaveConfirmation)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources.SatisfactorySaved                = '@Html.Raw(MessageResource.SatisfactorySaved)';
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources.FailedSaved                      = '@Html.Raw(MessageResource.FailedSaved)';        
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources.LabelModificationReason          = '@Html.Raw(GeneralResource.LabelModificationReason)';    
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Resources.LabelTitleEdit                   = '@Html.Raw(IndexResource.LabelTitleEdit)';
+
+@*        ns('Yanbal.SFT.Presentation.Web.ParameterValidation.Message.Resources')
+        Yanbal.SFT.Presentation.Web.ParameterValidation.Message.Resources.NameReq               = '@Html.Raw(IndexResource.LabelName)';
+        Yanbal.SFT.Presentation.Web.ParameterValidation.Message.Resources.DescriptionReq        = '@Html.Raw(IndexResource.LabelDescription)';
+        Yanbal.SFT.Presentation.Web.ParameterValidation.Message.Resources.ParameterTypeReq      = '@Html.Raw(IndexResource.LabelParameterType)';
+        Yanbal.SFT.Presentation.Web.ParameterValidation.Message.Resources.ModificationReasonReq = '@Html.Raw(GeneralResource.LabelModificationReason)';*@
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/Views/Policy/TaxProduct/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/TaxProduct/Index.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/Views/Policy/Parameter/Create/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Policy/Parameter/Edit/Controller.js"></script*@>
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Models');
+        Yanbal.SFT.Presentation.Web.Policy.TaxProduct.Models.Index = @(Html.Raw(Json.Encode(Model)));
+    </script>
+}

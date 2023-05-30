@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn:gmd:schema:base" elementFormDefault="qualified" targetNamespace="urn:gmd:schema:base" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="GenericTypeRequest" abstract="true">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="RequestRunTime" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Header" nillable="true" type="tns:Cabecera" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Cabecera">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="codigoInterfaz" nillable="true" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="usuarioAplicacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="codigoAplicacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="codigoPais" nillable="true" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="codigosPaisOD" nillable="true" type="tns:ArrayOfCodigoPaisOD" />
+      <xs:element minOccurs="1" maxOccurs="1" name="idTransaccion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCodigoPaisOD">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CodigoPaisOD" nillable="true" type="tns:CodigoPaisOD" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodigoPaisOD">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="valor" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericTypeResponse" abstract="true">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="responseDate" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Error" type="tns:ErrorType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Header" nillable="true" type="tns:Cabecera" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ErrorType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="errorCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="errorDescription" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="severity" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DateRequest" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

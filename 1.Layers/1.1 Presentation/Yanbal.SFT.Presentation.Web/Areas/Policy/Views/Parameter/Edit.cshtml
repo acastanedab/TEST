@@ -1,0 +1,115 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Policy.Parameter
+@using Yanbal.SFT.Presentation.Web.Source.Models.Policy;
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+@model ParameterModel
+
+<div class="w-formulario-popup">
+    <div class="w-title-2">
+        @Html.Raw(IndexResource.LabelTitleEdit)
+    </div>
+    <div id="divRequiredField">
+        <span class="fa fa-info-circle"></span>
+        <span>@GeneralResource.LabelRequiredField1<span class="danger">*</span>@GeneralResource.LabelRequiredField2</span>
+    </div>
+    <hr />
+    <div class="w-form">
+        <div id="divEditContainer" class="w-item">
+            <form id="frmEditParameter">
+                <div id="divEditParameter">
+                    <div class="row">
+                        @{
+                            string valueAddValue = "";
+                            string valueModifyValue = "";
+                        }
+                        <div class="col-md-12">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelCode)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <label class="col-sm-5 control-label-bold">@Html.Raw(Model.Code)</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelName)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtParameterNameEdit" class="form-control" type="text" maxlength="100" value="@Model.ParameterName" validable="required NameReq" placeholder="@Html.Raw(IndexResource.LabelName)" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelDescription)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <input id="txtParameterDescriptionEdit" class="form-control" type="text" maxlength="255" value="@Model.ParameterDescription" validable="required DescriptionReq" placeholder="@Html.Raw(IndexResource.LabelDescription)"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelParameterType):</label>
+                                    <div class="col-sm-8">
+                                        <label class="col-sm-5 control-label-bold">@Html.Raw(Model.DescriptionParameterType)</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelAllowAddValue):</label>
+                                    <div class="col-sm-8">
+                                        @{
+                                            if (Model.AllowAddValue)
+                                            {
+                                                valueAddValue = "checked='checked'";
+                                            }
+                                        }
+                                        <p></p>
+                                        <input id="chkAllowAddValueEdit" type="checkbox" name="rdbAllowAddValue" @valueAddValue />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(IndexResource.LabelAllowModifyValue):</label>
+                                    <div class="col-sm-8">
+                                        @{
+                                            if (Model.AllowModifyValue)
+                                            {
+                                                valueModifyValue = "checked='checked'";
+                                            }
+                                        }
+                                        <p></p>
+                                        <input id="chkAllowModifyValueEdit" type="checkbox" name="rdbAllowModifyValue"  @valueModifyValue />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(GeneralResource.LabelRegistrationStatus):</label>
+                                    <div class="col-sm-8">
+                                        @{
+                                            if (Model.SystemIndicator)
+                                            {
+                                                <label class="col-sm-5 control-label-bold">@Html.Raw(Model.LabelRegistrationStatus)</label>     
+                                            }else
+                                            {
+                                                <select id="slcRegistrationStatusEdit" data-bind="options: ListRegistrationStatus, optionsText: 'Name', optionsValue: 'Id', value: '@Model.RegistrationStatus'" class="form-control">
+                                                </select>                                                                                        
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@Html.Raw(GeneralResource.LabelModificationReason)<span class="danger">*</span>:</label>
+                                    <div class="col-sm-8">
+                                        <textarea id="txtModificationReasonEdit" class="w-textarea" maxlength="250" validable="Comment true" placeholder="@Html.Raw(GeneralResource.LabelModificationReason)"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div class="cnt-button">
+        <input id="btnSaveEditParameter" class="btn btn-primary" type="button" data-bind="visible: Save.Visible, enable: Save.Enabled" value="@GeneralResource.LabelSave"/>
+        <input id="btnCancelEditParameter" class="btn btn-default" type="button" data-bind="visible: Cancel.Visible, enable: Cancel.Enabled" value="@GeneralResource.LabelCancel" />
+    </div>
+</div>
+
+<script type="text/javascript">
+    ns('Yanbal.SFT.Presentation.Web.Policy.Parameter.Models');
+    Yanbal.SFT.Presentation.Web.Policy.Parameter.Models.Edit = @(Html.Raw(Json.Encode(Model)));
+</script>

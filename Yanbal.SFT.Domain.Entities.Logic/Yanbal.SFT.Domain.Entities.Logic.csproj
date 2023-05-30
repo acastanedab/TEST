@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A313E510-AD35-4950-A312-54889F830E08}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yanbal.SFT.Domain.Entities.Logic</RootNamespace>
+    <AssemblyName>Yanbal.SFT.Domain.Entities.Logic</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Yanbal.SFT.Domain.Entities.Logic.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>Yanbal.SFT.Domain.Entities.Logic.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Yanbal.SFT.Domain.Entities.Logic.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\BaseEL.cs" />
+    <Compile Include="Common\EnvironmentEL.cs" />
+    <Compile Include="Freight\FreightEL.cs" />
+    <Compile Include="Policy\CombinationEL.cs" />
+    <Compile Include="Policy\BusinessUnitEL.cs" />
+    <Compile Include="Policy\BusinessUnitConfigurationEL.cs" />
+    <Compile Include="Policy\CombinationOrderEL.cs" />
+    <Compile Include="Policy\CityEL.cs" />
+    <Compile Include="Policy\DistrictEL.cs" />
+    <Compile Include="Policy\CountryEL.cs" />
+    <Compile Include="Policy\CultureEL.cs" />
+    <Compile Include="Policy\FormulaEL.cs" />
+    <Compile Include="Policy\FreightUbicationEL.cs" />
+    <Compile Include="Policy\LanguageEL.cs" />
+    <Compile Include="Policy\ParameterCombinationEL.cs" />
+    <Compile Include="Policy\ParameterValueEL.cs" />
+    <Compile Include="Policy\ParameterSectionEL.cs" />
+    <Compile Include="Policy\ParameterEL.cs" />
+    <Compile Include="Policy\PolicyAuditColumnEL.cs" />
+    <Compile Include="Policy\PolicyAuditTableEL.cs" />
+    <Compile Include="Policy\StringFormatEL.cs" />
+    <Compile Include="Policy\TimeZoneEL.cs" />
+    <Compile Include="Policy\ProvinceEL.cs" />
+    <Compile Include="Policy\UbigeoZoneTypeEL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdateVersion\UpdateVersionComponenteEL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yanbal.SFT.Domain.Common\Yanbal.SFT.FreightManagement.Common.csproj">
+      <Project>{25c4e95d-dcc0-4b4a-920f-b66192bc69ac}</Project>
+      <Name>Yanbal.SFT.FreightManagement.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

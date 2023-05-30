@@ -1,0 +1,273 @@
+﻿@using Yanbal.SFT.Presentation.Web.Source.Resources.Shared
+@using Yanbal.SFT.Presentation.Web.Source.Resources.Freight.Simulator
+@using Yanbal.SFT.Presentation.Web.Source.Models.Freight;
+@using Yanbal.SFT.FreightManagement.Common.Messages;
+@model SimulatorModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>@Html.Raw(IndexResource.LabelTitle)</strong>
+    </div>
+    <div class="panel-body">
+        <div id="divRequiredField">
+            <span class="fa fa-info-circle"></span>
+            <span>@GeneralResource.LabelRequiredField1<span class="danger">*</span>@GeneralResource.LabelRequiredField2</span>
+            <hr />
+        </div>
+        <div id="divParameter">
+            <form id="frmSimulatorIndex" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelAmount)<span class="danger">*</span>:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtAmount" name="Amount" class="form-control" maxlength="15" validable="required AmountReq" placeholder="@Html.Raw(IndexResource.LabelAmount)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelCountry)<span class="danger">*</span>:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtCountry" name="Country" class="form-control" maxlength="2" validable="required CountryReq" value="@Model.CodeCountry" placeholder="@Html.Raw(IndexResource.LabelCountry)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(Model.LabelGeoLevel1):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcZone1" class="form-control" data-bind="options: ListZoneLevel1, optionsText: 'Name', optionsValue: 'Id', optionsCaption:'@Html.Raw(GeneralResource.LabelSelect)    '"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(Model.LabelGeoLevel2):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcZone2" class="form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(Model.LabelGeoLevel3):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcZone3" class="form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelZone)<span class="danger">*</span>:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtZone" name="Zone" class="form-control" maxlength="11" validable="required ZoneReq, minlength 11 ZoneLength" placeholder="@Html.Raw(IndexResource.LabelZone)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelTypeOrder)<span class="danger">*</span>:</label>
+                                <div class="col-sm-7">
+                                    <select id="slcTypeOrder" class="form-control" validable="required TypeOrderReq" data-bind="options: ListTypeOrder, optionsText: 'Name', optionsValue: 'Id', optionsCaption:'@Html.Raw(GeneralResource.LabelSelect)    '"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelYearCampaign)<span class="danger">*</span>:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtYearCampaign" name="YearCampaign" class="form-control" maxlength="4" validable="required YearCampaignReq" placeholder="@Html.Raw(IndexResource.LabelYearCampaign)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelCampaign)<span class="danger">*</span>:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtNumberCampaign" name="NumberCampaign" class="form-control" maxlength="2" validable="required CampaignReq" placeholder="@Html.Raw(IndexResource.LabelCampaign)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelWeek)<span class="danger">*</span>:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtWeek" name="Week" class="form-control" maxlength="2" validable="required WeekReq" placeholder="@Html.Raw(IndexResource.LabelWeek)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelSendType):</label>
+                                <div class="col-sm-7">
+                                    <select id="slcSendType" class="form-control" data-bind="options: ListSendType, optionsText: 'Name', optionsValue: 'Id', optionsCaption:'@Html.Raw(GeneralResource.LabelSelect)    '"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelCodeParameter1):</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtCodeParameter1" name="CodeParameter" class="form-control" maxlength="3" placeholder="@Html.Raw(IndexResource.LabelCodeParameter1)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelValueParameter1):</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtValueParameter1" name="ValueParameter" class="form-control" maxlength="255" placeholder="@Html.Raw(IndexResource.LabelValueParameter1)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelCodeParameter2):</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtCodeParameter2" name="CodeParameter" class="form-control" maxlength="3" placeholder="@Html.Raw(IndexResource.LabelCodeParameter2)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelValueParameter2):</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtValueParameter2" name="ValueParameter" class="form-control" maxlength="255" placeholder="@Html.Raw(IndexResource.LabelValueParameter2)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelCodeParameter3):</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtCodeParameter3" name="CodeParameter" class="form-control" maxlength="3" placeholder="@Html.Raw(IndexResource.LabelCodeParameter3)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelValueParameter3):</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtValueParameter3" name="ValueParameter" class="form-control" maxlength="255" placeholder="@Html.Raw(IndexResource.LabelValueParameter3)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input id="btnSimulate" type="button" class="pull-right btn btn-primary" value='@Html.Raw(IndexResource.LabelSimulate)' data-bind="visible: Simulator.Visible, enable: Simulator.Enabled" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelCodeError):</label>
+                                <label id="lblCodeError" class="col-sm-5 control-label-bold"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label">@Html.Raw(IndexResource.LabelDescriptionError):</label>
+                                <label id="lblDescriptionError" class="col-sm-5 control-label-bold"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="divSearchResult" style="display: none" onscroll="true">
+                            <div id="divTblResultados"></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/Util.js"></script>
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Freight.Simulator.Actions')
+        Yanbal.SFT.Presentation.Web.Freight.Simulator.Actions.Simulate                      = '@Url.Action("Simulate", "Simulator")';
+        Yanbal.SFT.Presentation.Web.Freight.Simulator.Actions.ChangeZoneLevel1              = '@Url.Action("ChangeZoneLevel1", "Simulator")';
+        Yanbal.SFT.Presentation.Web.Freight.Simulator.Actions.ChangeZoneLevel2              = '@Url.Action("ChangeZoneLevel2", "Simulator")';
+
+        ns('Yanbal.SFT.Presentation.Web.Freight.Simulator.Resources')
+        Yanbal.SFT.Presentation.Web.Freight.Simulator.Resources.LabelConfirmationHeader      = '@Html.Raw(GeneralResource.LabelConfirmationHeader)';
+        Yanbal.SFT.Presentation.Web.Freight.Simulator.Resources.SaveConfirmation             = '@Html.Raw(MessageResource.SaveConfirmation)';
+        Yanbal.SFT.Presentation.Web.Freight.Simulator.Resources.SatisfactorySaved            = '@Html.Raw(MessageResource.SatisfactorySaved)';
+        Yanbal.SFT.Presentation.Web.Freight.Simulator.Resources.FailedSaved                  = '@Html.Raw(MessageResource.FailedSaved)';
+        Yanbal.SFT.Presentation.Web.Freight.Simulator.Resources.LabelSelect                  = '@Html.Raw(GeneralResource.LabelSelect)';
+
+        ns('Yanbal.SFT.Presentation.Web.SimulatorValidation.Message.Resources')
+        Yanbal.SFT.Presentation.Web.SimulatorValidation.Message.Resources.AmountReq          = '@Html.Raw(IndexResource.LabelAmount)';
+        Yanbal.SFT.Presentation.Web.SimulatorValidation.Message.Resources.CountryReq         = '@Html.Raw(IndexResource.LabelCountry)';
+        Yanbal.SFT.Presentation.Web.SimulatorValidation.Message.Resources.ZoneReq            = '@Html.Raw(IndexResource.LabelZone)';
+        Yanbal.SFT.Presentation.Web.SimulatorValidation.Message.Resources.ZoneLength         = '@Html.Raw(IndexResource.LabelZoneLength)';
+        Yanbal.SFT.Presentation.Web.SimulatorValidation.Message.Resources.TypeOrderReq       = '@Html.Raw(IndexResource.LabelTypeOrder)';
+        Yanbal.SFT.Presentation.Web.SimulatorValidation.Message.Resources.YearCampaignReq    = '@Html.Raw(IndexResource.LabelYearCampaign)';
+        Yanbal.SFT.Presentation.Web.SimulatorValidation.Message.Resources.CampaignReq        = '@Html.Raw(IndexResource.LabelCampaign)';
+        Yanbal.SFT.Presentation.Web.SimulatorValidation.Message.Resources.WeekReq            = '@Html.Raw(IndexResource.LabelWeek)';
+        Yanbal.SFT.Presentation.Web.SimulatorValidation.Message.Resources.SendTypeReq        = '@Html.Raw(IndexResource.LabelSendType)';
+
+    </script>
+    <script type="text/javascript" src="~/Scripts/Views/Freight/Simulator/Index/Controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/Freight/Simulator/Index/Index.js"></script>
+
+    <script type="text/javascript">
+        ns('Yanbal.SFT.Presentation.Web.Freight.Simulator.Models');
+        Yanbal.SFT.Presentation.Web.Freight.Simulator.Models.Index = @(Html.Raw(Json.Encode(Model)));
+    </script>
+}
